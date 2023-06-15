@@ -31,10 +31,6 @@
     margin: 0;
 }
 
-.modal-body {
-    margin-bottom: 20px;
-}
-
 .modal-footer {
     display: flex;
     justify-content: flex-end;
@@ -43,18 +39,45 @@
     margin-top: 10px;
 }
 
-.btn {
-    padding: 5px 10px;
-    margin-left: 5px;
+.color-option {
+    width: 200px;
+    height: 100px;
+    border-radius: 210%;
+    margin-right: 10px;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
 }
 
-.btn-primary {
-    background-color: blue;
-    color: white;
+.color-option span {
+    font-size: 16px;
+    font-weight: bold;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
-.btn-secondary {
-    background-color: gray;
-    color: white;
+.color-option.selected {
+    border: 2px solid black;
+    /* Aggiungi questo per rendere il testo bianco quando l'opzione è selezionata */
+}
+
+.color-option#b {
+    background-color: rgb(255, 174, 0);
+    color: black;
+    font-weight: bold;
+    font-size: 20px;
+    /* Aggiungi questo per rendere il testo bianco per l'opzione 'SIGNAGE' */
+}
+
+.color-option#a {
+    background-color: beige;
+    color: black;
+    font-size: 20px;
+    font-weight: bold;
+    float: right;
+    /* Aggiungi questo per rendere il testo bianco per l'opzione 'SIGNAGE' */
 }
