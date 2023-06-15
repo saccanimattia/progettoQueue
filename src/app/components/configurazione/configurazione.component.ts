@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { PocketBaseService } from 'src/app/services/pocket-base.service';
+
 
 @Component({
   selector: 'app-configurazione',
@@ -8,8 +10,19 @@ import { Component } from '@angular/core';
 export class ConfigurazioneComponent {
   ipAddress: any;
 
-  submitForm() {
+
+  constructor(private pocketBase : PocketBaseService){
+
+  }
+
+  async submitForm() {
     // Puoi gestire qui la logica per inviare l'indirizzo IP del server del database
-    console.log('Indirizzo IP del server del database:', this.ipAddress);
+    localStorage.setItem('indirizzoIp', this.ipAddress)
+    this.pocketBase.setIp()
+    console.log( )
+    if(await this.pocketBase.checkIp()){
+      return 1
+    }
+    return 0
   }
 }
