@@ -8,13 +8,16 @@
         <div *ngIf="items.length != 0">
           <div class="container">
             <div class="row">
-              <div class="col-below" *ngFor="let item of items">
-                <div class="item">
-                  <div class="col-below" *ngFor="let media of item.medias, index as i" (click)="modificaStato(media, i)" >
-                    <div class="image square" [id]="'elem' + i" style="display: flex; justify-content: center;">
-                      <img [src]="media" alt="{{ media }}" class="image-background">
-                    </div>
-                  </div>
+              <div class="col-below" *ngFor="let item of items, index as i" (click)="modificaStato(item, i)">
+                <div class="image square" [id]="'elem' + i" style="display: flex; justify-content: center;">
+                  <ng-container *ngFor="let media of item.medias">
+                    <ng-container *ngIf="isImage(media)">
+                      <img [src]="media.id"  class="image-background">
+                    </ng-container>
+                    <ng-container *ngIf="isVideo(media)">
+                      <video [src]="media.id" class="video-background" controls></video>
+                    </ng-container>
+                  </ng-container>
                 </div>
               </div>
             </div>
