@@ -8,13 +8,18 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   title = 'progettoQueue';
-  ip = localStorage.getItem('indirizzoIp')
-
+  ip : any
   constructor(private router: Router){}
 
   ngOnInit():void{
-    if(this.ip == null){
+    this.ip = localStorage.setItem('indirizzoIp', '')
+    this.ip = localStorage.getItem('indirizzoIp')
+    console.log(this.ip)
+    if(this.ip == ''){
       this.router.navigate(['/primaConfigurazione']);
+    }
+    else{
+      this.router.navigate(['/ciao']);
     }
   }
 }

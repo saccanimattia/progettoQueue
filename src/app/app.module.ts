@@ -6,11 +6,13 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ConfigurazioneComponent } from './components/configurazione/configurazione.component';
 import { FormsModule } from '@angular/forms';
+import { CiaoComponent } from './ciao/ciao.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ConfigurazioneComponent
+    ConfigurazioneComponent,
+    CiaoComponent
   ],
   imports: [
     BrowserModule,
