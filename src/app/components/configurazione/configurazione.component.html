@@ -1,11 +1,9 @@
-<div class="container-fluid d-flex justify-content-center align-items-center vh-100">
-  <form class="ip-input-form form-lg" (ngSubmit)="submitForm()">
-    <div class="form-group ">
-      <label for="ipAddress">Indirizzo IP del Server del Database</label>
-      <input type="text" class="form-control" id="ipAddress" name="ipAddress" [(ngModel)]="ipAddress">
-    </div>
-    <div class=" d-flex justify-content-center align-items-center">
-    <button type="submit" class="btn btn-primary">Invia</button>
-  </div>
-  </form>
+<div *ngIf="i===0">
+  <app-indirizzo-ip (buttonClick)="increment()"></app-indirizzo-ip>
+</div>
+<div *ngIf="i===1">
+  <p>{{i}}</p>
+</div>
+<div *ngIf="i===2">
+  <app-indirizzo-ip (buttonClick)="increment()"></app-indirizzo-ip>
 </div>

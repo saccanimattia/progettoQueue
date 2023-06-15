@@ -19,12 +19,18 @@ export class PocketBaseService {
 
   async checkIp(): Promise<boolean> {
     try {
+      console.log(this.pb);
       const result = await this.pb.collection('type').getList(1, 50);
-      return true
+      return true;
+    } catch (err : any) {
+      if (err.response.status === 404) {
+        console.log(err.response.status)
+        return false;
 
-    } catch (err) {
-      console.log("Si è verificato un errore:", err);
+      } else {
+        return false;
+
+      }
     }
-      return false
-    }
+  }
 }

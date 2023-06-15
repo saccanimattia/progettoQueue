@@ -1,0 +1,24 @@
+<div class="modal" id="ipModal" tabindex="-1" aria-labelledby="ipModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ipModalLabel">Indirizzo IP del Server del Database</h5>
+      </div>
+      <form (ngSubmit)="submitForm()">
+        <div class="modal-body">
+          <div *ngIf="!isCorretto">
+            <p class = "error-message">*indirizzo ip sbagliato (non si collega al server)</p>
+          </div>
+          <div class="form-group">
+
+            <input type="text" class="form-control" id="ipAddress" name="ipAddress" [(ngModel)]="ipAddress" placeholder="es.(http://127.0.0.1:8090)" >
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Invia</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+

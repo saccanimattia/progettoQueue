@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { PocketBaseService } from 'src/app/services/pocket-base.service';
+
 
 
 @Component({
@@ -8,21 +8,14 @@ import { PocketBaseService } from 'src/app/services/pocket-base.service';
   styleUrls: ['./configurazione.component.scss']
 })
 export class ConfigurazioneComponent {
-  ipAddress: any;
 
+  i = 0;
 
-  constructor(private pocketBase : PocketBaseService){
-
+  increment(){
+    this.i++;
   }
 
-  async submitForm() {
-    // Puoi gestire qui la logica per inviare l'indirizzo IP del server del database
-    localStorage.setItem('indirizzoIp', this.ipAddress)
-    this.pocketBase.setIp()
-    console.log( )
-    if(await this.pocketBase.checkIp()){
-      return 1
-    }
-    return 0
-  }
+
+
+
 }
