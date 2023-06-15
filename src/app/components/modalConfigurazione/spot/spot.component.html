@@ -1,8 +1,8 @@
 <div class="modal" tabindex="-1" role="dialog" id="categorieModal">
-  <div class="modal-dialog centered" role="document">
+  <div class="modal-dialog centered cusom-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header d-flex justify-content-between align-items-start">
-        <h5 class="modal-title">reparti queue</h5>
+        <h5 class="modal-title">spot</h5>
       </div>
       <div class="modal-body">
         <div *ngIf="items.length != 0">
@@ -12,10 +12,10 @@
                 <div class="image square" [id]="'elem' + i" style="display: flex; justify-content: center;">
                   <ng-container *ngFor="let media of item.medias">
                     <ng-container *ngIf="isImage(media)">
-                      <img [src]="media.id"  class="image-background">
+                      <img [src]="media" class="image-background">
                     </ng-container>
                     <ng-container *ngIf="isVideo(media)">
-                      <video [src]="media.id" class="video-background" controls></video>
+                      <video [src]="media" class="video-background" controls></video>
                     </ng-container>
                   </ng-container>
                 </div>
