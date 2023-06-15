@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { IndirizzoIpComponent } from './components/modalConfigurazione/indirizzo-ip/indirizzo-ip.component';
 import { CategorieComponent } from './components/modalConfigurazione/categorie/categorie.component';
 import { HomeComponent } from './components/paginaPrincipale/home/home.component';
+import { TypeComponent } from './components/modalConfigurazione/type/type.component';
 
 
 
@@ -18,7 +19,8 @@ import { HomeComponent } from './components/paginaPrincipale/home/home.component
     ConfigurazioneComponent,
     IndirizzoIpComponent,
     CategorieComponent,
-    HomeComponent
+    HomeComponent,
+    TypeComponent
   ],
   imports: [
     HttpClientModule,
