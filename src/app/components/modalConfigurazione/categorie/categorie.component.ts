@@ -49,10 +49,10 @@ export class CategorieComponent {
   async scaricaImmagini(){
 
     for(let item of this.items){
-      let x = await this.pocketBase.prendiRisorsa(item.immagine)
+      let x = await this.pocketBase.prendiRisorsa(item.image)
 
-      item.immagine = localStorage.getItem('indirizzoIp') + "/api/files/" + x.collectionId + '/' + x.id + '/' + x.file + '?thumb=100x100&token='
-      console.log(item.immagine)
+      item.image = localStorage.getItem('indirizzoIp') + "/api/files/" + x.collectionId + '/' + x.id + '/' + x.file + '?thumb=100x100&token='
+      console.log(item.image)
     }
     this.openModal()
   }
@@ -98,6 +98,7 @@ export class CategorieComponent {
 
   save(){
     this.salvadati.setCategories(this.selectedCategories);
+    this.closeModal()
   }
 
 

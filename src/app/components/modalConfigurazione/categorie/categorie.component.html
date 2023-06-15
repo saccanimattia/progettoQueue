@@ -10,9 +10,9 @@
             <div class="row">
               <div class="col-below" *ngFor="let item of items, index as i" (click)="modificaStato(item, i)" >
                 <div class="image square" [id]="'elem' + i" style="display: flex; justify-content: center;">
-                  <img [src]="item.immagine" alt="{{ item.nome }}" class="image-background">
+                  <img [src]="item.image" alt="{{ item.name }}" class="image-background">
                   <div class="overlay">
-                    <span>{{ item.nome }}</span>
+                    <span>{{ item.name }}</span>
                   </div>
                 </div>
               </div>

@@ -12,7 +12,7 @@ export class SpotComponent {
   disabilitato = true
 
 
-  selectedCategories : any[] = []
+  selectedSpot : any[] = []
   items : any[] = []
   constructor(private pocketBase : PocketBaseService, private salvadati : DatiDispositivoService){
 
@@ -49,13 +49,15 @@ export class SpotComponent {
   async scaricaImmagini(){
 
     for(let item of this.items){
-     for(let m of item.risorse){
+     for(let m of item.medias){
       let x = await this.pocketBase.prendiRisorsa(m)
 
       m = localStorage.getItem('indirizzoIp') + "/api/files/" + x.collectionId + '/' + x.id + '/' + x.file + '?thumb=100x100&token='
-      console.log(item.immagine)
+      console.log("link immagine")
+      console.log(m)
      }
     }
+    console.log(this.items)
     this.openModal()
   }
 
@@ -63,35 +65,35 @@ export class SpotComponent {
     console.log(item)
     console.log(i)
     const elem = document.querySelector('#elem' + i);
-    if(this.selectedCategories.length == 0 ){
+    if(this.selectedSpot.length == 0 ){
       console.log("0 elem")
-      this.selectedCategories.push(item)
+      this.selectedSpot.push(item)
       elem?.classList.add('sel');
     }
     else if(this.isPresente(item)){
       console.log("elem presente")
-      const index = this.selectedCategories.indexOf(item);
+      const index = this.selectedSpot.indexOf(item);
       if (index !== -1) {
-        this.selectedCategories.splice(index, 1);
+        this.selectedSpot.splice(index, 1);
       }
       elem?.classList.remove('sel');
     }
     else{
       console.log("elem non presente")
-      this.selectedCategories.push(item)
+      this.selectedSpot.push(item)
       elem?.classList.add('sel');
     }
-    console.log(this.selectedCategories)
-    if(this.selectedCategories.length == 0){
+    console.log(this.selectedSpot)
+    if(this.selectedSpot.length == 0){
       this.disabilitato = true;
     }
-    if(this.selectedCategories.length > 0){
+    if(this.selectedSpot.length > 0){
       this.disabilitato = false;
     }
   }
 
   isPresente(item : any){
-    for(let i of this.selectedCategories){
+    for(let i of this.selectedSpot){
       if(i === item)
         return true
     }
@@ -99,6 +101,6 @@ export class SpotComponent {
   }
 
   save(){
-    this.salvadati.setCategories(this.selectedCategories);
+    this.salvadati.setCategories(this.selectedSpot);
   }
 }

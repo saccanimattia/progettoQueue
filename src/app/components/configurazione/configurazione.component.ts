@@ -14,6 +14,7 @@ export class ConfigurazioneComponent {
   i = 0;
 
   ngOnInit(){
+
     }
 
   increment(){
