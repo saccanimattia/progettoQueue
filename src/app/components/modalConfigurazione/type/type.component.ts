@@ -37,5 +37,7 @@ export class TypeComponent {
     this.closeModal()
 
   }
-
+  selectInputType(inputType: string) {
+    this.selectedInputType = inputType;
+  }
 }
