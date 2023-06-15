@@ -22,7 +22,7 @@ export class SpotComponent {
     this.prendiSpot()
   }
 
-  openModal() {
+  async openModal() {
     const modal = document.querySelector('#categorieModal');
     modal?.classList.add('show');
     modal?.setAttribute('style', 'display: block');
@@ -46,20 +46,30 @@ export class SpotComponent {
     this.scaricaImmagini()
 }
 
-  async scaricaImmagini(){
-
-    for(let item of this.items){
-     for(let m of item.medias){
-      let x = await this.pocketBase.prendiRisorsa(m)
-
-      m = localStorage.getItem('indirizzoIp') + "/api/files/" + x.collectionId + '/' + x.id + '/' + x.file + '?thumb=100x100&token='
-      console.log("link immagine")
-      console.log(m)
-     }
+async scaricaImmagini() {
+  for (let i = 0; i < this.items.length; i++) {
+    const item = this.items[i];
+    let newMedias = [];
+    for (let j = 0; j < item.medias.length; j++) {
+      const m = item.medias[j];
+      const x = await this.pocketBase.prendiRisorsa(m);
+      const id = m;
+      const imageUrl = localStorage.getItem('indirizzoIp') + "/api/files/" + x.collectionId + '/' + x.id + '/' + x.file + '?thumb=100x100&token=';
+      console.log("link immagine");
+      console.log(imageUrl);
+      newMedias.push(imageUrl);
     }
-    console.log(this.items)
-    this.openModal()
+    for(let ii = 0; ii<newMedias.length; ii++){
+      console.log(item.medias[ii].id)
+      item.medias[ii].id == newMedias[ii]
+    }
+    console.log(newMedias)
+    console.log(item.medias)
   }
+  console.log("junfditr53ugbu5iy");
+  console.log(this.items);
+  this.openModal();
+}
 
   modificaStato(item : any, i : number){
     console.log(item)
@@ -102,5 +112,27 @@ export class SpotComponent {
 
   save(){
     this.salvadati.setCategories(this.selectedSpot);
+  }
+
+  isImage(media: string): boolean {
+    // Ottieni l'estensione del file
+    const extension = media.split('.').pop()?.toLowerCase();
+
+    // Array di estensioni di file immagine supportate
+    const imageExtensions = ['jpg', 'jpeg', 'png', 'gif'];
+
+    // Verifica se l'estensione del file corrisponde a un'immagine supportata
+    return imageExtensions.includes(extension!);
+  }
+
+  isVideo(media: string): boolean {
+    // Ottieni l'estensione del file
+    const extension = media.split('.').pop()?.toLowerCase();
+
+    // Array di estensioni di file video supportate
+    const videoExtensions = ['mp4', 'avi', 'mov', 'mkv'];
+
+    // Verifica se l'estensione del file corrisponde a un video supportato
+    return videoExtensions.includes(extension!);
   }
 }
