@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {  Router } from '@angular/router';
 
 
 
@@ -9,10 +10,18 @@ import { Component } from '@angular/core';
 })
 export class ConfigurazioneComponent {
 
+  constructor(private router : Router){}
   i = 0;
+
+  ngOnInit(){
+    this.i = 2;
+  }
 
   increment(){
     this.i++;
+    if(this.i==4){
+      this.router.navigate(['/paginaPrincipale']);
+    }
   }
 
 

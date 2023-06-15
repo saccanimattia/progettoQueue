@@ -33,4 +33,15 @@ export class PocketBaseService {
       }
     }
   }
+
+  async prendiCategorie(): Promise<any[]> {
+    try {
+      const result = await this.pb.collection('categoria').getList(1, 50);
+      let categorie = result.items;
+      return categorie
+    } catch (err) {
+      console.log("Si è verificato un errore:", err);
+    }
+      return []
+    }
 }

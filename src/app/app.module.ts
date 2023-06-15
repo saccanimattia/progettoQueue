@@ -7,6 +7,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ConfigurazioneComponent } from './components/configurazione/configurazione.component';
 import { FormsModule } from '@angular/forms';
 import { IndirizzoIpComponent } from './components/modalConfigurazione/indirizzo-ip/indirizzo-ip.component';
+import { CategorieComponent } from './components/modalConfigurazione/categorie/categorie.component';
+import { HomeComponent } from './components/paginaPrincipale/home/home.component';
 
 
 
@@ -14,7 +16,9 @@ import { IndirizzoIpComponent } from './components/modalConfigurazione/indirizzo
   declarations: [
     AppComponent,
     ConfigurazioneComponent,
-    IndirizzoIpComponent
+    IndirizzoIpComponent,
+    CategorieComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

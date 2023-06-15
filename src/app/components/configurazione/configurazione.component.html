@@ -5,5 +5,8 @@
   <p>{{i}}</p>
 </div>
 <div *ngIf="i===2">
+  <app-categorie (buttonClick)="increment()"></app-categorie>
+</div>
+<div *ngIf="i===3">
   <app-indirizzo-ip (buttonClick)="increment()"></app-indirizzo-ip>
 </div>
