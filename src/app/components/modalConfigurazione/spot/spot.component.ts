@@ -3,11 +3,11 @@ import { DatiDispositivoService } from 'src/app/services/dati-dispositivo.servic
 import { PocketBaseService } from 'src/app/services/pocket-base.service';
 
 @Component({
-  selector: 'app-categorie',
-  templateUrl: './categorie.component.html',
-  styleUrls: ['./categorie.component.scss']
+  selector: 'app-spot',
+  templateUrl: './spot.component.html',
+  styleUrls: ['./spot.component.scss']
 })
-export class CategorieComponent {
+export class SpotComponent {
   @Output() buttonClick = new EventEmitter<void>();
   disabilitato = true
 
@@ -19,7 +19,7 @@ export class CategorieComponent {
   }
 
   ngOnInit(){
-    this.prendiCategorie()
+    this.prendiSpot()
   }
 
   openModal() {
@@ -38,9 +38,9 @@ export class CategorieComponent {
 
   }
 
-  async prendiCategorie(): Promise<void> {
+  async prendiSpot(): Promise<void> {
     this.pocketBase.setIp()
-    let a:any = await this.pocketBase.prendiCategorie()
+    let a:any = await this.pocketBase.prendiSpot()
     this.items = a;
     console.log(this.items)
     this.scaricaImmagini()
@@ -49,10 +49,12 @@ export class CategorieComponent {
   async scaricaImmagini(){
 
     for(let item of this.items){
-      let x = await this.pocketBase.prendiRisorsa(item.immagine)
+     for(let m of item.risorse){
+      let x = await this.pocketBase.prendiRisorsa(m)
 
-      item.immagine = localStorage.getItem('indirizzoIp') + "/api/files/" + x.collectionId + '/' + x.id + '/' + x.file + '?thumb=100x100&token='
+      m = localStorage.getItem('indirizzoIp') + "/api/files/" + x.collectionId + '/' + x.id + '/' + x.file + '?thumb=100x100&token='
       console.log(item.immagine)
+     }
     }
     this.openModal()
   }
@@ -99,8 +101,4 @@ export class CategorieComponent {
   save(){
     this.salvadati.setCategories(this.selectedCategories);
   }
-
-
-
-
 }

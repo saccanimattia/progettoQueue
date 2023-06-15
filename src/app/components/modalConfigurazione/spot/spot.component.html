@@ -1,0 +1,32 @@
+<div class="modal" tabindex="-1" role="dialog" id="categorieModal">
+  <div class="modal-dialog centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header d-flex justify-content-between align-items-start">
+        <h5 class="modal-title">reparti queue</h5>
+      </div>
+      <div class="modal-body">
+        <div *ngIf="items.length != 0">
+          <div class="container">
+            <div class="row">
+              <div class="col-below" *ngFor="let item of items">
+                <div class="item">
+                  <div class="col-below" *ngFor="let media of item.risorse, index as i" (click)="modificaStato(media, i)" >
+                    <div class="image square" [id]="'elem' + i" style="display: flex; justify-content: center;">
+                      <img [src]="item.immagine" alt="{{ item.nome }}" class="image-background">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="items.length == 0">
+          <p class="no-reparti">inserire reparti</p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="save()" [disabled]="disabilitato" style="float:right">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
