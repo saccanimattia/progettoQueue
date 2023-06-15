@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { DatiDispositivoService } from 'src/app/services/dati-dispositivo.service';
 import { PocketBaseService } from 'src/app/services/pocket-base.service';
 
 @Component({
@@ -8,12 +9,12 @@ import { PocketBaseService } from 'src/app/services/pocket-base.service';
 })
 export class CategorieComponent {
   @Output() buttonClick = new EventEmitter<void>();
-
+  disabilitato = true
 
 
   selectedCategories : any[] = []
   items : any[] = []
-  constructor(private pocketBase : PocketBaseService){
+  constructor(private pocketBase : PocketBaseService, private salvadati : DatiDispositivoService){
 
   }
 
@@ -65,7 +66,10 @@ export class CategorieComponent {
     }
     else if(this.isPresente(item)){
       console.log("elem presente")
-      this.selectedCategories.splice(item, 1)
+      const index = this.selectedCategories.indexOf(item);
+      if (index !== -1) {
+        this.selectedCategories.splice(index, 1);
+      }
       elem?.classList.remove('sel');
     }
     else{
@@ -74,6 +78,12 @@ export class CategorieComponent {
       elem?.classList.add('sel');
     }
     console.log(this.selectedCategories)
+    if(this.selectedCategories.length == 0){
+      this.disabilitato = true;
+    }
+    if(this.selectedCategories.length > 0){
+      this.disabilitato = false;
+    }
   }
 
   isPresente(item : any){
@@ -82,6 +92,10 @@ export class CategorieComponent {
         return true
     }
     return false
+  }
+
+  save(){
+    this.salvadati.setCategories(this.selectedCategories);
   }
 
 

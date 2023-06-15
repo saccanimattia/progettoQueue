@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { DatiDispositivoService } from 'src/app/services/dati-dispositivo.service';
 import { PocketBaseService } from 'src/app/services/pocket-base.service';
 
 @Component({
@@ -14,7 +15,7 @@ export class IndirizzoIpComponent {
   ipAddress: any;
   isCorretto = true;
 
-  constructor(private pocketBase : PocketBaseService){
+  constructor(private pocketBase : PocketBaseService, private salvadati : DatiDispositivoService){
 
   }
 
@@ -50,6 +51,7 @@ export class IndirizzoIpComponent {
     this.pocketBase.setIp()
     this.isCorretto = await this.pocketBase.checkIp()
     console.log(this.isCorretto)
+    this.salvadati.setIp();
     this.closeModal()
 
   }

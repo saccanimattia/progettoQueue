@@ -5,28 +5,29 @@
         <h5 class="modal-title">reparti queue</h5>
       </div>
       <div class="modal-body">
-          <div *ngIf="items.length!=0">
-            <div class="container">
-              <div class="row">
-                <div class="col" *ngFor="let item of items, index as i" (click)="modificaStato(item, i)">
-                  <div class="image square">
-                    <img [src]="item.immagine" alt="{{ item.nome }}" class="image-background" [id]="'elem' + i">
-                    <div class="overlay">
-                      <span>{{ item.nome }}</span>
-                    </div>
+        <div *ngIf="items.length != 0">
+          <div class="container">
+            <div class="row">
+              <div class="col-below" *ngFor="let item of items, index as i" (click)="modificaStato(item, i)" >
+                <div class="image square" [id]="'elem' + i" style="display: flex; justify-content: center;">
+                  <img [src]="item.immagine" alt="{{ item.nome }}" class="image-background">
+                  <div class="overlay">
+                    <span>{{ item.nome }}</span>
                   </div>
                 </div>
               </div>
             </div>
           </div>
+        </div>
           <div *ngIf="items.length==0">
             <p class="no-reparti">inserire reparti</p>
           </div>
         </div>
+        <div class="modal-footer" >
+          <button type="button" class="btn btn-primary" (click)="save()" [disabled]="disabilitato" style="float:right">Save</button>
+        </div>
       </div>
-      <div class="modal-footer">
 
-      </div>
     </div>
   </div>
 
