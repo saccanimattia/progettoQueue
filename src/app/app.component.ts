@@ -12,14 +12,15 @@ export class AppComponent {
   constructor(private router: Router){}
 
   ngOnInit():void{
-    this.ip = localStorage.setItem('indirizzoIp', '')
+
     this.ip = localStorage.getItem('indirizzoIp')
+    this.id = localStorage.getItem('id')
     console.log(this.ip)
-    if(this.ip == ''){
+    if(this.ip == '' ){
       this.router.navigate(['/primaConfigurazione']);
     }
     else{
-      this.router.navigate(['/ciao']);
+      this.router.navigate(['/paginaPrincipale']);
     }
   }
 }
