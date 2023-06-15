@@ -1,0 +1,7 @@
+<form class="container mt-5" (ngSubmit)="submitForm()">
+  <div class="form-group">
+    <label for="ipAddress">Inserisci indirizzo IP</label>
+    <input type="text" class="form-control" id="ipAddress" name="ipAddress" [(ngModel)]="ipAddress">
+  </div>
+  <button type="submit" class="btn btn-primary">Invia</button>
+</form>
