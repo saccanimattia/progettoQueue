@@ -1,4 +1,5 @@
 import { Component,Output,EventEmitter } from '@angular/core';
+import { DatiDispositivoService } from 'src/app/services/dati-dispositivo.service';
 
 @Component({
   selector: 'app-type',
@@ -8,7 +9,7 @@ import { Component,Output,EventEmitter } from '@angular/core';
 export class TypeComponent {
   @Output() buttonClick = new EventEmitter<void>();
   selectedInputType: string = '';
-
+  constructor(private salvadati: DatiDispositivoService){}
 
   openModal() {
     const modal = document.querySelector('.modal');
@@ -32,6 +33,7 @@ export class TypeComponent {
   saveModalChanges() {
     // Implement the logic to save modal changes
     console.log('Input Type:', this.selectedInputType);
+    this.salvadati.setType(this.selectedInputType);
     this.closeModal()
 
   }

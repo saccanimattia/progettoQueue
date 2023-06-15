@@ -7,6 +7,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class PocketBaseService {
   private pb: PocketBase;
+  r : any[] = []
 
   constructor(private http: HttpClient) {
     this.pb = new PocketBase('');
@@ -47,25 +48,40 @@ export class PocketBaseService {
       return []
     }
 
+    async prendiSpot(): Promise<any[]> {
+      try {
+        console.log(this.pb)
+        const result = await this.pb.collection('spot').getList(1, 50);
+        let spot = result.items;
+        console.log(spot)
+        return spot
 
-    downloadFile(fileUrl : any) {
+      } catch (err) {
+        console.log("Si è verificato un errore:", err);
+      }
+        return []
+      }
 
-      this.http.get(fileUrl, { responseType: 'blob' }).subscribe((response: Blob) => {
-        const blob = new Blob([response], { type: response.type });
+    async prendiRisorse(): Promise<any[]> {
+      try {
+        console.log(this.pb)
+        const result = await this.pb.collection('risorse').getList(1, 50);
+        let risorse = result.items;
+        return risorse
+      } catch (err) {
+        console.log("Si è verificato un errore:", err);
+      }
+        return []
+      }
 
-        // Crea un URL oggetto per il blob
-        const url = window.URL.createObjectURL(blob);
+      async prendiRisorsa(id : any): Promise<any> {
+        let risorse = await this.prendiRisorse()
+        const risorsa = risorse.find((r:any) =>
+          r.id === id
+         );
+         return risorsa
+      }
 
-        // Crea un link temporaneo per il download del file
-        const link = document.createElement('a');
-        link.href = url;
-        link.download = 'file.pdf'; // Specifica il nome del file da scaricare
-        link.click();
-
-        // Rilascia la risorsa URL oggetto
-        window.URL.revokeObjectURL(url);
-      });
-    }
 
 
 

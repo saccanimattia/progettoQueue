@@ -39,7 +39,7 @@ export class DatiDispositivoService {
     this.spot = s
   }
 
-  ggetSpot(){
+  getSpot(){
     return this.spot
   }
 }

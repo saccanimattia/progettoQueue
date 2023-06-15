@@ -10,6 +10,7 @@ import { IndirizzoIpComponent } from './components/modalConfigurazione/indirizzo
 import { CategorieComponent } from './components/modalConfigurazione/categorie/categorie.component';
 import { HomeComponent } from './components/paginaPrincipale/home/home.component';
 import { TypeComponent } from './components/modalConfigurazione/type/type.component';
+import { SpotComponent } from './components/modalConfigurazione/spot/spot.component';
 
 
 
@@ -20,7 +21,8 @@ import { TypeComponent } from './components/modalConfigurazione/type/type.compon
     IndirizzoIpComponent,
     CategorieComponent,
     HomeComponent,
-    TypeComponent
+    TypeComponent,
+    SpotComponent
   ],
   imports: [
     HttpClientModule,
