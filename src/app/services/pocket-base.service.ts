@@ -21,7 +21,7 @@ export class PocketBaseService {
   async checkIp(): Promise<boolean> {
     try {
       console.log(this.pb);
-      const result = await this.pb.collection('type').getList(1, 50);
+      const result = await this.pb.collection('layouts').getList(1, 50);
       return true;
     } catch (err : any) {
       if (err.response.status === 404) {
@@ -38,7 +38,7 @@ export class PocketBaseService {
   async prendiCategorie(): Promise<any[]> {
     try {
       console.log(this.pb)
-      const result = await this.pb.collection('categoria').getList(1, 50);
+      const result = await this.pb.collection('groups').getList(1, 50);
       let categorie = result.items;
       return categorie
     } catch (err) {
@@ -64,7 +64,7 @@ export class PocketBaseService {
     async prendiRisorse(): Promise<any[]> {
       try {
         console.log(this.pb)
-        const result = await this.pb.collection('risorse').getList(1, 50);
+        const result = await this.pb.collection('medias').getList(1, 50);
         let risorse = result.items;
         return risorse
       } catch (err) {
