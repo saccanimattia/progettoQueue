@@ -121,21 +121,13 @@ export class SpotComponent {
   }
 
   save() {
-    let a  =[]
-    for(let e of this.selectedSpot){
-      console.log(e)
-      e = e.id
-      console.log("E GIUSTO")
-      console.log(e)
-      a.push(e)
-    }
-    this.salvadati.setSpot(a);
-    this.closeModal()
+    this.salvadati.setCategories(this.selectedSpot);
   }
 
   isImage(media: string): boolean {
     // Ottieni l'estensione del file
     let extension = media.substring(media.length-24, media.length-21).toLowerCase();
+    console.log(extension);
 
     // Array di estensioni di file immagine supportate
     const imageExtensions = ['jpg', 'jpeg', 'png', 'gif'];
@@ -154,5 +146,8 @@ export class SpotComponent {
     // Verifica se l'estensione del file corrisponde a un video supportato
     return videoExtensions.includes(extension);
   }
+}
+function ViewChild(arg0: string): (target: SpotComponent, propertyKey: "videoPlayer") => void {
+  throw new Error('Function not implemented.');
 }
 
