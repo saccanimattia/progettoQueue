@@ -15,7 +15,7 @@
                       <img [src]="media" class="image-background">
                     </ng-container>
                     <ng-container *ngIf="isVideo(media)">
-                      <video [src]="media" class="video-background" controls></video>
+                      <video [src]="media" class="video-background videoPlayer" controls autoplay loop></video>
                     </ng-container>
                   </ng-container>
                 </div>

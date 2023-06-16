@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Output, QueryList, ViewChildren } from '@angular/core';
+import { async } from 'rxjs';
 import { DatiDispositivoService } from 'src/app/services/dati-dispositivo.service';
 import { PocketBaseService } from 'src/app/services/pocket-base.service';
 
@@ -10,15 +11,28 @@ import { PocketBaseService } from 'src/app/services/pocket-base.service';
 export class SpotComponent {
   @Output() buttonClick = new EventEmitter<void>();
   disabilitato = true;
+  @ViewChildren('videoPlayer') videoPlayers!: QueryList<ElementRef>;
+
+
 
   selectedSpot: any[] = [];
   items: any[] = [];
 
   constructor(private pocketBase: PocketBaseService, private salvadati: DatiDispositivoService) {}
 
+
+
   ngOnInit() {
     this.prendiSpot();
   }
+
+  ngAfterViewInit() {
+    this.videoPlayers.forEach((video: ElementRef) => {
+      video.nativeElement.loop = true;
+      video.nativeElement.play();
+    });
+  }
+
 
   async openModal() {
     console.log("apri modsl")
