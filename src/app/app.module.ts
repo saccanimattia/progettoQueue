@@ -11,6 +11,7 @@ import { CategorieComponent } from './components/modalConfigurazione/categorie/c
 import { HomeComponent } from './components/paginaPrincipale/home/home.component';
 import { TypeComponent } from './components/modalConfigurazione/type/type.component';
 import { SpotComponent } from './components/modalConfigurazione/spot/spot.component';
+import { PulsanteComponent } from './components/paginaPrincipale/pulsante/pulsante.component';
 
 
 
@@ -22,7 +23,8 @@ import { SpotComponent } from './components/modalConfigurazione/spot/spot.compon
     CategorieComponent,
     HomeComponent,
     TypeComponent,
-    SpotComponent
+    SpotComponent,
+    PulsanteComponent
   ],
   imports: [
     HttpClientModule,

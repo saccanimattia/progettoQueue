@@ -1,1 +1,5 @@
-<p>home works!</p>
+<div *ngIf="device">
+  <div *ngFor="let group of device.groups">
+    <app-pulsante [gruppo]="group"></app-pulsante>
+  </div>
+</div>

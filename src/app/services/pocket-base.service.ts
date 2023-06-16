@@ -141,6 +141,30 @@ export class PocketBaseService {
       }
 
 
+      async updateGroup(id : any, data: any){
+        const record = await this.pb.collection('groups').update(id, data);
+      }
+
+      async prendiCategoriaId(id: any): Promise<any> {
+        let c = await this.prendiCategorie();
+        console.log("ee");
+        console.log(c);
+
+
+        while (c.length === 0) {
+          // Se l'array delle categorie è vuoto, attendi 100 millisecondi
+          await new Promise(resolve => setTimeout(resolve, 100));
+          c = await this.prendiCategorie();
+        }
+
+
+        const l = c.find((r: any) => r.id === id);
+        console.log(l);
+        return l;
+      }
+
+
+
 
 
 
