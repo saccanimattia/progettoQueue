@@ -8,7 +8,7 @@
         <div *ngIf="items.length != 0">
           <div class="container">
             <div class="row">
-              <div class="col-below" *ngFor="let item of items, index as i" (click)="modificaStato(item, i)" >
+              <div class="col-below" *ngFor="let item of items, index as i" (click)="modificaStato(item, i)">
                 <div class="image square" [id]="'elem' + i" style="display: flex; justify-content: center;">
                   <img [src]="item.image" alt="{{ item.name }}" class="image-background">
                   <div class="overlay">
@@ -19,15 +19,13 @@
             </div>
           </div>
         </div>
-          <div *ngIf="items.length==0">
-            <p class="no-reparti">inserire reparti</p>
-          </div>
-        </div>
-        <div class="modal-footer" >
-          <button type="button" class="btn btn-primary" (click)="save()" [disabled]="disabilitato" style="float:right">Save</button>
+        <div *ngIf="items.length == 0">
+          <p class="no-reparti">inserire reparti</p>
         </div>
       </div>
-
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary ml-auto" (click)="save()" [disabled]="disabilitato">Save</button>
+      </div>
     </div>
   </div>
-
+</div>
