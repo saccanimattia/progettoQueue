@@ -117,6 +117,7 @@ export class PocketBaseService {
           this.haveSameInstances(r.groups, device.groups)
          );
          console.log(l.id)
+         localStorage.setItem('device', l.id)
       }
 
       haveSameInstances(arr1: any[], arr2: any[]): boolean {

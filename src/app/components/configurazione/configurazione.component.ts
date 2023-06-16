@@ -15,16 +15,20 @@ export class ConfigurazioneComponent {
   i = 0;
 
   ngOnInit(){
-
+    let ip = localStorage.getItem('indirizzoIp')
+    console.log(this.i)
+    console.log(localStorage.getItem('indirizzoIp'))
+    if(ip != '' || ip != null)
+    this.i++;
     }
 
   increment(){
-    if(this.i==0 && (localStorage.getItem('indirizzoIp') == '' || localStorage.getItem('indirizzoIp') == null))
-    this.i++;
+    this.i++
     if(this.i==4){
       this.salvadati.createDevice()
       this.router.navigate(['/paginaPrincipale']);
     }
+
   }
 
 
