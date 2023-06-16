@@ -4,7 +4,7 @@
       <div class="modal-header">
         <h5 class="modal-title" id="ipModalLabel">Indirizzo IP del Server del Database</h5>
       </div>
-      <form (ngSubmit)="submitForm()">
+      <form>
         <div class="modal-body">
           <div *ngIf="!isCorretto">
             <p class = "error-message">*indirizzo ip sbagliato (non si collega al server)</p>
@@ -17,7 +17,7 @@
 
       </form>
       <div class="modal-footer">
-        <button type="submit" class="btn btn-primary">Invia</button>
+        <button (click)="submitForm()" class="btn btn-primary">Invia</button>
       </div>
     </div>
   </div>

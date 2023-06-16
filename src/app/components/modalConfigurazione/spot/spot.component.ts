@@ -13,9 +13,9 @@ import { PocketBaseService } from 'src/app/services/pocket-base.service';
 export class SpotComponent {
   @ViewChildren('videoPlayer') videoPlayers!: QueryList<ElementRef<HTMLVideoElement>>;
   @Output() buttonClick = new EventEmitter<void>();
-  @ViewChildren('videoPlayer') videoPlayers!: QueryList<ElementRef>;
+
   disabilitato = true;
-  @ViewChildren('videoPlayer') videoPlayers!: QueryList<ElementRef>;
+
 
 
 
@@ -37,12 +37,7 @@ export class SpotComponent {
     this.prendiSpot();
   }
 
-  ngAfterViewInit() {
-    this.videoPlayers.forEach((video: ElementRef) => {
-      video.nativeElement.loop = true;
-      video.nativeElement.play();
-    });
-  }
+
 
 
   async openModal() {
