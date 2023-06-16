@@ -50,7 +50,7 @@ export class PocketBaseService {
     async prendiSpot(): Promise<any[]> {
       try {
         console.log(this.pb)
-        const result = await this.pb.collection('spot').getList(1, 50);
+        const result = await this.pb.collection('spots').getList(1, 50);
         let spot = result.items;
         console.log(spot)
         return spot

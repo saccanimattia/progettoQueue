@@ -1,4 +1,7 @@
 import { Component, ElementRef, EventEmitter, Output, QueryList, ViewChildren } from '@angular/core';
+
+import { async } from 'rxjs';
+
 import { DatiDispositivoService } from 'src/app/services/dati-dispositivo.service';
 import { PocketBaseService } from 'src/app/services/pocket-base.service';
 
@@ -12,6 +15,9 @@ export class SpotComponent {
   @Output() buttonClick = new EventEmitter<void>();
   @ViewChildren('videoPlayer') videoPlayers!: QueryList<ElementRef>;
   disabilitato = true;
+  @ViewChildren('videoPlayer') videoPlayers!: QueryList<ElementRef>;
+
+
 
   ngAfterViewInit(): void {
     this.videoPlayers.forEach((video: ElementRef) => {
@@ -25,6 +31,8 @@ export class SpotComponent {
 
   constructor(private pocketBase: PocketBaseService, private salvadati: DatiDispositivoService) {}
 
+
+
   ngOnInit() {
     this.prendiSpot();
   }
@@ -35,6 +43,7 @@ export class SpotComponent {
       video.nativeElement.play();
     });
   }
+
 
   async openModal() {
     console.log("apri modsl")
