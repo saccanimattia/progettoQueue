@@ -9,12 +9,15 @@ import { Router } from '@angular/router';
 export class AppComponent {
   title = 'progettoQueue';
   id : any
+  ip:any
   constructor(private router: Router){}
 
   ngOnInit():void{
 
     this.id = localStorage.getItem('device')
-    this.id = null
+    this.ip = localStorage.getItem('indirizzoIp')
+    console.log(this.ip)
+    console.log(this.id)
     if(this.id == '' || this.id == null){
       this.router.navigate(['/primaConfigurazione']);
     }

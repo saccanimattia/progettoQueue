@@ -5,8 +5,18 @@
                 <h4 class="modal-title">type</h4>
             </div>
             <div class="modal-body">
-                <div class="color-option" [class.selected]="selectedInputType === 'QUEUE'" (click)="selectInputType('QUEUE')" id="a">QUEUE</div>
-                <div class="color-option" [class.selected]="selectedInputType === 'SIGNAGE'" (click)="selectInputType('SIGNAGE')" id="b">SIGNAGE
+                <div class="container">
+                    <div class="row">
+                        <div class="col-below">
+                            <div class="overlay">
+
+                                <div class="color-option" [class.selected]="selectedInputType === 'QUEUE'" (click)="selectInputType('QUEUE')" id="a">QUEUE</div>
+
+                                <div class="color-option" [class.selected]="selectedInputType === 'SIGNAGE'" (click)="selectInputType('SIGNAGE')" id="b">SIGNAGE </div>
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="modal-footer">

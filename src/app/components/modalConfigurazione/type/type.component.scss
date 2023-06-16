@@ -1,83 +1,75 @@
+
 .modal {
-    display: block;
-    position: fixed;
-    z-index: 9999;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.4);
+  display: block;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
 .modal-content {
-    background-color: #fefefe;
-    margin: 15% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
 }
 
 .modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid #ddd;
-    padding-bottom: 10px;
-    margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 .modal-title {
-    margin: 0;
+  margin: 0;
 }
 
 .modal-footer {
-    display: flex;
-    justify-content: flex-end;
-    border-top: 1px solid #ddd;
-    padding-top: 10px;
-    margin-top: 10px;
+  display: flex;
+  justify-content: flex-end;
+  border-top: 1px solid #ddd;
+  padding-top: 10px;
+  margin-top: 10px;
 }
 
 .color-option {
-    width: 200px;
-    height: 100px;
-    border-radius: 210%;
-    margin-right: 10px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-}
-
-.color-option span {
-    font-size: 16px;
-    font-weight: bold;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+  width: 150px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  background-color: #007bff;
+  /* Colore di sfondo del div non selezionato */
+  border: 2px solid #007bff;
+  /* Stile del bordo del div non selezionato */
+  cursor: pointer;
+  border-radius: 10%;
+  float: right;
+  font-size: 25px;
+  padding: 5px;
 }
 
 .color-option.selected {
-    border: 2px solid black;
-    /* Aggiungi questo per rendere il testo bianco quando l'opzione è selezionata */
+  background-color: #fff;
+  /* Colore di sfondo del div selezionato */
+  color: #007bff;
+  /* Colore del testo del div selezionato */
+  border-color: #007bff;
+  /* Stile del bordo del div selezionato */
+  border-radius: 10%;
 }
 
-.color-option#b {
-    background-color: rgb(255, 174, 0);
-    color: black;
-    font-weight: bold;
-    font-size: 20px;
-    /* Aggiungi questo per rendere il testo bianco per l'opzione 'SIGNAGE' */
-}
-
-.color-option#a {
-    background-color: beige;
-    color: black;
-    font-size: 20px;
-    font-weight: bold;
-    float: right;
-    /* Aggiungi questo per rendere il testo bianco per l'opzione 'SIGNAGE' */
+span {
+  font-size: 2.4vw; /* 20px in percentuale */
+  color: white; /* Imposta il colore del testo */
+  font-weight: bold; /* Imposta il testo in grassetto */
 }

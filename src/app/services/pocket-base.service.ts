@@ -120,6 +120,16 @@ export class PocketBaseService {
          localStorage.setItem('device', l.id)
       }
 
+      async prendiDeviceId(id : any): Promise<any> {
+        let layouts = await this.prendiLayouts()
+        console.log(layouts)
+        const l = layouts.find((r:any) =>
+          r.id === id
+         );
+         console.log(l)
+         return l
+      }
+
       haveSameInstances(arr1: any[], arr2: any[]): boolean {
         // Verifica se la lunghezza degli array è diversa
         if (arr1.length !== arr2.length) {
