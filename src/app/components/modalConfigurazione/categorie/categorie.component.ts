@@ -45,7 +45,6 @@ export class CategorieComponent {
     console.log(this.items)
     this.scaricaImmagini()
 }
-
   async scaricaImmagini(){
 
     for(let item of this.items){

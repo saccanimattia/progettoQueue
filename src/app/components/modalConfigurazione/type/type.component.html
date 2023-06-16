@@ -3,9 +3,6 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">Input Type</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeModal()">
-          <span aria-hidden="true">&times;</span>
-        </button>
             </div>
             <div class="modal-body">
                 <div class="color-option" [class.selected]="selectedInputType === 'QUEUE'" (click)="selectInputType('QUEUE')" id="a">QUEUE</div>
@@ -13,9 +10,9 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" (click)="saveModalChanges()">Save changes</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="closeModal()">Close</button>
+                <button type="button" class="btn btn-primary" (click)="saveModalChanges()" [disabled]="!isInputTypeSelected">Next</button>
             </div>
+
         </div>
     </div>
 </div>

@@ -1,5 +1,7 @@
 import { Component, ElementRef, EventEmitter, Output, QueryList, ViewChildren } from '@angular/core';
+
 import { async } from 'rxjs';
+
 import { DatiDispositivoService } from 'src/app/services/dati-dispositivo.service';
 import { PocketBaseService } from 'src/app/services/pocket-base.service';
 
@@ -9,11 +11,20 @@ import { PocketBaseService } from 'src/app/services/pocket-base.service';
   styleUrls: ['./spot.component.scss']
 })
 export class SpotComponent {
+  @ViewChildren('videoPlayer') videoPlayers!: QueryList<ElementRef<HTMLVideoElement>>;
   @Output() buttonClick = new EventEmitter<void>();
+  @ViewChildren('videoPlayer') videoPlayers!: QueryList<ElementRef>;
   disabilitato = true;
   @ViewChildren('videoPlayer') videoPlayers!: QueryList<ElementRef>;
 
 
+
+  ngAfterViewInit(): void {
+    this.videoPlayers.forEach((video: ElementRef) => {
+      video.nativeElement.loop = true;
+      video.nativeElement.play();
+    });
+  }
 
   selectedSpot: any[] = [];
   items: any[] = [];
@@ -141,3 +152,7 @@ export class SpotComponent {
     return videoExtensions.includes(extension);
   }
 }
+function ViewChild(arg0: string): (target: SpotComponent, propertyKey: "videoPlayer") => void {
+  throw new Error('Function not implemented.');
+}
+

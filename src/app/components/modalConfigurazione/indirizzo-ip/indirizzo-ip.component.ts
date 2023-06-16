@@ -9,9 +9,6 @@ import { PocketBaseService } from 'src/app/services/pocket-base.service';
 })
 export class IndirizzoIpComponent {
   @Output() buttonClick = new EventEmitter<void>();
-
-
-
   ipAddress: any;
   isCorretto = true;
 
@@ -53,6 +50,6 @@ export class IndirizzoIpComponent {
     console.log(this.isCorretto)
     this.salvadati.setIp();
     this.closeModal()
-
+    console.log(this.ipAddress)
   }
 }
