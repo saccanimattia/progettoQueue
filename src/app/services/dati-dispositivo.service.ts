@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { PocketBaseService } from './pocket-base.service';
 
 @Injectable({
   providedIn: 'root'
@@ -6,13 +7,16 @@ import { Injectable } from '@angular/core';
 export class DatiDispositivoService {
 
   ip : any
-  categorie : any[] = []
-  type : any
-  spot : any[] = []
-  constructor() { }
+  device = {
+    name : '',
+    groups : [],
+    type : '',
+    spots : []
+  }
+  constructor(private pocketBase : PocketBaseService) { }
 
   setIp(){
-    this.ip = localStorage.getItem('indirizzoIp')
+    this.ip = localStorage.getItem('indirizzoIp')!
   }
 
   getIp(){
@@ -20,26 +24,30 @@ export class DatiDispositivoService {
   }
 
   setType(tipo : any){
-    this.type = tipo
+    this.device.type = tipo.toLowerCase()
   }
 
   getType(){
-    return this.type
+    return this.device.type
   }
 
   setCategories(c : any){
-    this.categorie = c
+    this.device.groups = c
   }
 
   getCategories(){
-    return this.categorie
+    return this.device.groups
   }
 
   setSpot(s : any){
-    this.spot = s
+    this.device.spots = s
   }
 
   getSpot(){
-    return this.spot
+    return this.device.spots
+  }
+
+  createDevice(){
+    this.pocketBase.createDevice(this.device)
   }
 }

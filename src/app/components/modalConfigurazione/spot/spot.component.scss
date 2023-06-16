@@ -65,6 +65,7 @@
   justify-items: center;
   overflow-x: auto;
   white-space: nowrap;
+  pointer-events: none;
 }
 
 .image.square img {
@@ -104,4 +105,9 @@
 
 .custom-dialog {
   width: 80%; /* Imposta la larghezza desiderata, ad esempio 80% */
+}
+
+.videoPlayer {
+
+  pointer-events: none;
 }

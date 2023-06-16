@@ -81,6 +81,16 @@ export class PocketBaseService {
          return risorsa
       }
 
+      async createDevice(device : any): Promise<any> {
+        console.log(device)
+        try {
+          const record = await this.pb.collection('layouts').create(device);
+        } catch (err) {
+          console.log("Si è verificato un errore:", err);
+          return []; // Restituisci un array vuoto in caso di errore
+        }
+      }
+
 
 
 

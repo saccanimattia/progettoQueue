@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {  Router } from '@angular/router';
+import { DatiDispositivoService } from 'src/app/services/dati-dispositivo.service';
 
 
 
@@ -10,7 +11,7 @@ import {  Router } from '@angular/router';
 })
 export class ConfigurazioneComponent {
 
-  constructor(private router : Router){}
+  constructor(private router : Router, private salvadati : DatiDispositivoService){}
   i = 0;
 
   ngOnInit(){
@@ -20,6 +21,7 @@ export class ConfigurazioneComponent {
   increment(){
     this.i++;
     if(this.i==4){
+      this.salvadati.createDevice()
       this.router.navigate(['/paginaPrincipale']);
     }
   }

@@ -96,6 +96,15 @@ export class CategorieComponent {
   }
 
   save(){
+    let a  =[]
+    for(let e of this.selectedCategories){
+      console.log(e)
+      e = e.id
+      console.log("E GIUSTO")
+      console.log(e)
+      a.push(e)
+    }
+    this.selectedCategories = a
     this.salvadati.setCategories(this.selectedCategories);
     this.closeModal()
   }
