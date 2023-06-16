@@ -9,6 +9,7 @@ import { DatiDispositivoService } from 'src/app/services/dati-dispositivo.servic
 export class TypeComponent {
   @Output() buttonClick = new EventEmitter<void>();
   selectedInputType: string = '';
+  isInputTypeSelected: boolean = false;
   constructor(private salvadati: DatiDispositivoService){}
 
   openModal() {
@@ -39,5 +40,15 @@ export class TypeComponent {
   }
   selectInputType(inputType: string) {
     this.selectedInputType = inputType;
-  }
+    this.isInputTypeSelected = true;
 }
+
+  // Nel tuo componente
+
+
+checkInputTypeSelection() {
+  this.isInputTypeSelected = this.selectedInputType === 'QUEUE' || this.selectedInputType === 'SIGNAGE';}
+}
+
+
+
