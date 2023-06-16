@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Output, QueryList, ViewChildren } from '@angular/core';
 import { DatiDispositivoService } from 'src/app/services/dati-dispositivo.service';
 import { PocketBaseService } from 'src/app/services/pocket-base.service';
 
@@ -9,6 +9,7 @@ import { PocketBaseService } from 'src/app/services/pocket-base.service';
 })
 export class SpotComponent {
   @Output() buttonClick = new EventEmitter<void>();
+  @ViewChildren('videoPlayer') videoPlayers!: QueryList<ElementRef>;
   disabilitato = true;
 
   selectedSpot: any[] = [];
@@ -18,6 +19,13 @@ export class SpotComponent {
 
   ngOnInit() {
     this.prendiSpot();
+  }
+
+  ngAfterViewInit() {
+    this.videoPlayers.forEach((video: ElementRef) => {
+      video.nativeElement.loop = true;
+      video.nativeElement.play();
+    });
   }
 
   async openModal() {
