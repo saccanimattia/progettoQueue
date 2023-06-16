@@ -14,11 +14,9 @@ export class AppComponent {
 
   ngOnInit():void{
 
-    this.ip = localStorage.getItem('indirizzoIp')
-    this.id = localStorage.getItem('id')
-    console.log(this.ip)
-    console.log(this.id)
-    if(this.ip == '' || this.id =='' || this.ip == null || this.id ==null){
+    this.id = localStorage.getItem('device')
+
+    if(this.id == '' || this.id == null){
       this.router.navigate(['/primaConfigurazione']);
     }
     else{

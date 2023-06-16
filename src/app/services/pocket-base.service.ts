@@ -91,6 +91,46 @@ export class PocketBaseService {
         }
       }
 
+      async prendiLayouts(): Promise<any> {
+
+        try {
+          console.log(this.pb)
+          const result = await this.pb.collection('layouts').getList(1, 50);
+          let layouts = result.items;
+          console.log(layouts)
+        return layouts
+        } catch (err) {
+          console.log("Si è verificato un errore:", err);
+          return []; // Restituisci un array vuoto in caso di errore
+        }
+      }
+
+
+      async prendiDevice(device : any): Promise<any> {
+        console.log("deviiice")
+        console.log(device)
+        let layouts = await this.prendiLayouts()
+        console.log(layouts)
+        const l = layouts.find((r:any) =>
+          r.type === device.type &&
+          this.haveSameInstances(r.spots, device.spots) &&
+          this.haveSameInstances(r.groups, device.groups)
+         );
+         console.log(l.id)
+      }
+
+      haveSameInstances(arr1: any[], arr2: any[]): boolean {
+        // Verifica se la lunghezza degli array è diversa
+        if (arr1.length !== arr2.length) {
+          return false;
+        }
+
+        // Verifica se ogni elemento dell'array 1 è uguale all'elemento corrispondente nell'array 2
+        return arr1.every((item, index) => item === arr2[index]);
+      }
+
+
+
 
 
 

@@ -19,6 +19,7 @@ export class ConfigurazioneComponent {
     }
 
   increment(){
+    if(this.i==0 && (localStorage.getItem('indirizzoIp') == '' || localStorage.getItem('indirizzoIp') == null))
     this.i++;
     if(this.i==4){
       this.salvadati.createDevice()

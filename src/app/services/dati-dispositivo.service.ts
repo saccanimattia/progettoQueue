@@ -47,7 +47,13 @@ export class DatiDispositivoService {
     return this.device.spots
   }
 
-  createDevice(){
+  async createDevice(){
     this.pocketBase.createDevice(this.device)
+    await this.pocketBase.prendiDevice(this.device)
+
+    console.log("device")
+    console.log(localStorage.getItem('device'))
   }
+
+
 }
