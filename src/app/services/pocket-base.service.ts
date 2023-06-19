@@ -8,6 +8,9 @@ import { HttpClient } from '@angular/common/http';
 export class PocketBaseService {
   private pb: PocketBase;
   r : any[] = []
+  timeoutLimit = 1000;
+  layouts : any[] = []
+
 
   constructor(private http: HttpClient) {
     this.pb = new PocketBase('');
@@ -106,21 +109,26 @@ export class PocketBaseService {
       }
 
 
-      async prendiDevice(device : any): Promise<any> {
-        console.log("deviiice")
-        console.log(device)
-        let layouts = await this.prendiLayouts()
-        console.log(layouts)
-        const l = layouts.find((r:any) =>
+      async prendiDevice(device: any): Promise<any> {
+        console.log("deviiice");
+        console.log(device);
+        let layouts = await this.prendiLayouts();
+        console.log("layouts");
+        console.log(layouts);
+        const l = layouts.find((r: any) =>
           r.type === device.type &&
           this.haveSameInstances(r.spots, device.spots) &&
           this.haveSameInstances(r.groups, device.groups)
-         );
-         console.log(l.id)
-         localStorage.setItem('device', l.id)
+        );
+        console.log("sync prendiDevice(device : any)");
+        console.log(l.id);
+        localStorage.setItem('device', l.id);
+        // Assicurati di includere questa istruzione return con il valore desiderato
       }
 
       async prendiDeviceId(id : any): Promise<any> {
+        console.log("async prendiDeviceId(id : any): Promise<any> {")
+        console.log(id)
         let layouts = await this.prendiLayouts()
         console.log(layouts)
         const l = layouts.find((r:any) =>

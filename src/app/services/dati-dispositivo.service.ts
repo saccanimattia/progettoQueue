@@ -47,13 +47,30 @@ export class DatiDispositivoService {
     return this.device.spots
   }
 
-  async createDevice(){
-    this.pocketBase.createDevice(this.device)
-    await this.pocketBase.prendiDevice(this.device)
+  async createDevice() {
+    console.log("creazione device");
+    this.pocketBase.createDevice(this.device);
+    console.log("prendi device");
 
-    console.log("device")
-    console.log(localStorage.getItem('device'))
+    const timeoutPromise = new Promise((resolve, reject) => {
+      setTimeout(() => reject('Tempo limite superato'), 2000);
+    });
+
+    try {
+     await Promise.race([this.pocketBase.prendiDevice(this.device), timeoutPromise]);
+
+      console.log("deviceeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
+      console.log(localStorage.getItem('device'));
+      // Resto del codice da eseguire dopo aver ottenuto i dati del device
+    } catch (error) {
+      console.error('Errore durante il recupero delle informazioni:', error);
+      // Esegui le azioni di gestione dell'errore qui, ad esempio mostrare un messaggio all'utente
+    }
   }
+
+
+
+
 
 
 }

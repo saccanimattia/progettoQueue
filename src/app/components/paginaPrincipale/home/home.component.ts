@@ -16,6 +16,7 @@ export class HomeComponent {
 
   async ngOnInit() : Promise<void>{
     this.pocketBase.setIp()
+    console.log("home component prendi device")
     this.id = localStorage.getItem('device')
     console.log(this.id)
     this.device = await this.pocketBase.prendiDeviceId(this.id)

@@ -22,10 +22,10 @@ export class ConfigurazioneComponent {
     this.i++;
     }
 
-  increment(){
+  async increment(){
     this.i++
     if(this.i==4){
-      this.salvadati.createDevice()
+      await this.salvadati.createDevice()
       this.router.navigate(['/paginaPrincipale']);
     }
 
