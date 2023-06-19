@@ -1,0 +1,14 @@
+<div class="image square" style="display: flex; justify-content: center;" (click)="add()">
+  <img [src]="img" class="image-background">
+  <div class="overlay">
+    <span>{{ group.name }}</span>
+    <h2 class="group-number">{{ group?.number }}</h2>
+
+    <div class="group-info">
+      <span class="group-queued">Clienti in attesa: {{ group?.queued }}</span>
+
+
+    </div>
+  </div>
+</div>
+

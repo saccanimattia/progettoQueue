@@ -2,7 +2,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.6%; /* 10px in percentuale */
+  padding: 1.6%;
+  /* 10px in percentuale */
   background-color: #f8f8f8;
 }
 
@@ -10,12 +11,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.6%; /* 10px in percentuale */
+  padding: 1.6%;
+  /* 10px in percentuale */
   background-color: #f8f8f8;
-}
-
-.modal-title {
-  margin: 0;
 }
 
 .close {
@@ -26,7 +24,8 @@
 }
 
 .close span {
-  font-size: 2.4vw; /* 24px in percentuale */
+  font-size: 2.4vw;
+  /* 24px in percentuale */
 }
 
 .modal {
@@ -42,25 +41,18 @@
 }
 
 .modal-body {
-  max-height: 80vh; /* 400px in percentuale */
+  max-height: 80vh;
+  /* 400px in percentuale */
   overflow-y: auto;
-}
-
-.s.container {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.col {
-  width: 25%; /* Imposta la larghezza desiderata per ogni colonna */
-  padding: 1.6%; /* 10px in percentuale */
 }
 
 .image {
   position: relative;
   width: 100%;
-  padding-bottom: 80%; /* Altezza in percentuale, creando un'area quadrata */
-  border-radius: 30%; /* Rendi i bordi rotondi */
+  padding-bottom: 80%;
+  /* Altezza in percentuale, creando un'area quadrata */
+  border-radius: 30%;
+  /* Rendi i bordi rotondi */
   overflow: hidden;
 }
 
@@ -71,7 +63,8 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: blur(3px); /* Regola l'opacità dell'immagine di sfondo se necessario */
+  filter: blur(3px);
+  /* Regola l'opacità dell'immagine di sfondo se necessario */
 }
 
 .overlay {
@@ -80,11 +73,13 @@
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
-
   span {
-    font-size: 2.4vw; /* 20px in percentuale */
-    color: white; /* Imposta il colore del testo */
-    font-weight: bold; /* Imposta il testo in grassetto */
+      font-size: 2.4vw;
+      /* 20px in percentuale */
+      color: white;
+      /* Imposta il colore del testo */
+      font-weight: bold;
+      /* Imposta il testo in grassetto */
   }
 }
 
@@ -93,6 +88,18 @@
 }
 
 .col-below {
-  width: 50%; /* Imposta la larghezza al 100% per occupare tutta la larghezza della riga */
-  padding: 1.6%; /* 10px in percentuale */
+  width: 50%;
+  padding: 1.6%;
+  /* 10px in percentuale */
+}
+
+@media (max-width: 767px) {
+  /* Schermi con larghezza massima di 767px (dispositivi mobili) */
+  .col-below {
+      width: 100%;
+      /* Larghezza completa su schermi mobili */
+  }
+  .close span {
+      font-size: 50px;
+  }
 }

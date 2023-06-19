@@ -8,6 +8,9 @@ import { HttpClient } from '@angular/common/http';
 export class PocketBaseService {
   private pb: PocketBase;
   r : any[] = []
+  timeoutLimit = 1000;
+  layouts : any[] = []
+
 
   constructor(private http: HttpClient) {
     this.pb = new PocketBase('');
@@ -81,6 +84,15 @@ export class PocketBaseService {
          return risorsa
       }
 
+      prendiRisorsaa(id : any, risorse : any[]){
+        console.log(id)
+        console.log(risorse)
+        const risorsa = risorse.find((r:any) =>
+          r.id === id
+         );
+         return risorsa
+      }
+
       async createDevice(device : any): Promise<any> {
         console.log(device)
         try {
@@ -106,21 +118,26 @@ export class PocketBaseService {
       }
 
 
-      async prendiDevice(device : any): Promise<any> {
-        console.log("deviiice")
-        console.log(device)
-        let layouts = await this.prendiLayouts()
-        console.log(layouts)
-        const l = layouts.find((r:any) =>
+      async prendiDevice(device: any): Promise<any> {
+        console.log("deviiice");
+        console.log(device);
+        let layouts = await this.prendiLayouts();
+        console.log("layouts");
+        console.log(layouts);
+        const l = layouts.find((r: any) =>
           r.type === device.type &&
           this.haveSameInstances(r.spots, device.spots) &&
           this.haveSameInstances(r.groups, device.groups)
-         );
-         console.log(l.id)
-         localStorage.setItem('device', l.id)
+        );
+        console.log("sync prendiDevice(device : any)");
+        console.log(l);
+        localStorage.setItem('device', l.id);
+        // Assicurati di includere questa istruzione return con il valore desiderato
       }
 
       async prendiDeviceId(id : any): Promise<any> {
+        console.log("async prendiDeviceId(id : any): Promise<any> {")
+        console.log(id)
         let layouts = await this.prendiLayouts()
         console.log(layouts)
         const l = layouts.find((r:any) =>
@@ -139,6 +156,46 @@ export class PocketBaseService {
         // Verifica se ogni elemento dell'array 1 è uguale all'elemento corrispondente nell'array 2
         return arr1.every((item, index) => item === arr2[index]);
       }
+
+
+      async updateGroup(id : any, data: any){
+        const record = await this.pb.collection('groups').update(id, data);
+      }
+
+      async prendiCategoriaId(id: any): Promise<any> {
+        let c = await this.prendiCategorie();
+        console.log("ee");
+        console.log(c);
+
+
+        while (c.length === 0) {
+          // Se l'array delle categorie è vuoto, attendi 100 millisecondi
+          await new Promise(resolve => setTimeout(resolve, 100));
+          c = await this.prendiCategorie();
+        }
+
+
+        const l = c.find((r: any) => r.id === id);
+        console.log(l);
+        return l;
+      }
+
+
+
+
+
+      async prendiSpotDaId(id : any): Promise<any> {
+        let s = await this.prendiSpot()
+        console.log(s)
+        const l = s.find((r:any) =>
+          r.id === id
+         );
+         console.log(l)
+         return l
+      }
+
+
+
 
 
 

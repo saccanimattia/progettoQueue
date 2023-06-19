@@ -19,10 +19,13 @@ export class AppComponent {
     console.log(this.ip)
     console.log(this.id)
 
-    if(this.id == '' || this.id == null){
+    if (!this.id) {
+      // L'ID è undefined, esegui il codice qui
+      console.log("ID è undefined");
       this.router.navigate(['/primaConfigurazione']);
-    }
-    else{
+    } else {
+      console.log(this.id)
+      console.log("ID non è undefined");
       this.router.navigate(['/paginaPrincipale']);
     }
   }
