@@ -40,10 +40,24 @@ export class CategorieComponent {
 
   async prendiCategorie(): Promise<void> {
     this.pocketBase.setIp()
-    let a:any = await this.pocketBase.prendiCategorie()
-    this.items = a;
-    console.log(this.items)
-    this.scaricaImmagini()
+    const timeoutPromise = new Promise((resolve, reject) => {
+      setTimeout(() => reject('Tempo limite superato'), 5000);
+    });
+
+    Promise.race([this.pocketBase.prendiCategorie(), timeoutPromise])
+      .then((immm: any) => {
+        console.log("ir");
+        this.items = immm;
+        console.log(this.items)
+        this.scaricaImmagini()
+      })
+
+      .catch((error) => {
+        console.error('Errore durante il recupero delle informazioni:', error);
+        // Esegui le azioni di gestione dell'errore qui, ad esempio mostrare un messaggio all'utente
+      });
+
+
 }
   async scaricaImmagini(){
 

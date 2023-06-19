@@ -47,21 +47,7 @@
   font-weight: bold; /* Imposta il testo in grassetto */
 }
 
-.image {
-  /* Rimuovi il bordo bianco */
-  border: none;
-  /* Aggiungi una transizione per creare l'effetto di bottone */
-  transition: transform 0.3s ease;
-  /* Aggiungi un cursore puntatore al passaggio del mouse */
-  cursor: pointer;
-}
 
-.image:hover {
-  /* Applica un'ombra sottile al passaggio del mouse per creare l'effetto di bottone */
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-  /* Riduci leggermente la dimensione per simulare l'effetto di pressione */
-  transform: scale(0.98);
-}
 
 .overlay {
   /* Centra il contenuto verticalmente e orizzontalmente */
