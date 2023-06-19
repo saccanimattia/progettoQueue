@@ -1,0 +1,10 @@
+.pulsante-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.pulsante-container {
+  flex: 1 0 50%; /* Imposta ogni container a occupare il 50% della larghezza disponibile */
+  padding: 10px; /* Aggiungi spaziatura tra i pulsanti */
+}
+
