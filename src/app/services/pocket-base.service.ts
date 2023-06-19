@@ -121,7 +121,7 @@ export class PocketBaseService {
           this.haveSameInstances(r.groups, device.groups)
         );
         console.log("sync prendiDevice(device : any)");
-        console.log(l.id);
+        console.log(l);
         localStorage.setItem('device', l.id);
         // Assicurati di includere questa istruzione return con il valore desiderato
       }
