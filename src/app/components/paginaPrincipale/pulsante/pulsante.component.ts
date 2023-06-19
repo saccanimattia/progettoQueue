@@ -8,6 +8,7 @@ import { PocketBaseService } from 'src/app/services/pocket-base.service';
 })
 export class PulsanteComponent implements OnInit {
   @Input() gruppo: any;
+  @Input() risorsee: any[] = [];
   group: any = undefined;
   x: any;
   img: any;
@@ -16,8 +17,7 @@ export class PulsanteComponent implements OnInit {
   constructor(private pocketBase: PocketBaseService) {}
 
   ngOnInit(): void {
-    console.log(this.gruppo);
-    console.log("i35tr");
+    console.log(this.risorsee)
     this.group = this.gruppo;
 
     const timeoutPromise = new Promise((resolve, reject) => {
@@ -26,13 +26,13 @@ export class PulsanteComponent implements OnInit {
 
     Promise.race([this.pocketBase.prendiCategoriaId(this.gruppo), timeoutPromise])
       .then((groupData: any) => {
-        console.log("ir");
+
         this.group = groupData;
-        console.log(this.group.image);
-        return this.pocketBase.prendiRisorsa(this.group.image);
+
+        return this.pocketBase.prendiRisorsaa(this.group.image, this.risorsee);
       })
       .then((xData: any) => {
-        console.log(xData);
+
         this.x = xData;
         this.img = localStorage.getItem('indirizzoIp') + "/api/files/" + this.x.collectionId + '/' + this.x.id + '/' + this.x.file + '?thumb=100x100&token=';
       })
