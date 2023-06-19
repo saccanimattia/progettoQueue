@@ -1,12 +1,14 @@
-<div class="image-square">
+<div class="image-square" (click)="add()">
     <div class="content">
         <div class="group-name">
             <span>{{ group.name }}</span>
         </div>
         <div class="group-info">
-            <h4 class="group-number">{{ group?.number }}</h4>
+            <h4 class="group-number" *ngIf="group?.number < 10">00{{ group?.number }}</h4>
+            <h4 class="group-number" *ngIf="group?.number< 100 && group?.number >=10">0{{ group?.number }}</h4>
+            <h4 class="group-number" *ngIf="group?.number >= 100">{{ group?.number }}</h4>
             <div class="group-queued">
-                Clienti in coda: {{ group?.queued }}
+                Clienti in attesa: {{ group?.queued }}
             </div>
         </div>
     </div>

@@ -40,11 +40,19 @@ export class PulsanteComponent implements OnInit {
         console.error('Errore durante il recupero delle informazioni:', error);
         // Esegui le azioni di gestione dell'errore qui, ad esempio mostrare un messaggio all'utente
       });
+      // ... parte del tuo codice ...
+
+// Controlla se group?.number esiste e se è un numero
+
+
+
+
   }
 
   add(): void {
     this.group.number = this.group.number + 1;
     this.group.queued = this.group.queued + 1;
     this.pocketBase.updateGroup(this.group.id, this.group);
+
   }
 }
