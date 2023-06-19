@@ -84,6 +84,15 @@ export class PocketBaseService {
          return risorsa
       }
 
+      prendiRisorsaa(id : any, risorse : any[]){
+        console.log(id)
+        console.log(risorse)
+        const risorsa = risorse.find((r:any) =>
+          r.id === id
+         );
+         return risorsa
+      }
+
       async createDevice(device : any): Promise<any> {
         console.log(device)
         try {
@@ -170,6 +179,22 @@ export class PocketBaseService {
         console.log(l);
         return l;
       }
+
+
+
+
+
+      async prendiSpotDaId(id : any): Promise<any> {
+        let s = await this.prendiSpot()
+        console.log(s)
+        const l = s.find((r:any) =>
+          r.id === id
+         );
+         console.log(l)
+         return l
+      }
+
+
 
 
 
