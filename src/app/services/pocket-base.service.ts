@@ -23,7 +23,6 @@ export class PocketBaseService {
 
   async checkIp(): Promise<boolean> {
     try {
-      console.log(this.pb);
       const result = await this.pb.collection('layouts').getList(1, 50);
       return true;
     } catch (err : any) {
@@ -40,7 +39,7 @@ export class PocketBaseService {
 
   async prendiCategorie(): Promise<any[]> {
     try {
-      console.log(this.pb)
+
       const result = await this.pb.collection('groups').getList(1, 50);
       let categorie = result.items;
       return categorie
@@ -52,16 +51,16 @@ export class PocketBaseService {
 
     async prendiSpot(): Promise<any[]> {
 
-        console.log(this.pb)
+
         const result = await this.pb.collection('spots').getList(1, 50);
         let spot = result.items;
-        console.log(spot)
+
         return spot
       }
 
     async prendiRisorse(): Promise<any[]> {
       try {
-        console.log(this.pb)
+
         const result = await this.pb.collection('medias').getList(1, 50);
         let risorse = result.items;
         return risorse
@@ -80,8 +79,7 @@ export class PocketBaseService {
       }
 
       prendiRisorsaa(id : any, risorse : any[]){
-        console.log(id)
-        console.log(risorse)
+
         const risorsa = risorse.find((r:any) =>
           r.id === id
          );
@@ -89,7 +87,7 @@ export class PocketBaseService {
       }
 
       async createDevice(device : any): Promise<any> {
-        console.log(device)
+
         try {
           const record = await this.pb.collection('layouts').create(device);
         } catch (err) {
@@ -99,8 +97,7 @@ export class PocketBaseService {
       }
 
       async device(d : any): Promise<any> {
-        console.log("sono fureèoji")
-        console.log(d)
+
         try {
           const record = await this.pb.collection('devices').create(d);
         } catch (err) {
@@ -112,10 +109,10 @@ export class PocketBaseService {
       async prendiLayouts(): Promise<any> {
 
         try {
-          console.log(this.pb)
+
           const result = await this.pb.collection('layouts').getList(1, 50);
           let layouts = result.items;
-          console.log(layouts)
+
         return layouts
         } catch (err) {
           console.log("Si è verificato un errore:", err);
@@ -125,31 +122,27 @@ export class PocketBaseService {
 
 
       async prendiDevice(device: any): Promise<any> {
-        console.log("deviiice");
-        console.log(device);
+
         let layouts = await this.prendiLayouts();
-        console.log("layouts");
-        console.log(layouts);
+
         const l = layouts.find((r: any) =>
           r.type === device.type &&
           this.haveSameInstances(r.spots, device.spots) &&
           this.haveSameInstances(r.groups, device.groups)
         );
-        console.log("sync prendiDevice(device : any)");
-        console.log(l);
+
         localStorage.setItem('device', l.id);
         // Assicurati di includere questa istruzione return con il valore desiderato
       }
 
       async prendiDeviceId(id : any): Promise<any> {
-        console.log("async prendiDeviceId(id : any): Promise<any> {")
-        console.log(id)
+
         let layouts = await this.prendiLayouts()
-        console.log(layouts)
+
         const l = layouts.find((r:any) =>
           r.id === id
          );
-         console.log(l)
+
          return l
       }
 
@@ -170,8 +163,7 @@ export class PocketBaseService {
 
       async prendiCategoriaId(id: any): Promise<any> {
         let c = await this.prendiCategorie();
-        console.log("ee");
-        console.log(c);
+
 
 
         while (c.length === 0) {
@@ -182,7 +174,7 @@ export class PocketBaseService {
 
 
         const l = c.find((r: any) => r.id === id);
-        console.log(l);
+
         return l;
       }
 
@@ -192,11 +184,11 @@ export class PocketBaseService {
 
       async prendiSpotDaId(id : any): Promise<any> {
         let s = await this.prendiSpot()
-        console.log(s)
+
         const l = s.find((r:any) =>
           r.id === id
          );
-         console.log(l)
+
          return l
       }
 

@@ -14,18 +14,13 @@ export class AppComponent {
 
   ngOnInit():void{
 
-    localStorage.removeItem('device')
+    this.id = localStorage.getItem('device')
     this.ip = localStorage.getItem('indirizzoIp')
-    console.log(this.ip)
-    console.log(this.id)
+
 
     if (!this.id) {
-      // L'ID è undefined, esegui il codice qui
-      console.log("ID è undefined");
       this.router.navigate(['/primaConfigurazione']);
     } else {
-      console.log(this.id)
-      console.log("ID non è undefined");
       this.router.navigate(['/paginaPrincipale']);
     }
   }

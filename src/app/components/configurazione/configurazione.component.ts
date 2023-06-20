@@ -16,8 +16,6 @@ export class ConfigurazioneComponent {
 
   ngOnInit(){
     let ip = localStorage.getItem('indirizzoIp')
-    console.log(this.i)
-    console.log(localStorage.getItem('indirizzoIp'))
     if(ip != '' || ip != null)
     this.i++;
     }

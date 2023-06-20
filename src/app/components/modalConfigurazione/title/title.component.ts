@@ -27,8 +27,6 @@ export class TitleComponent {
 
   async closeModal() {
     const modal = document.querySelector('#ipModal');
-    console.log("chiudi modal")
-    console.log("indirizzoGiusto")
     modal?.classList.remove('show');
     modal?.setAttribute('style', 'display: none');
     this.buttonClick.emit();
@@ -36,9 +34,7 @@ export class TitleComponent {
   }
 
   async submitForm() {
-    // Puoi gestire qui la logica per inviare l'indirizzo IP del server del database
     this.salvadati.setTitle(this.title);
     this.closeModal()
-
   }
 }
