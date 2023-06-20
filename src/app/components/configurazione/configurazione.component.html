@@ -2,11 +2,20 @@
     <app-indirizzo-ip (buttonClick)="increment()"></app-indirizzo-ip>
 </div>
 <div *ngIf="i===1">
-    <app-type (buttonClick)="increment()"></app-type>
+  <app-printer (buttonClick)="increment()"></app-printer>
 </div>
 <div *ngIf="i===2">
-    <app-categorie (buttonClick)="increment()"></app-categorie>
+    <app-type (buttonClick)="increment()"></app-type>
 </div>
 <div *ngIf="i===3">
+    <app-categorie (buttonClick)="increment()"></app-categorie>
+</div>
+<div *ngIf="i===4">
+  <app-title (buttonClick)="increment()"></app-title>
+</div>
+<div *ngIf="i===5">
+  <app-max-number (buttonClick)="increment()"></app-max-number>
+</div>
+<div *ngIf="i===6">
     <app-spot (buttonClick)="increment()"></app-spot>
 </div>
