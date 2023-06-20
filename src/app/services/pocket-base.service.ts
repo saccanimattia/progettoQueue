@@ -51,17 +51,12 @@ export class PocketBaseService {
     }
 
     async prendiSpot(): Promise<any[]> {
-      try {
+
         console.log(this.pb)
         const result = await this.pb.collection('spots').getList(1, 50);
         let spot = result.items;
         console.log(spot)
         return spot
-
-      } catch (err) {
-        console.log("Si è verificato un errore:", err);
-      }
-        return []
       }
 
     async prendiRisorse(): Promise<any[]> {
