@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { DatiDispositivoService } from 'src/app/services/dati-dispositivo.service';
 import { PocketBaseService } from 'src/app/services/pocket-base.service';
 
 @Component({
@@ -13,13 +14,14 @@ export class PulsanteComponent implements OnInit {
   x: any;
   img: any;
   timeoutLimit = 5000; // Tempo limite in millisecondi (es. 5000 = 5 secondi)
+  max = 0
 
-  constructor(private pocketBase: PocketBaseService) {}
+  constructor(private pocketBase: PocketBaseService, private dati : DatiDispositivoService) {}
 
   ngOnInit(): void {
     console.log(this.risorsee)
     this.group = this.gruppo;
-
+    this.max = this.dati.getMaxNumber()
     const timeoutPromise = new Promise((resolve, reject) => {
       setTimeout(() => reject('Tempo limite superato'), this.timeoutLimit);
     });
@@ -50,7 +52,12 @@ export class PulsanteComponent implements OnInit {
   }
 
   add(): void {
-    this.group.number = this.group.number + 1;
+    if(this.group.number + 1 > this.max){
+      this.group.number = 0
+    }
+    else{
+      this.group.number = this.group.number + 1;
+    }
     this.group.queued = this.group.queued + 1;
     this.pocketBase.updateGroup(this.group.id, this.group);
 

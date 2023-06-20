@@ -1,0 +1,23 @@
+<div class="modal" id="print" tabindex="-1" aria-labelledby="ipModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ipModalLabel">Indirizzo IP del Server della stampante</h5>
+      </div>
+      <form>
+        <div class="modal-body">
+          <div class="form-group" >
+
+            <input type="text" class="form-control" id="ipAddress" name="ipAddress" [(ngModel)]="ipAddress" placeholder="es.(http://127.0.0.1:8090)" >
+          </div>
+        </div>
+
+      </form>
+      <div class="modal-footer">
+        <button (click)="submitForm()" class="btn btn-primary">next</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
