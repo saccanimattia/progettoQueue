@@ -24,7 +24,7 @@
 
             <div class="col-lg-4">
               <div class="pulsante-wrapper">
-                  <h1>PRENDI IL TUO NUMERO: </h1>
+                  <h1>{{device.title}}</h1>
                   <div *ngFor="let group of device.groups" class="pulsante-container">
                       <app-pulsante [gruppo]="group" [risorsee]="risorse"></app-pulsante><br>
                   </div>

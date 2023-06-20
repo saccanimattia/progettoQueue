@@ -12,6 +12,9 @@ import { HomeComponent } from './components/paginaPrincipale/home/home.component
 import { TypeComponent } from './components/modalConfigurazione/type/type.component';
 import { SpotComponent } from './components/modalConfigurazione/spot/spot.component';
 import { PulsanteComponent } from './components/paginaPrincipale/pulsante/pulsante.component';
+import { TitleComponent } from './components/modalConfigurazione/title/title.component';
+import { MaxNumberComponent } from './components/modalConfigurazione/max-number/max-number.component';
+import { PrinterComponent } from './components/modalConfigurazione/printer/printer.component';
 
 
 
@@ -26,7 +29,10 @@ import { PulsanteComponent } from './components/paginaPrincipale/pulsante/pulsan
     HomeComponent,
     TypeComponent,
     SpotComponent,
-    PulsanteComponent
+    PulsanteComponent,
+    TitleComponent,
+    MaxNumberComponent,
+    PrinterComponent
   ],
   imports: [
     HttpClientModule,

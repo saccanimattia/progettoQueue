@@ -7,11 +7,14 @@ import { PocketBaseService } from './pocket-base.service';
 export class DatiDispositivoService {
 
   ip : any
+  printer : any
   device = {
     name : '',
     groups : [],
     type : '',
-    spots : []
+    title: '',
+    spots : [],
+    maxNumber : 0
   }
   constructor(private pocketBase : PocketBaseService) { }
 
@@ -21,6 +24,14 @@ export class DatiDispositivoService {
 
   getIp(){
     return this.ip
+  }
+
+  setPrinter(){
+    this.printer = localStorage.getItem('printer')!
+  }
+
+  getPrinter(){
+    return this.printer
   }
 
   setType(tipo : any){
@@ -39,6 +50,22 @@ export class DatiDispositivoService {
     return this.device.groups
   }
 
+  setTitle(s : any){
+    this.device.title = s
+  }
+
+  getTitle(){
+    return this.device.title
+  }
+
+  setMaxNumber(s : any){
+    this.device.maxNumber = s
+  }
+
+  getMaxNumber(){
+    return this.device.maxNumber
+  }
+
   setSpot(s : any){
     this.device.spots = s
   }
@@ -54,9 +81,20 @@ export class DatiDispositivoService {
   async createDevice() {
     console.log("creazione device");
     this.pocketBase.createDevice(this.device);
-    console.log("prendi device");
 
 
+
+  }
+
+
+  async dev(){
+    let d = {
+      printer : localStorage.getItem('printer'),
+      layout : localStorage.getItem('device')
+    }
+    console.log("QWERTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT")
+    console.log(d)
+    this.pocketBase.device(d)
   }
 
 

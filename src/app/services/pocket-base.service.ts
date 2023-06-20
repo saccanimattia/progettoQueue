@@ -103,6 +103,17 @@ export class PocketBaseService {
         }
       }
 
+      async device(d : any): Promise<any> {
+        console.log("sono fureèoji")
+        console.log(d)
+        try {
+          const record = await this.pb.collection('devices').create(d);
+        } catch (err) {
+          console.log("Si è verificato un errore:", err);
+          return []; // Restituisci un array vuoto in caso di errore
+        }
+      }
+
       async prendiLayouts(): Promise<any> {
 
         try {

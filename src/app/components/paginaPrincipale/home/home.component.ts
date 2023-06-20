@@ -52,12 +52,15 @@ export class HomeComponent {
 
         console.log("deviceeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
         console.log(localStorage.getItem('device'));
+        this.salvaDati.dev()
         this.prendiPubb()
         // Resto del codice da eseguire dopo aver ottenuto i dati del device
       } catch (error) {
         console.error('Errore durante il recupero delle informazioni:', error);
         // Esegui le azioni di gestione dell'errore qui, ad esempio mostrare un messaggio all'utente
       }
+
+
 
 
 

@@ -24,7 +24,7 @@ export class ConfigurazioneComponent {
 
   async increment(){
     this.i++
-    if(this.i==4){
+    if(this.i==7){
       await this.salvadati.createDevice()
       this.router.navigate(['/paginaPrincipale']);
     }
