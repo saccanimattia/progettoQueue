@@ -1,19 +1,39 @@
 .pulsante-wrapper {
     display: flex;
     flex-wrap: wrap;
+    max-height: calc(100vh - 20px); // Imposta l'altezza massima del div dei pulsanti meno 20px di margine
+    overflow-y: auto;
 }
 
-.pulsante-container {
-    flex: 1 0 50%;
-    /* Imposta ogni container a occupare il 50% della larghezza disponibile */
-    padding: 10px;
-    /* Aggiungi spaziatura tra i pulsanti */
-}
+
 
 .div-con-elementi {
-    width: 60%
+    width: 50%
 }
 
 h1 {
-    width: 500px;
+    width: 400px;
 }
+
+.pulsante-wrapper {
+  display: flex;
+
+  height: 100%;
+  width: 100%;
+}
+
+
+
+
+
+.img-fluid {
+  max-height: 100%;
+  max-width: 100%;
+}
+
+.video-background {
+  max-height: 100%;
+  max-width: 100%;
+}
+
+

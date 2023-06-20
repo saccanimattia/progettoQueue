@@ -1,8 +1,7 @@
 
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { DatiDispositivoService } from 'src/app/services/dati-dispositivo.service';
 import { PocketBaseService } from 'src/app/services/pocket-base.service';
-
 
 @Component({
   selector: 'app-home',
@@ -11,13 +10,13 @@ import { PocketBaseService } from 'src/app/services/pocket-base.service';
 
 })
 export class HomeComponent {
-
+  currentIndex: number = 0;
   id : any
   device : any
   pubblicitaCorrente : any
   risorse : any[] = []
-
-  constructor(private pocketBase : PocketBaseService, private salvaDati : DatiDispositivoService){}
+  @ViewChild('myCarousel') myCarousel!: ElementRef;
+  constructor(private pocketBase : PocketBaseService, private salvaDati : DatiDispositivoService,private elementRef: ElementRef){}
 
   async ngOnInit() : Promise<void>{
     this.pocketBase.setIp()
@@ -91,7 +90,7 @@ export class HomeComponent {
     console.log(this.pubblicitaCorrente)
     this.convertiMedia()
     console.log(this.pubblicitaCorrente)
-    this.avviaCambioImmagini()
+    this.startCarousel()
   }
 
   async convertiMedia(){
@@ -113,50 +112,25 @@ export class HomeComponent {
   }
 
 
+  startCarousel() {
+    setInterval(() => {
+      const carousel: any = this.myCarousel.nativeElement;
+      carousel.classList.add('slide');
+      carousel.classList.add('carousel');
+      carousel.classList.add('slide');
+      carousel.classList.add('carousel');
+      carousel.classList.add('slide');
+      carousel.classList.add('carousel');
 
-  // Dichiarazione della variabile per l'intervallo
-  intervalloCambioImmagini: any;
-// Indice corrente dell'immagine
-  indiceCorrente: number = 0;
-  indiceDopo: number = 0;
-
-// Funzione per avviare il cambio automatico delle immagini
-  avviaCambioImmagini(): void {
-  // Reset dell'indice corrente all'inizio dell'array se siamo alla fine
-  if (this.indiceCorrente === this.pubblicitaCorrente.medias.length - 1) {
-    this.indiceCorrente = 0;
-
-  } else {
-    this.indiceCorrente++;
-  }
-  if (this.indiceCorrente+1 === this.pubblicitaCorrente.medias.length - 1) {
-    this.indiceDopo = 0;
-
-  } else {
-    this.indiceDopo = this.indiceCorrente+1;
+      this.currentIndex = (this.currentIndex + 1) % this.pubblicitaCorrente.medias.length;
+    }, 5000);
   }
 
-  // Avvia un intervallo di tempo di 5 secondi per cambiare l'immagine
-  this.intervalloCambioImmagini = setInterval(() => {
-    // Cambia l'immagine all'indice corrente
-    if (this.indiceCorrente === this.pubblicitaCorrente.medias.length - 1) {
-      this.indiceCorrente = 0;
 
-    } else {
-      this.indiceCorrente++;
-    }
-    if (this.indiceDopo === this.pubblicitaCorrente.medias.length - 1) {
-      this.indiceDopo = 0;
 
-    } else {
-      this.indiceDopo = this.indiceCorrente+1;
-    }
-  }, 4720);
-}
 
-fermaCambioImmagini(): void {
-  clearInterval(this.intervalloCambioImmagini);
-}
+
+
 
 
 }

@@ -15,7 +15,7 @@ import { PulsanteComponent } from './components/paginaPrincipale/pulsante/pulsan
 import { TitleComponent } from './components/modalConfigurazione/title/title.component';
 import { MaxNumberComponent } from './components/modalConfigurazione/max-number/max-number.component';
 import { PrinterComponent } from './components/modalConfigurazione/printer/printer.component';
-
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -39,7 +39,8 @@ import { PrinterComponent } from './components/modalConfigurazione/printer/print
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    FormsModule
+    FormsModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
