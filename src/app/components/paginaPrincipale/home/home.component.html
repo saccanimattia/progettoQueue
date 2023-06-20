@@ -6,10 +6,21 @@
         <div class="col-lg-8">
           <div *ngIf="pubblicitaCorrente">
             <div *ngIf="pubblicitaCorrente.type === 'carousel'">
-              <div class="immagine-container" [@cambioImmagine]="indiceCorrente">
-                <div class="immagini-affiancate">
-                  <img [src]="pubblicitaCorrente.medias[indiceCorrente]" alt="Immagine pubblicitaria" class="immagine-corrente">
-                  <img [src]="pubblicitaCorrente.medias[indiceDopo]" alt="Immagine pubblicitaria" class="immagine-successiva">
+              <div class="immagine-container">
+                <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+                  <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="5000">
+                    <div class="carousel-inner">
+                      <div class="carousel-item active">
+                        <img [src]="pubblicitaCorrente.medias[0]" class="d-block w-100" alt="...">
+                      </div>
+                      <div class="carousel-item">
+                        <img [src]="pubblicitaCorrente.medias[1]" class="d-block w-100" alt="...">
+                      </div>
+                      <div class="carousel-item">
+                        <img [src]="pubblicitaCorrente.medias[2]" class="d-block w-100" alt="...">
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -59,7 +70,7 @@
                             </div>
                         </div>
 
-                     
+
 
                     <div *ngIf="!device.spots || device.spots.length === 0" class="pulsante-container">
                         <!-- Contenuto quando device.spots non contiene elementi -->
@@ -72,4 +83,4 @@
 
                     </div>
                 </div>
-                
+

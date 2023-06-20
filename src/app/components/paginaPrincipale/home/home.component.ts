@@ -1,19 +1,14 @@
-import { group } from '@angular/animations';
+
 import { Component } from '@angular/core';
 import { DatiDispositivoService } from 'src/app/services/dati-dispositivo.service';
 import { PocketBaseService } from 'src/app/services/pocket-base.service';
-import { trigger, state, style, transition, animate } from '@angular/animations';
+
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
-  animations: [
-    trigger('cambioImmagine', [
-      state('*', style({ transform: 'translateX(0)' })),
-      transition('* <=> *', animate('500ms ease-out'))
-    ])
-  ]
+
 })
 export class HomeComponent {
 
@@ -156,7 +151,7 @@ export class HomeComponent {
     } else {
       this.indiceDopo = this.indiceCorrente+1;
     }
-  }, 5000);
+  }, 4720);
 }
 
 fermaCambioImmagini(): void {
