@@ -34,8 +34,6 @@ export class TypeComponent {
   }
 
   saveModalChanges() {
-    // Implement the logic to save modal changes
-    console.log('Input Type:', this.selectedInputType);
     this.salvadati.setType(this.selectedInputType);
     this.closeModal()
 
@@ -44,9 +42,6 @@ export class TypeComponent {
     this.selectedInputType = inputType;
     this.isInputTypeSelected = true;
 }
-
-  // Nel tuo componente
-
 
 checkInputTypeSelection() {
   this.isInputTypeSelected = this.selectedInputType === 'QUEUE' || this.selectedInputType === 'SIGNAGE';}

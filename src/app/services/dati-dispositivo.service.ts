@@ -79,11 +79,7 @@ export class DatiDispositivoService {
   }
 
   async createDevice() {
-    console.log("creazione device");
     this.pocketBase.createDevice(this.device);
-
-
-
   }
 
 
@@ -92,8 +88,6 @@ export class DatiDispositivoService {
       printer : localStorage.getItem('printer'),
       layout : localStorage.getItem('device')
     }
-    console.log("QWERTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT")
-    console.log(d)
     this.pocketBase.device(d)
   }
 
