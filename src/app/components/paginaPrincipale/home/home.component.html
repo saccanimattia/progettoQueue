@@ -1,3 +1,4 @@
+
 <div *ngIf="device || risorse">
   <div class="pulsante-wrapper">
     <div *ngIf="device.spots && device.spots.length > 0" class="pulsante-container">
@@ -20,6 +21,7 @@
         </div>
         <div class="col-lg-4">
           <div class="pulsante-wrapper">
+<<<<<<< HEAD
             <div class="col-lg-4">
               <div class="pulsante-wrapper">
                   <h1>PRENDI IL TUO NUMERO: </h1>
@@ -28,6 +30,13 @@
                   </div>
               </div>
           </div>
+=======
+            <div *ngFor="let group of device.groups" class="pulsante-container">
+
+            </div>
+
+        </div>
+>>>>>>> 0c9ca0ccd7799bdc00fde129f6c47ea6684a0bc8
 
         <div *ngIf="!device.spots || device.spots.length === 0" class="pulsante-container">
             <!-- Contenuto quando device.spots non contiene elementi -->
