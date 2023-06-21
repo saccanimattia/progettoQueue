@@ -1,52 +1,82 @@
 <div *ngIf="device || risorse">
-  <div class="row">
-    <div class="col-lg-8">
-      <div *ngIf="device.spots && device.spots.length > 0" class="pulsante-container">
-        <div *ngIf="pubblicitaCorrente">
-          <div *ngIf="pubblicitaCorrente.type === 'carousel'">
-            <div class="immagine-container">
-              <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="5000" #myCarousel>
-                <div class="carousel-inner">
-                  <div class="carousel-item" *ngFor="let media of pubblicitaCorrente.medias; let i = index" [class.active]="i === currentIndex">
-                    <img [src]="media" class="d-block w-100 img-fluid" alt="...">
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div *ngIf="pubblicitaCorrente.type === 'player'">
-            <div *ngIf="pubblicitaCorrente.type === 'player'">
-              <video [src]="pubblicitaCorrente.medias[0]" class="video-background videoPlayer" controls autoplay loop style="max-width: 100%; height: auto;"></video>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-4">
-      <div class="pulsante-wrapper">
-        <h1>{{device.title}}</h1>
-        <div *ngFor="let group of device.groups" class="pulsante-container">
-          <app-pulsante [gruppo]="group" [risorsee]="risorse"></app-pulsante><br>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-
-
-
-
-<div *ngIf="!device.spots || device.spots.length === 0" class="pulsante-container">
-  <!-- Contenuto quando device.spots non contiene elementi -->
-  <div class="col-lg-4">
     <div class="pulsante-wrapper">
-      <h1>{{device.title}} </h1>
-      <div *ngFor="let group of device.groups" class="pulsante-container">
-        <app-pulsante [gruppo]="group" [risorsee]="risorse"></app-pulsante><br>
-      </div>
+        <div *ngIf="device.spots && device.spots.length > 0" class="pulsante-container">
+            <!-- Contenuto quando device.spots contiene elementi -->
+            <div class="row">
+                <div class="col-lg-8">
+                    <div *ngIf="pubblicitaCorrente">
+                        <div *ngIf="pubblicitaCorrente.type === 'carousel'">
+                            <div class="immagine-container" [@cambioImmagine]="indiceCorrente">
+                                <div class="immagini-affiancate">
+                                    <img [src]="pubblicitaCorrente.medias[indiceCorrente]" alt="Immagine pubblicitaria" class="immagine-corrente">
+                                    <img [src]="pubblicitaCorrente.medias[indiceDopo]" alt="Immagine pubblicitaria" class="immagine-successiva">
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngIf="pubblicitaCorrente.type === 'player'">
+                            <div *ngIf="pubblicitaCorrente.type === 'player'">
+                                <video [src]="pubblicitaCorrente.medias[0]" class="video-background videoPlayer object-fit-cover" controls autoplay loop></video>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="pulsante-wrapper">
+
+                        <div class="col-lg-4">
+                            <div class="pulsante-wrapper">
+                                <h1>{{device.title |uppercase}}</h1>
+                                <div *ngFor="let group of device.groups" class="pulsante-container">
+                                    <app-pulsante [gruppo]="group" [risorsee]="risorse"></app-pulsante><br>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div *ngFor="let group of device.groups" class="pulsante-container">
+
+                        </div>
+
+                    </div>
+
+
+                    <div *ngIf="!device.spots || device.spots.length === 0" class="pulsante-container">
+                        <!-- Contenuto quando device.spots non contiene elementi -->
+
+                        <div class="pulsante-wrapper">
+                            <div *ngFor="let group of device.groups" class="pulsante-container">
+                                <app-pulsante [gruppo]="group"></app-pulsante>
+
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="pulsante-wrapper">
+
+                                    <div class="col-lg-4">
+                                        <div class="pulsante-wrapper">
+                                            <h1>{{device.title}} </h1>
+                                            <div *ngFor="let group of device.groups" class="pulsante-container">
+                                                <app-pulsante [gruppo]="group" [risorsee]="risorse"></app-pulsante><br>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+                                    <div *ngIf="!device.spots || device.spots.length === 0" class="pulsante-container">
+                                        <!-- Contenuto quando device.spots non contiene elementi -->
+
+                                        <div class="pulsante-wrapper">
+                                            <div *ngFor="let group of device.groups" class="pulsante-container">
+                                                <app-pulsante [gruppo]="group"></app-pulsante>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
 
