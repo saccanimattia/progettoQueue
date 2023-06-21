@@ -29,38 +29,20 @@ export class HomeComponent {
   pubblicitaCorrente : any
   risorse : any[] = []
   @ViewChild('myCarousel', { static: false }) myCarousel!: ElementRef;
-  constructor(private pocketBase : PocketBaseService, private salvaDati : DatiDispositivoService,private elementRef: ElementRef){}
+  constructor(private pocketBase : PocketBaseService, private elementRef: ElementRef){}
 
   async ngOnInit() : Promise<void>{
     this.pocketBase.setIp()
-    this.device = this.salvaDati.getDevice()
+
     this.risorse = await this.pocketBase.prendiRisorse();
 
-    console.log("juiuuuuui")
-    console.log(this.device.type)
 
-      console.log("diund")
-
-    if(this.device.type == ''){
-
-      this.pocketBase.setIp()
-      this.id = localStorage.getItem('device')
-      this.device = await this.pocketBase.prendiDeviceId(this.id)
-      this.prendiPubb()
-
-
-
-
-
+    this.pocketBase.setIp()
+    this.id = localStorage.getItem('device')
+    this.device = await this.pocketBase.prendiDeviceId(this.id)
+    this.prendiPubb()
 
   }
-
-
-    
-  }
-
-
-
 
   async prendiPubb(){
     let pubb : any[] = []
