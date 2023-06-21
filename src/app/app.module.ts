@@ -16,6 +16,7 @@ import { TitleComponent } from './components/modalConfigurazione/title/title.com
 import { MaxNumberComponent } from './components/modalConfigurazione/max-number/max-number.component';
 import { PrinterComponent } from './components/modalConfigurazione/printer/printer.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CarouselModule } from 'ngx-bootstrap/carousel';
 
 
 
@@ -40,7 +41,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
-    NgbModule
+    NgbModule,
+    CarouselModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

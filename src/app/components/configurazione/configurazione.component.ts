@@ -16,8 +16,13 @@ export class ConfigurazioneComponent {
 
   ngOnInit(){
     let ip = localStorage.getItem('indirizzoIp')
-    if(ip != '' || ip != null)
-    this.i++;
+    console.log(ip)
+    if(ip != '' && ip != null){
+
+      this.i++;
+    }
+
+    console.log(this.i)
     }
 
   async increment(){

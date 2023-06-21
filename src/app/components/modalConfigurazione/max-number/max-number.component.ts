@@ -20,7 +20,6 @@ export class MaxNumberComponent {
   }
 
   openModal() {
-    console.log("aapri il modal")
     const modal = document.querySelector('#ll');
     modal?.classList.add('show');
     modal?.setAttribute('style', 'display: block');
@@ -28,8 +27,6 @@ export class MaxNumberComponent {
 
   async closeModal() {
     const modal = document.querySelector('#ll');
-    console.log("chiudi modal")
-    console.log("indirizzoGiusto")
     modal?.classList.remove('show');
     modal?.setAttribute('style', 'display: none');
     this.buttonClick.emit();

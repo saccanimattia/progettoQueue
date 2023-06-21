@@ -2,12 +2,24 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { DatiDispositivoService } from 'src/app/services/dati-dispositivo.service';
 import { PocketBaseService } from 'src/app/services/pocket-base.service';
+import { trigger, transition, style, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
-
+  animations: [
+    trigger('carouselAnimation', [
+      transition('void => previous', [
+        style({ transform: 'translateX(-100%)' }),
+        animate('0.5s', style({ transform: 'translateX(0)' }))
+      ]),
+      transition('void => next', [
+        style({ transform: 'translateX(100%)' }),
+        animate('0.5s', style({ transform: 'translateX(0)' }))
+      ])
+    ])
+  ]
 })
 export class HomeComponent {
   currentIndex: number = 0;
@@ -15,7 +27,7 @@ export class HomeComponent {
   device : any
   pubblicitaCorrente : any
   risorse : any[] = []
-  @ViewChild('myCarousel') myCarousel!: ElementRef;
+  @ViewChild('myCarousel', { static: false }) myCarousel!: ElementRef;
   constructor(private pocketBase : PocketBaseService, private salvaDati : DatiDispositivoService,private elementRef: ElementRef){}
 
   async ngOnInit() : Promise<void>{
@@ -41,6 +53,8 @@ export class HomeComponent {
       }
     }
   }
+
+
 
   async prendiPubb(){
     let pubb : any[] = []
@@ -77,16 +91,18 @@ export class HomeComponent {
     setInterval(() => {
       const carousel: any = this.myCarousel.nativeElement;
       carousel.classList.add('slide');
-      carousel.classList.add('carousel');
-      carousel.classList.add('slide');
-      carousel.classList.add('carousel');
-      carousel.classList.add('slide');
-      carousel.classList.add('carousel');
-
       this.currentIndex = (this.currentIndex + 1) % this.pubblicitaCorrente.medias.length;
     }, 5000);
   }
 
+  getAnimationState(index: number) {
+    if (index < this.currentIndex) {
+      return 'previous';
+    } else if (index > this.currentIndex) {
+      return 'next';
+    }
+    return '';
+  }
 
 
 
