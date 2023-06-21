@@ -28,28 +28,21 @@ export class IndirizzoIpComponent {
 
   async closeModal() {
     const modal = document.querySelector('#ipModal');
-    console.log("chiudi modal")
-    console.log(this.isCorretto)
     if(this.isCorretto){
-      console.log("indirizzoGiusto")
       modal?.classList.remove('show');
       modal?.setAttribute('style', 'display: none');
       this.buttonClick.emit();
     }
     else{
-      console.log("indirizzoSbagliato")
       modal?.classList.add('err');
     }
   }
 
   async submitForm() {
-    // Puoi gestire qui la logica per inviare l'indirizzo IP del server del database
     localStorage.setItem('indirizzoIp', this.ipAddress)
     this.pocketBase.setIp()
     this.isCorretto = await this.pocketBase.checkIp()
-    console.log(this.isCorretto)
     this.salvadati.setIp();
     this.closeModal()
-    console.log(this.ipAddress)
   }
 }

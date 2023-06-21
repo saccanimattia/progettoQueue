@@ -15,11 +15,13 @@ export class ConfigurazioneComponent {
   i = 0;
 
   ngOnInit(){
+
     let ip = null;
     console.log(this.i)
     console.log(localStorage.getItem('indirizzoIp'))
     if(ip != '' && ip != null)
     this.i++;
+
     }
 
   async increment(){

@@ -11,6 +11,7 @@ import { IndirizzoIpComponent } from './components/modalConfigurazione/indirizzo
 import { HomeComponent } from './components/paginaPrincipale/home/home.component';
 import { PulsanteComponent } from './components/paginaPrincipale/pulsante/pulsante.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 import { LayoutComponent } from './components/modalConfigurazione/layout/layout.component';
 
 
@@ -33,7 +34,7 @@ import { LayoutComponent } from './components/modalConfigurazione/layout/layout.
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
-    NgbModule
+    NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

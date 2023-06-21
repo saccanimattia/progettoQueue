@@ -1,122 +1,122 @@
 .image-square {
-    position: relative;
-    display: flex;
-    align-items: center;
-    background-color: white;
-    width: 450px;
-    height: 200px;
-    border: 2px solid black;
-    z-index: 25;
+  position: relative;
+  display: flex;
+  align-items: center;
+  background-color: white;
+  width: 450px;
+  height: 200px;
+  border: 2px solid black;
+  z-index: 25;
 }
 
 .content {
-    display: flex;
-    align-items: center;
-    width: 100%;
+  display: flex;
+  align-items: center;
+  width: 100%;
 }
 
 .group-name {
-    flex-grow: 1;
-    padding: 0px;
-    background-color: white;
-    font-size: 25px;
-    font-weight: bold;
-    text-align: center;
-    z-index: 2;
+  flex-grow: 1;
+  padding: 0px;
+  background-color: white;
+  font-size: 25px;
+  font-weight: bold;
+  text-align: center;
+  z-index: 2;
 }
 
 .group-info {
-    position: absolute;
-    color: white;
-    font-weight: bold;
-    font-size: 20px;
-    z-index: 2;
+  position: absolute;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  z-index: 2;
 }
 
 .group-number {
-    position: absolute;
-    bottom: -20px;
-    left: 30px;
-    color: white;
-    font-weight: bold;
-    font-size: 70px;
-    z-index: 25;
+  position: absolute;
+  bottom: -20px;
+  left: 30px;
+  color: white;
+  font-weight: bold;
+  font-size: 70px;
+  z-index: 25;
 }
 
 .group-queued {
-    display: flex;
-    position: absolute;
-    top: 70px;
-    left: 230px;
-    width: 30px;
+  display: flex;
+  position: absolute;
+  top: 70px;
+  left: 230px;
+  width: 30px;
 }
 
 .image-background {
-    width: 200px;
-    height: 198px;
-    z-index: 0;
-    position: relative;
-    display: flex;
-    align-items: center;
-    background-color: white;
-    width: 300px;
-    height: 200px;
-    border: 2px solid black;
-    z-index: 25;
+  width: 200px;
+  height: 198px;
+  z-index: 0;
+  position: relative;
+  display: flex;
+  align-items: center;
+  background-color: white;
+  width: 300px;
+  height: 200px;
+  border: 2px solid black;
+  z-index: 25;
 }
 
 .content {
-    display: flex;
-    align-items: center;
-    width: 100%;
+  display: flex;
+  align-items: center;
+  width: 100%;
 }
 
 .group-name {
-    flex-grow: 1;
+  flex-grow: 1;
 
-    background-color: white;
-    font-size: 25px;
-    font-weight: bold;
-    text-align: center;
-    z-index: 2;
+  background-color: white;
+  font-size: 25px;
+  font-weight: bold;
+  text-align: center;
+  z-index: 2;
 }
 
 .group-info {
-    position: absolute;
-    color: white;
-    font-weight: bold;
-    font-size: 20px;
-    z-index: 2;
+  position: absolute;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  z-index: 2;
 }
 
 .group-number {
-    position: absolute;
-    bottom: -20px;
-    left:290px;
-    color: white;
-    font-weight: bold;
-    font-size: 70px;
-    z-index: 25;
+  position: absolute;
+  bottom: -20px;
+  left:290px;
+  color: white;
+  font-weight: bold;
+  font-size: 70px;
+  z-index: 25;
 }
 
 .group-queued {
-    display: flex;
-    position: absolute;
-    top: 70px;
-    left:260px;
-    width: 200px;
+  display: flex;
+  position: absolute;
+  top: 70px;
+  left:260px;
+  width: 200px;
 }
 
 .image-background {
-    width: 200px;
-    height: 198px;
-    z-index: 0;
+  width: 200px;
+  height: 198px;
+  z-index: 0;
 }
 
 @media (max-width: 800px) {
-    .image-square .content {
-        flex-direction: row;
-        justify-content: space-between;
-        /* Aggiunge spazio tra i div allineati orizzontalmente */
-    }
+  .image-square .content {
+      flex-direction: row;
+      justify-content: space-between;
+      /* Aggiunge spazio tra i div allineati orizzontalmente */
+  }
 }

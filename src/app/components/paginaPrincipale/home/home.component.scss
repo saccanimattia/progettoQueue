@@ -1,31 +1,33 @@
-.pulsante-wrapper {
-    display: flex;
-    flex-wrap: wrap;
-    max-height: calc(100vh - 20px); // Imposta l'altezza massima del div dei pulsanti meno 20px di margine
-    overflow-y: auto;
+body {
+  margin: 0;
+  padding: 0;
 }
 
+.container {
+  max-width: 100%; // Imposta il limite di larghezza al 100% della finestra del browser
+  overflow-x: hidden; // Nasconde la barra di scorrimento orizzontale
+}
+
+.pulsante-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  max-height: calc(100vh - 20px); // Imposta l'altezza massima del div dei pulsanti meno 20px di margine
+  overflow-y: auto;
+  width:100%
+}
+
+
 .div-con-elementi {
-    width: 50%
+  width: 50%; // Imposta una larghezza fissa del 50%
 }
 
 h1 {
-    width: 400px;
+  width: 400px; // Imposta una larghezza fissa di 400px
 }
 
-.pulsante-wrapper {
-    display: flex;
-    height: 100%;
-    width: 100%;
+
+#myCarousel {
+  width: 100%; /* Imposta la larghezza al 100% del container padre */
+  max-height: (100vh - 3vh); /* Imposta l'altezza massima del carousel */
 }
 
-.img-fluid {
-    max-height: 100%;
-    max-width: 100%;
-}
-
-.video-background {
-    height: 100%;
-    max-width: 100%;
-    pointer-events: none;
-}

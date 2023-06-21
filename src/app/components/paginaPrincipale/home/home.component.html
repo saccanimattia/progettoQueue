@@ -1,27 +1,23 @@
 <div *ngIf="device || risorse">
-    <div class="row">
-        <div class="col-lg-8">
-            <div *ngIf="device.spots && device.spots.length > 0" class="pulsante-container">
-                <!-- Contenuto quando device.spots contiene elementi -->
-                <div *ngIf="pubblicitaCorrente">
-                    <div *ngIf="pubblicitaCorrente.type === 'carousel'">
-                        <div class="immagine-container">
-                            <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="5000" #myCarousel>
-                                <div class="carousel-inner">
-                                    <div class="carousel-item" *ngFor="let media of pubblicitaCorrente.medias; let i = index" [class.active]="i === currentIndex">
-                                        <img [src]="media" class="d-block w-100 img-fluid" alt="...">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div *ngIf="pubblicitaCorrente.type === 'player'">
-                        <div *ngIf="pubblicitaCorrente.type === 'player'">
-                            <video [src]="pubblicitaCorrente.medias[0]" class="video-background videoPlayer" controls="false" autoplay loop style="max-width: 100%; height: auto;"></video>
-                        </div>
-                    </div>
-                </div>
+  <div class="row">
+    <div class="col-lg-8">
+      <div *ngIf="device.spots && device.spots.length > 0" class="pulsante-container">
+        <div *ngIf="pubblicitaCorrente && pubblicitaCorrente.type === 'carousel'">
+          <div class="immagine-container">
+            <div class="carousel-inner">
+              <div class="carousel-item"
+                *ngFor="let media of pubblicitaCorrente.medias; let i = index"
+                [class.active]="i === currentIndex"
+                [@carouselAnimation]="getAnimationState(i)">
+                <img [src]="media" class="d-block w-100 img-fluid" alt="...">
+              </div>
             </div>
+          </div>
+        </div>
+        <div *ngIf="pubblicitaCorrente && pubblicitaCorrente.type === 'player'">
+          <div class="video-container">
+            <video [src]="pubblicitaCorrente.medias[0]" class="video-background videoPlayer" controls autoplay loop style="max-width: 100%; height: auto;"></video>
+          </div>
         </div>
         <div class="col-lg-4">
             <div class="pulsante-wrapper">
@@ -33,8 +29,6 @@
         </div>
     </div>
 </div>
-
-
 <div *ngIf="!device.spots || device.spots.length === 0" class="pulsante-container">
     <!-- Contenuto quando device.spots non contiene elementi -->
     <div class="col-lg-4">
@@ -46,3 +40,4 @@
         </div>
     </div>
 </div>
+
