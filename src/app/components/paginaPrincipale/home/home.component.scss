@@ -16,6 +16,7 @@ body {
   width:100%
 }
 
+
 .div-con-elementi {
   width: 50%; // Imposta una larghezza fissa del 50%
 }
@@ -25,54 +26,8 @@ h1 {
 }
 
 
-
 #myCarousel {
   width: 100%; /* Imposta la larghezza al 100% del container padre */
   max-height: (100vh - 3vh); /* Imposta l'altezza massima del carousel */
 }
-
-.carousel-item img {
-  width: 100%; /* Imposta la larghezza dell'immagine al 100% del carousel */
-  height: auto; /* Imposta l'altezza dell'immagine in modo proporzionale alla larghezza */
-  object-fit: contain; /* Imposta il ridimensionamento dell'immagine in modo che sia contenuta all'interno del carousel */
-}
-
-.fixed-carousel {
-  max-width: 100%;
-  max-height: 600px;
-  overflow: hidden;
-}
-
-.fixed-carousel .carousel-inner,
-.fixed-carousel .carousel-item,
-.fixed-carousel .img-fluid {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-
-.carousel-item {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  opacity: 0;
-  transition: transform 0.5s;
-  transform: translateX(100%);
-}
-
-.carousel-item.active {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-.carousel-item.previous {
-  transform: translateX(-100%);
-}
-
-.carousel-item.next {
-  transform: translateX(100%);
-}
-
 

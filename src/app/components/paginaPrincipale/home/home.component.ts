@@ -24,6 +24,7 @@ import { trigger, transition, style, animate } from '@angular/animations';
 export class HomeComponent {
   currentIndex: number = 0;
   id : any
+
   device : any
   pubblicitaCorrente : any
   risorse : any[] = []
@@ -34,25 +35,30 @@ export class HomeComponent {
     this.pocketBase.setIp()
     this.device = this.salvaDati.getDevice()
     this.risorse = await this.pocketBase.prendiRisorse();
+
+    console.log("juiuuuuui")
+    console.log(this.device.type)
+
+      console.log("diund")
+
     if(this.device.type == ''){
+
       this.pocketBase.setIp()
       this.id = localStorage.getItem('device')
       this.device = await this.pocketBase.prendiDeviceId(this.id)
       this.prendiPubb()
-    }
-    else{
-      const timeoutPromise = new Promise((resolve, reject) => {
-        setTimeout(() => reject('Tempo limite superato'), 2000);
-      });
-      try {
-       await Promise.race([this.pocketBase.prendiDevice(this.device), timeoutPromise]);
-        this.salvaDati.dev()
-        this.prendiPubb()
-      } catch (error) {
-        console.error('Errore durante il recupero delle informazioni:', error);
-      }
-    }
+
+
+
+
+
+
   }
+
+
+    
+  }
+
 
 
 

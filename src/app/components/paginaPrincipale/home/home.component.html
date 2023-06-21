@@ -19,15 +19,25 @@
             <video [src]="pubblicitaCorrente.medias[0]" class="video-background videoPlayer" controls autoplay loop style="max-width: 100%; height: auto;"></video>
           </div>
         </div>
-      </div>
-    </div>
-    <div class="col-lg-4">
-      <div class="pulsante-wrapper">
-        <h1>{{device.title}}</h1>
-        <div *ngFor="let group of device.groups" class="pulsante-container">
-          <app-pulsante [gruppo]="group" [risorsee]="risorse"></app-pulsante><br>
+        <div class="col-lg-4">
+            <div class="pulsante-wrapper">
+                <h1>{{device.title}}</h1>
+                <div *ngFor="let group of device.groups" class="pulsante-container">
+                    <app-pulsante [gruppo]="group" [risorsee]="risorse"></app-pulsante><br>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 </div>
+<div *ngIf="!device.spots || device.spots.length === 0" class="pulsante-container">
+    <!-- Contenuto quando device.spots non contiene elementi -->
+    <div class="col-lg-4">
+        <div class="pulsante-wrapper">
+            <h1>{{device.title}} </h1>
+            <div *ngFor="let group of device.groups" class="pulsante-container">
+                <app-pulsante [gruppo]="group" [risorsee]="risorse"></app-pulsante><br>
+            </div>
+        </div>
+    </div>
+</div>
+
