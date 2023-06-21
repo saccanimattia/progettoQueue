@@ -42,7 +42,6 @@ export class IndirizzoIpComponent {
     localStorage.setItem('indirizzoIp', this.ipAddress)
     this.pocketBase.setIp()
     this.isCorretto = await this.pocketBase.checkIp()
-    this.salvadati.setIp();
     this.closeModal()
   }
 }
