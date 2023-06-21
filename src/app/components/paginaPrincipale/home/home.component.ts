@@ -26,7 +26,7 @@ export class HomeComponent {
     this.risorse = await this.pocketBase.prendiRisorse();
     console.log("juiuuuuui")
     console.log(this.device.type)
-    if(this.device.type == ''){
+
       console.log("diund")
       this.pocketBase.setIp()
       console.log("home component prendi device")
@@ -35,7 +35,7 @@ export class HomeComponent {
       this.device = await this.pocketBase.prendiDeviceId(this.id)
       console.log(this.device)
       this.prendiPubb()
-    }
+
 
 
 
