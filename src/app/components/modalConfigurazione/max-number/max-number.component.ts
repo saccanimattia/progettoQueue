@@ -33,13 +33,11 @@ export class MaxNumberComponent {
     modal?.classList.remove('show');
     modal?.setAttribute('style', 'display: none');
     this.buttonClick.emit();
-
   }
 
   async submitForm() {
-    // Puoi gestire qui la logica per inviare l'indirizzo IP del server del database
+    localStorage.setItem('max', this.maxNumber)
     this.salvadati.setMaxNumber(this.maxNumber);
     this.closeModal()
-
   }
 }

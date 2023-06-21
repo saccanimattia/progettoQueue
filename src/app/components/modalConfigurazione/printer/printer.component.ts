@@ -27,8 +27,6 @@ export class PrinterComponent {
 
   async closeModal() {
     const modal = document.querySelector('#print');
-    console.log("chiudi modal")
-    console.log("indirizzoGiusto")
     modal?.classList.remove('show');
     modal?.setAttribute('style', 'display: none');
     this.buttonClick.emit();
@@ -39,6 +37,5 @@ export class PrinterComponent {
     localStorage.setItem('printer', this.ipAddress)
     this.salvadati.setPrinter();
     this.closeModal()
-
   }
 }

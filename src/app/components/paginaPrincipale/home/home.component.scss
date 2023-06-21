@@ -1,53 +1,31 @@
-.pulsante-wrapper {
-    display: flex;
-    flex-wrap: wrap;
+body {
+  margin: 0;
+  padding: 0;
 }
 
-.pulsante-container {
-    flex: 1 0 50%;
-    /* Imposta ogni container a occupare il 50% della larghezza disponibile */
-    padding: 10px;
-    /* Aggiungi spaziatura tra i pulsanti */
+.container {
+  max-width: 100%; // Imposta il limite di larghezza al 100% della finestra del browser
+  overflow-x: hidden; // Nasconde la barra di scorrimento orizzontale
+}
+
+.pulsante-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  max-height: calc(100vh - 20px); // Imposta l'altezza massima del div dei pulsanti meno 20px di margine
+  overflow-y: auto;
 }
 
 .div-con-elementi {
-    width: 60%
-}
-
-.immagine-container {
-    width: 100%;
-    height: 100%;
-}
-
-.immagine-container img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    animation: scorrimento 5s infinite;
-}
-
-@keyframes scorrimento {
-    0% {
-        transform: translateX(0);
-    }
-    100% {
-        transform: translateX(-100%);
-    }
-}
-
-.immagini-affiancate {
-    white-space: nowrap;
-}
-
-.immagine-corrente,
-.immagine-successiva {
-    display: inline-block;
-    vertical-align: middle;
+  width: 50%; // Imposta una larghezza fissa del 50%
 }
 
 h1 {
-    color: wheat;
-    font-size: 30px;
-    font-weight: bold;
-    font-style: underline;
+  width: 400px; // Imposta una larghezza fissa di 400px
+}
+
+.img-fluid {
+  max-height: 100%;
+  max-width: 100%;
+}
+
 }
