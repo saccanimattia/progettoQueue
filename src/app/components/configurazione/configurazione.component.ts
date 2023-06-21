@@ -15,17 +15,16 @@ export class ConfigurazioneComponent {
   i = 0;
 
   ngOnInit(){
-    let ip = localStorage.getItem('indirizzoIp')
+    let ip = null;
     console.log(this.i)
     console.log(localStorage.getItem('indirizzoIp'))
-    if(ip != '' || ip != null)
+    if(ip != '' && ip != null)
     this.i++;
     }
 
   async increment(){
     this.i++
-    if(this.i==7){
-      await this.salvadati.createDevice()
+    if(this.i==2){
       this.router.navigate(['/paginaPrincipale']);
     }
 

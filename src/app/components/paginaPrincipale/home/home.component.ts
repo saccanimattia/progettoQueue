@@ -12,6 +12,7 @@ import { PocketBaseService } from 'src/app/services/pocket-base.service';
 export class HomeComponent {
   currentIndex: number = 0;
   id : any
+
   device : any
   pubblicitaCorrente : any
   risorse : any[] = []
@@ -34,30 +35,6 @@ export class HomeComponent {
       this.device = await this.pocketBase.prendiDeviceId(this.id)
       console.log(this.device)
       this.prendiPubb()
-    }
-    else{
-      const timeoutPromise = new Promise((resolve, reject) => {
-        setTimeout(() => reject('Tempo limite superato'), 2000);
-      });
-
-      try {
-
-       await Promise.race([this.pocketBase.prendiDevice(this.device), timeoutPromise]);
-
-        console.log("deviceeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
-        console.log(localStorage.getItem('device'));
-        this.salvaDati.dev()
-        this.prendiPubb()
-        // Resto del codice da eseguire dopo aver ottenuto i dati del device
-      } catch (error) {
-        console.error('Errore durante il recupero delle informazioni:', error);
-        // Esegui le azioni di gestione dell'errore qui, ad esempio mostrare un messaggio all'utente
-      }
-
-
-
-
-
     }
 
 
