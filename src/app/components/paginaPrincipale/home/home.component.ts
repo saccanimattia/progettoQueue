@@ -3,38 +3,29 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { DatiDispositivoService } from 'src/app/services/dati-dispositivo.service';
 import { PocketBaseService } from 'src/app/services/pocket-base.service';
 import { trigger, transition, style, animate } from '@angular/animations';
+import { NgbCarousel, NgbSlideEvent, NgbSlideEventSource } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
-  animations: [
-    trigger('carouselAnimation', [
-      transition('void => previous', [
-        style({ transform: 'translateX(-100%)' }),
-        animate('0.5s', style({ transform: 'translateX(0)' }))
-      ]),
-      transition('void => next', [
-        style({ transform: 'translateX(100%)' }),
-        animate('0.5s', style({ transform: 'translateX(0)' }))
-      ])
-    ])
-  ]
+
 })
 export class HomeComponent {
-  currentIndex: number = 0;
   id : any
 
   device : any
   pubblicitaCorrente : any
   risorse : any[] = []
-  @ViewChild('myCarousel', { static: false }) myCarousel!: ElementRef;
-  constructor(private pocketBase : PocketBaseService, private elementRef: ElementRef){}
+  logo: any
+  @ViewChild('carousel', { static: true }) carousel!: NgbCarousel;
+
+  constructor(private pocketBase : PocketBaseService){}
 
   async ngOnInit() : Promise<void>{
     this.pocketBase.setIp()
 
-    this.risorse = await this.pocketBase.prendiRisorse();
+    this.risorse= await this.pocketBase.prendiRisorse();
 
 
     this.pocketBase.setIp()
@@ -42,7 +33,7 @@ export class HomeComponent {
     this.device = await this.pocketBase.prendiDeviceId(this.id)
     localStorage.setItem('max', this.device.maxNumber)
     this.prendiPubb()
-
+    this.prendiLogo()
   }
 
   async prendiPubb(){
@@ -61,7 +52,6 @@ export class HomeComponent {
     const randomIndex = Math.floor(Math.random() * this.device.spots.length);
     this.pubblicitaCorrente = this.device.spots[randomIndex];
     this.convertiMedia()
-    this.startCarousel()
   }
 
   async convertiMedia(){
@@ -76,22 +66,23 @@ export class HomeComponent {
       this.pubblicitaCorrente.medias = newMedias;
   }
 
-  startCarousel() {
-    setInterval(() => {
-      const carousel: any = this.myCarousel.nativeElement;
-      carousel.classList.add('slide');
-      this.currentIndex = (this.currentIndex + 1) % this.pubblicitaCorrente.medias.length;
-    }, 5000);
+  prendiLogo(){
+    this.logo = this.risorse.find((r:any) =>
+          r.name === 'logo'
+         );
+    this.logo.file = localStorage.getItem('indirizzoIp') + "/api/files/" + this.logo.collectionId + '/' + this.logo.id + '/' + this.logo.file + '?thumb=100x100&token=';
   }
 
-  getAnimationState(index: number) {
-    if (index < this.currentIndex) {
-      return 'previous';
-    } else if (index > this.currentIndex) {
-      return 'next';
-    }
-    return '';
-  }
+
+
+
+
+
+
+
+
+
+
 
 
 
