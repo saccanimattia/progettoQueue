@@ -1,28 +1,13 @@
-.pulsante-wrapper {
-  display: flex;
-  flex-wrap: wrap;
-  max-height: calc(100vh - 20px); // Imposta l'altezza massima del div dei pulsanti meno 20px di margine
-  overflow-y: auto;
-}
+
 
 .div-con-elementi {
   width: 50%
 }
 
 h1 {
-  width: 400px;
+  width: 500px;
 }
 
-.pulsante-wrapper {
-  display: flex;
-  height: 100%;
-  width: 100%;
-}
-
-.img-fluid {
-  max-height: 100%;
-  max-width: 100%;
-}
 
 .video-background {
   height: 100%;
@@ -30,19 +15,7 @@ h1 {
   pointer-events: none;
 }
 
-.fixed-carousel {
-  max-width: 100%;
-  max-height: calc(100vh - 3vh); /* Sottrae il 10% dell'altezza della viewport */
-  overflow: hidden;
-}
 
-.fixed-carousel .carousel-inner,
-.fixed-carousel .carousel-item,
-.fixed-carousel .img-fluid {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
 
 @media (max-width: 700px) {
   .video-background {
@@ -54,5 +27,54 @@ h1 {
   }
   #aa {
       float: left;
+      width: 420px;
   }
+}
+.pulsante-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  max-height: calc(100vh - 20px);
+  height:calc(100vh - 20px);
+  overflow-y: auto;
+}
+
+.carousel-wrapper {
+  .pulsante-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    max-height: calc(100vh - 20px); // Imposta l'altezza massima del div dei pulsanti meno 20px di margine
+    overflow-y: auto;
+  }
+
+  .carousel-wrapper {
+    flex: 1; /* Occupa lo spazio rimanente orizzontalmente */
+    height: 100vh;
+  }
+
+  .carousel-img-wrapper {
+    max-height: calc(100vh - 20px);
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover; /* Scala e ritaglia l'immagine per adattarsi al contenitore */
+    }
+  }
+}
+.align-items-start {
+  align-items: flex-start;
+}
+
+.col-lg-4 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.company-logo-container {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  transform: translate(-50%, -70%);
 }
