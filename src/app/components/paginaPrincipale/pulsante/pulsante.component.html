@@ -1,7 +1,7 @@
 <div class="image-square" (click)="add()">
     <div class="content">
         <div class="group-name">
-            <span>{{ group.name }}</span>
+            <span>{{ group.name | uppercase }}</span>
         </div>
         <div class="group-info">
             <h4 class="group-number" *ngIf="group?.number < 10">00{{ group?.number }}</h4>

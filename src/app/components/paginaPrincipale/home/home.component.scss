@@ -1,80 +1,77 @@
-
-
 .div-con-elementi {
-  width: 50%
+    width: 50%
 }
 
 h1 {
-  width: 500px;
+    width: 500px;
 }
-
 
 .video-background {
-  height: 100%;
-  max-width: 100%;
-  pointer-events: none;
+    height: 100%;
+    max-width: 100%;
+    pointer-events: none;
 }
-
-
 
 @media (max-width: 700px) {
-  .video-background {
-      display: none;
-  }
-  .pulsante-wrapper {
-      display: flex;
-      justify-content: center;
-  }
-  #aa {
-      float: left;
-      width: 420px;
-  }
+    .video-background {
+        display: none;
+    }
+    .pulsante-wrapper {
+        display: flex;
+        justify-content: center;
+    }
+    #aa {
+        float: left;
+        width: 420px;
+    }
 }
+
 .pulsante-wrapper {
-  display: flex;
-  flex-wrap: wrap;
-  max-height: calc(100vh - 20px);
-  height:calc(100vh - 20px);
-  overflow-y: auto;
+    display: flex;
+    flex-wrap: wrap;
+    max-height: 100%;
+    overflow-y: auto;
 }
 
 .carousel-wrapper {
-  .pulsante-wrapper {
-    display: flex;
-    flex-wrap: wrap;
-    max-height: calc(100vh - 20px); // Imposta l'altezza massima del div dei pulsanti meno 20px di margine
-    overflow-y: auto;
-  }
-
-  .carousel-wrapper {
-    flex: 1; /* Occupa lo spazio rimanente orizzontalmente */
-    height: 100vh;
-  }
-
-  .carousel-img-wrapper {
-    max-height: calc(100vh - 20px);
-    overflow: hidden;
-
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover; /* Scala e ritaglia l'immagine per adattarsi al contenitore */
+    .pulsante-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        max-height: calc(100vh - 100px); // Imposta l'altezza massima del div dei pulsanti meno 20px di margine
+        overflow-y: auto;
     }
-  }
+    .carousel-wrapper {
+        flex: 1;
+        /* Occupa lo spazio rimanente orizzontalmente */
+        height: 100vh;
+    }
+    .carousel-img-wrapper {
+        max-height: calc(100vh - 20px);
+        overflow: hidden;
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* Scala e ritaglia l'immagine per adattarsi al contenitore */
+        }
+    }
 }
+
 .align-items-start {
-  align-items: flex-start;
+    align-items: flex-start;
 }
 
 .col-lg-4 {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    position: relative;
 }
 
 .company-logo-container {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  transform: translate(-50%, -70%);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 150px;
+}
+
+.all {
+    overflow-x: hidden;
 }
