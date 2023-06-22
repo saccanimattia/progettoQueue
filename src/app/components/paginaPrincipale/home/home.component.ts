@@ -13,12 +13,13 @@ import { NgbCarousel, NgbSlideEvent, NgbSlideEventSource } from '@ng-bootstrap/n
 })
 export class HomeComponent {
   id : any
-
+  layout : any
   device : any
   pubblicitaCorrente : any
   risorse : any[] = []
   logo: any
   @ViewChild('carousel', { static: true }) carousel!: NgbCarousel;
+  @ViewChild('videoPlayer') videoPlayer!: ElementRef;
 
   constructor(private pocketBase : PocketBaseService){}
 
@@ -30,7 +31,14 @@ export class HomeComponent {
 
     this.pocketBase.setIp()
     this.id = localStorage.getItem('device')
+    console.log('device')
+    console.log(this.device)
     this.device = await this.pocketBase.prendiDeviceId(this.id)
+    console.log('device')
+    console.log(this.device)
+    this.layout = await this.pocketBase.prendiLayoutId(this.device.layout)
+    console.log('layout')
+    console.log(this.device)
     this.prendiPubb()
     this.prendiLogo()
   }
@@ -38,18 +46,19 @@ export class HomeComponent {
   async prendiPubb(){
     let pubb : any[] = []
     let i = 0
-    if(this.device.spots.length > 0){
-        for(let spot of this.device.spots){
+    if(this.layout.spots.length > 0){
+        for(let spot of this.layout.spots){
           pubb[i]=await this.pocketBase.prendiSpotDaId(spot)
         }
-        this.device.spots = pubb
+        this.layout.spots = pubb
         this.randomPubblicita()
     }
+
   }
 
   randomPubblicita(): void {
-    const randomIndex = Math.floor(Math.random() * this.device.spots.length);
-    this.pubblicitaCorrente = this.device.spots[randomIndex];
+    const randomIndex = Math.floor(Math.random() * this.layout.spots.length);
+    this.pubblicitaCorrente = this.layout.spots[randomIndex];
     this.convertiMedia()
   }
 
@@ -63,13 +72,31 @@ export class HomeComponent {
         newMedias.push(imageUrl);
       }
       this.pubblicitaCorrente.medias = newMedias;
+      this.video = this.pubblicitaCorrente.medias[0]
+
   }
 
+  video : any
   prendiLogo(){
     this.logo = this.risorse.find((r:any) =>
           r.name === 'logo'
          );
     this.logo.file = localStorage.getItem('indirizzoIp') + "/api/files/" + this.logo.collectionId + '/' + this.logo.id + '/' + this.logo.file + '?thumb=100x100&token=';
+  }
+
+
+
+  public currentVideoIndex: number = 0;
+
+
+  playNextVideo() {
+    this.currentVideoIndex++;
+    if (this.currentVideoIndex >= this.pubblicitaCorrente.medias.length) {
+      this.currentVideoIndex = 0;
+    }
+    this.video = this.pubblicitaCorrente.medias[this.currentVideoIndex]
+    console.log(this.video)
+    this.videoPlayer.nativeElement.play();
   }
 
 

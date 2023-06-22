@@ -120,6 +120,20 @@ export class PocketBaseService {
         }
       }
 
+      async prendiDevices(): Promise<any> {
+
+        try {
+
+          const result = await this.pb.collection('devices').getList(1, 50);
+          let layouts = result.items;
+
+        return layouts
+        } catch (err) {
+          console.log("Si è verificato un errore:", err);
+          return []; // Restituisci un array vuoto in caso di errore
+        }
+      }
+
 
       async prendiDevice(device: any): Promise<any> {
 
@@ -135,11 +149,22 @@ export class PocketBaseService {
         // Assicurati di includere questa istruzione return con il valore desiderato
       }
 
-      async prendiDeviceId(id : any): Promise<any> {
+      async prendiLayoutId(id : any): Promise<any> {
 
         let layouts = await this.prendiLayouts()
 
         const l = layouts.find((r:any) =>
+          r.id === id
+         );
+
+         return l
+      }
+
+      async prendiDeviceId(id : any): Promise<any> {
+
+        let devices = await this.prendiDevices()
+
+        const l = devices.find((r:any) =>
           r.id === id
          );
 

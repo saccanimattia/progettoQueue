@@ -26,7 +26,6 @@ import { LayoutComponent } from './components/modalConfigurazione/layout/layout.
     HomeComponent,
     PulsanteComponent,
     LayoutComponent,
-
   ],
   imports: [
     HttpClientModule,

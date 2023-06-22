@@ -2,14 +2,14 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="LayoutModalLabel">Selezionare layout</h5>
+                <h5 class="modal-title" id="LayoutModalLabel">Selezionare device</h5>
             </div>
 
             <div class="modal-body">
 
                 <div class="form-group">
-                    <select class="form-control" id="layout" name="layout" [(ngModel)]="l">
-                        <option *ngFor="let layout of selectedLayout" [value]="layout.id">{{ layout.name }}</option>
+                    <select class="form-control" id="device" name="device" [(ngModel)]="deviuce">
+                        <option *ngFor="let device of selectedDevices" [value]="device.id">{{ device.name }}</option>
                       </select>
                 </div>
 
