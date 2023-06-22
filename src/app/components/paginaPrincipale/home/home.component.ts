@@ -31,7 +31,6 @@ export class HomeComponent {
     this.pocketBase.setIp()
     this.id = localStorage.getItem('device')
     this.device = await this.pocketBase.prendiDeviceId(this.id)
-    localStorage.setItem('max', this.device.maxNumber)
     this.prendiPubb()
     this.prendiLogo()
   }
