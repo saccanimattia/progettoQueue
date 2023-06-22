@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { DatiDispositivoService } from 'src/app/services/dati-dispositivo.service';
 import { PocketBaseService } from 'src/app/services/pocket-base.service';
+import PocketBase from 'pocketbase';
 
 @Component({
   selector: 'app-pulsante',
@@ -15,6 +16,7 @@ export class PulsanteComponent implements OnInit {
   img: any;
   timeoutLimit = 5000;
   max : any
+  pb : any
 
   constructor(private pocketBase: PocketBaseService, private dati : DatiDispositivoService) {}
 
