@@ -36,6 +36,7 @@ export class HomeComponent {
     this.device = await this.pocketBase.prendiDeviceId(this.id)
     console.log('device')
     console.log(this.device)
+    localStorage.setItem('printer', this.device.printer)
     this.layout = await this.pocketBase.prendiLayoutId(this.device.layout)
     console.log('layout')
     console.log(this.device)
@@ -96,7 +97,7 @@ export class HomeComponent {
     }
     this.video = this.pubblicitaCorrente.medias[this.currentVideoIndex]
     console.log(this.video)
-    this.videoPlayer.nativeElement.play();
+
   }
 
 
