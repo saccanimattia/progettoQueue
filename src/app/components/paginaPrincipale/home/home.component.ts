@@ -18,10 +18,13 @@ export class HomeComponent {
   pubblicitaCorrente : any
   risorse : any[] = []
   logo: any
+  currentYear : number;
   @ViewChild('carousel', { static: true }) carousel!: NgbCarousel;
   @ViewChild('videoPlayer') videoPlayer!: ElementRef;
 
-  constructor(private pocketBase : PocketBaseService){}
+  constructor(private pocketBase : PocketBaseService){
+    this.currentYear = new Date().getFullYear();
+  }
 
   async ngOnInit() : Promise<void>{
     this.pocketBase.setIp()
