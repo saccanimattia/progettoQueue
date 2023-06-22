@@ -40,7 +40,18 @@ export class PulsanteComponent implements OnInit {
       });
   }
 
-  add(): void {
+  async add(): Promise<void> {
+    let print = localStorage.getItem('printer')
+    console.log(this.group.id)
+    let _body =  JSON.stringify({
+      groupId: this.group.id,
+      printerId: print})
+    await fetch("http://192.168.130.49:3000/print", {
+      method:"post",
+      headers: {"Content-Type": "application/json"},
+      body: _body
+      })
+      console.log(this.group.id)
     if(this.group.number + 1 > this.max){
       this.group.number = 0
     }
