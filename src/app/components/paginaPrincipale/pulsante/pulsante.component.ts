@@ -39,7 +39,7 @@ export class PulsanteComponent implements OnInit {
         const ipAddress = localStorage.getItem('indirizzoIp')!;
       this.pb = new PocketBase(ipAddress);
 
-      console.log('palle');
+
 
       console.log(this.group.id)
       this.pb.collection('groups').subscribe(this.group.id, (e:any) => {
