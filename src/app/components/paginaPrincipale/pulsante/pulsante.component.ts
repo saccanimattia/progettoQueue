@@ -34,6 +34,18 @@ export class PulsanteComponent implements OnInit {
       .then((xData: any) => {
         this.x = xData;
         this.img = localStorage.getItem('indirizzoIp') + "/api/files/" + this.x.collectionId + '/' + this.x.id + '/' + this.x.file + '?thumb=100x100&token=';
+
+        const ipAddress = localStorage.getItem('indirizzoIp')!;
+      this.pb = new PocketBase(ipAddress);
+
+
+
+      console.log(this.group.id)
+      this.pb.collection('groups').subscribe(this.group.id, (e:any) => {
+        this.group.number = e.record.number;
+        this.group.queued = e.record.queued;
+    });
+
       })
       .catch((error) => {
         console.error('Errore durante il recupero delle informazioni:', error);
