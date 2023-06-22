@@ -1,16 +1,18 @@
-<div class="image-square" (click)="add()">
-  <div class="content">
-    <div class="group-name">
-      <span>{{ group.name }}</span>
-    </div>
-    <img [src]="img" class="image-background">
-    <div class="group-info">
-      <h4 class="group-number" *ngIf="group?.number < 10">00{{ group?.number }}</h4>
-      <h4 class="group-number" *ngIf="group?.number < 100 && group?.number >= 10">0{{ group?.number }}</h4>
-      <h4 class="group-number" *ngIf="group?.number >= 100">{{ group?.number }}</h4>
-      <div class="group-queued">
-        Clienti in attesa: {{ group?.queued }}
+<div class="tutto">
+  <div class="image-square" (click)="add()">
+      <div class="content">
+          <div class="group-name">
+              <span>{{ group.name| uppercase}}</span>
+          </div>
+          <img [src]="img" class="image-background">
+          <div class="group-info">
+              <h4 class="group-number" *ngIf="group?.number < 10">00{{ group?.number }}</h4>
+              <h4 class="group-number" *ngIf="group?.number < 100 && group?.number >= 10">0{{ group?.number }}</h4>
+              <h4 class="group-number" *ngIf="group?.number >= 100">{{ group?.number }}</h4>
+              <div class="group-queued">
+                  Clienti in attesa: {{ group?.queued }}
+              </div>
+          </div>
       </div>
-    </div>
   </div>
 </div>

@@ -9,15 +9,18 @@ import { PocketBaseService } from 'src/app/services/pocket-base.service';
 })
 export class LayoutComponent {
   @Output() buttonClick = new EventEmitter<void>();
-  selectedLayout: any[] = []
-  l: any
+  selectedDevices: any[] = []
+  deviuce: any
+  layouts : any
 
   constructor(private pocketBase : PocketBaseService, private salvadati : DatiDispositivoService){
 
   }
 
   async ngOnInit(){
-    this.selectedLayout= await this.pocketBase.prendiLayouts();
+    this.selectedDevices= await this.pocketBase.prendiDevices();
+    this.layouts= await this.pocketBase.prendiLayouts();
+    this.filtraDevice()
     this.openModal()
   }
 
@@ -25,6 +28,7 @@ export class LayoutComponent {
     const modal = document.querySelector('#LayoutModal');
     modal?.classList.add('show');
     modal?.setAttribute('style', 'display: block');
+    this.deviuce = this.selectedDevices[0]
   }
 
  closeModal() {
@@ -35,11 +39,34 @@ export class LayoutComponent {
   }
 
   async submitForm() {
-
-    localStorage.setItem('device', this.l)
-    console.log(this.l)
+    console.log(this.deviuce)
+    localStorage.setItem('device', this.deviuce)
+    console.log(this.deviuce)
     this.closeModal()
 
+  }
+
+  filtraDevice(){
+    let i  = 0;
+    console.log(this.selectedDevices)
+    for(let d of this.selectedDevices){
+      d.layout = this.trovaLayout(d.layout)
+
+      if(d.layout.type != 'queue')
+        this.selectedDevices.splice(i, 1)
+      i++
+    }
+    console.log(this.selectedDevices)
+  }
+
+
+  trovaLayout(id : any){
+    console.log("isiisisis")
+    console.log(id)
+    const ll = this.layouts.find((r:any) =>
+        r.id === id
+       );
+    return ll
   }
 
 }
