@@ -16,7 +16,7 @@ export class AppComponent {
 
    // this.id = localStorage.getItem('device')
     this.ip = localStorage.getItem('indirizzoIp')
-
+    this.id = localStorage.getItem('device')
 
     if (!this.id) {
       this.router.navigate(['/primaConfigurazione']);

@@ -20,13 +20,15 @@ export class PulsanteComponent implements OnInit {
 
   ngOnInit(): void {
     this.group = this.gruppo;
-    this.max! = localStorage.getItem('max')
+    console.log(this.group)
+
     const timeoutPromise = new Promise((resolve, reject) => {
       setTimeout(() => reject('Tempo limite superato'), this.timeoutLimit);
     });
     Promise.race([this.pocketBase.prendiCategoriaId(this.gruppo), timeoutPromise])
       .then((groupData: any) => {
         this.group = groupData;
+        this.max = this.group.maxNumber
         return this.pocketBase.prendiRisorsaa(this.group.image, this.risorsee);
       })
       .then((xData: any) => {
