@@ -25,8 +25,8 @@
                 <div class="pulsante-wrapper p-0" style="background-color: #0083ff;">
                     <h1 class="fixed-header">{{ layout?.title }}</h1>
                     <div class="col-12 p-4 scrollable-buttons">
-                        <div class="row justify-content-end">
-                            <div *ngFor="let group of layout?.groups" class="pulsante-container">
+                        <div class="row ">
+                            <div *ngFor="let group of layout?.groups" class="col-12">
                                 <div class="aa">
                                     <app-pulsante [gruppo]="group" [risorsee]="risorse"></app-pulsante><br>
                                 </div>
