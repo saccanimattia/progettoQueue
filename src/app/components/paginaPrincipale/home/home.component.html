@@ -1,79 +1,78 @@
 <div class="all">
-  <div *ngIf="layout || risorse">
-    <div class="row align-items-start "   *ngIf="layout?.spots && layout.spots?.length > 0" style="height: 100vh;">
-      <div class="col-lg-8 p-0">
-        <div class="pulsante-container">
-          <div *ngIf="pubblicitaCorrente">
-            <div *ngIf="pubblicitaCorrente.type === 'carousel'" class="">
-              <ngb-carousel #carousel [interval]="3000" [showNavigationArrows]="false" [showNavigationIndicators]="false">
-                <ng-template ngbSlide *ngFor="let media of pubblicitaCorrente.medias; let i = index">
-                  <div class="carousel-img-wrapper h-100 d-flex align-items-center justify-content-center">
-                    <img [src]="media" alt="Slide {{ i + 1 }}" class="img-fluid carousel-img" />
-                  </div>
-                </ng-template>
-              </ngb-carousel>
-            </div>
-            <div class="cont">
-              <div class="video-background videoPlayerWrapper">
-                <video id="videoPlayer" preload="auto" playsinline autoplay muted #videoPlayer></video>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 p-0" *ngIf="layout.spots?.length > 0">
-        <div class="pulsante-wrapper p-0" style="background-color: #0083ff;">
-          <h1 class="fixed-header">{{ layout?.title }}</h1>
-          <div class="col-12 p-4 scrollable-buttons">
-            <div class="row justify-content-end">
-              <div *ngFor="let group of layout?.groups" class="pulsante-container">
-                <div class="aa">
-                  <app-pulsante [gruppo]="group" [risorsee]="risorse"></app-pulsante><br>
+    <div *ngIf="layout || risorse">
+        <div class="row align-items-start " *ngIf="layout?.spots && layout.spots?.length > 0" style="height: 100vh;">
+            <div class="col-lg-8 p-0">
+                <div class="pulsante-container">
+                    <div *ngIf="pubblicitaCorrente">
+                        <div *ngIf="pubblicitaCorrente.type === 'carousel'" class="">
+                            <ngb-carousel #carousel [interval]="3000" [showNavigationArrows]="false" [showNavigationIndicators]="false">
+                                <ng-template ngbSlide *ngFor="let media of pubblicitaCorrente.medias; let i = index">
+                                    <div class="carousel-img-wrapper h-100 d-flex align-items-center justify-content-center">
+                                        <img [src]="media" alt="Slide {{ i + 1 }}" class="img-fluid carousel-img" />
+                                    </div>
+                                </ng-template>
+                            </ngb-carousel>
+                        </div>
+                        <div class="cont">
+                            <div class="video-background videoPlayerWrapper">
+                                <video id="videoPlayer" preload="auto" playsinline autoplay muted #videoPlayer></video>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
-          </div>
-          <div class="col-12" (click)="config()">
-            <div class="text-center" style="position: relative;">
-              <img [src]="logo?.file" alt="Logo azienda" class="company-logo">
-            </div>
-            <div class="tcopy">
-              <span>&copy; {{ currentYear }}</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div *ngIf="!layout?.spots || layout.spots?.length === 0" class="p-container" [hidden]="!layout?.spots && layout.spots?.length === 0">
-    <div class="p-wrapper p-0" style="background-color: #0083ff;">
-      <div class="h-container">
-        <h1 class="f-header">{{ layout?.title }}</h1>
-      </div>
-      <div class="b-container">
-        <div class="s-buttons">
-          <div class="row">
-            <div class="col-4" *ngFor="let group of layout?.groups">
-              <div class="p-container">
-                <div class="aa">
-                  <app-pulsante [gruppo]="group" [risorsee]="risorse"></app-pulsante>
+            <div class="col-lg-4 p-0" *ngIf="layout.spots?.length > 0">
+                <div class="pulsante-wrapper p-0" style="background-color: #0083ff;">
+                    <h1 class="fixed-header">{{ layout?.title }}</h1>
+                    <div class="col-12 p-4 scrollable-buttons">
+                        <div class="row justify-content-end">
+                            <div *ngFor="let group of layout?.groups" class="pulsante-container">
+                                <div class="aa">
+                                    <app-pulsante [gruppo]="group" [risorsee]="risorse"></app-pulsante><br>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12" (click)="config()">
+                        <div class="text-center" style="position: relative;">
+                            <img [src]="logo?.file" alt="Logo azienda" class="company-logo">
+                        </div>
+                        <div class="tcopy">
+                            <span>&copy; {{ currentYear }}</span>
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
-          </div>
         </div>
-      </div>
-      <div class="footer-container">
-        <div class="col-12" (click)="config()">
-          <div class="text-center" style="position: relative;">
-            <img [src]="logo?.file" alt="Logo azienda" class="company-logo">
-          </div>
-          <div class="tcopy">
-            <span>&copy; {{ currentYear }}</span>
-          </div>
-        </div>
-      </div>
     </div>
-  </div>
+    <div *ngIf="!layout?.spots || layout.spots?.length === 0" class="p-container" [hidden]="!layout?.spots && layout.spots?.length === 0">
+        <div class="p-wrapper p-0" style="background-color: #0083ff;">
+            <div class="h-container">
+                <h1 class="f-header">{{ layout?.title }}</h1>
+            </div>
+            <div class="b-container">
+                <div class="s-buttons">
+                    <div class="row">
+                        <div class="col-4" *ngFor="let group of layout?.groups">
+                            <div class="p-container">
+                                <div class="aa">
+                                    <app-pulsante [gruppo]="group" [risorsee]="risorse"></app-pulsante>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-container">
+                <div class="col-12" (click)="config()">
+                    <div class="text-center" style="position: relative;">
+                        <img [src]="logo?.file" alt="Logo azienda" class="company-logo">
+                    </div>
+                    <div class="tcopy">
+                        <span>&copy; {{ currentYear }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-
