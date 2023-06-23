@@ -24,7 +24,6 @@
     right: 0;
     bottom: 0;
     left: 0;
-    z-index: 1050;
 }
 
 .modal-body {
@@ -39,4 +38,11 @@
 .error-message {
     color: red;
     font-style: italic;
+}
+
+.modal-content {
+    position: fixed;
+    top: 30%;
+    left: 30%;
+    width: 40%;
 }
