@@ -1,8 +1,9 @@
 <div class="all">
+
   <div *ngIf="layout || risorse">
       <div class="row align-items-start" style="height: 100vh;">
           <div class="col-lg-8 p-0">
-              <div *ngIf="layout.spots && layout.spots.length > 0" class="pulsante-container">
+              <div *ngIf="layout?.spots && layout.spots?.length > 0" class="pulsante-container">
                   <!-- Contenuto quando layout.spots contiene elementi -->
                   <div *ngIf="pubblicitaCorrente">
                       <div *ngIf="pubblicitaCorrente.type === 'carousel'" class="carousel-wrapper p-0">
@@ -14,9 +15,9 @@
                               </ng-template>
                           </ngb-carousel>
                       </div>
-                      <div *ngIf="pubblicitaCorrente.type === 'player'">
+                      <div>
                           <div class="video-background videoPlayerWrapper">
-                              <video [src]="video" class="video-background videoPlayer" (ended)="playNextVideo()" controls="false" autoplay #videoplayer></video>
+                            <video id="videoPlayer" preload="auto" playsinline autoplay muted></video>
                           </div>
                       </div>
                   </div>
@@ -24,11 +25,11 @@
           </div>
           <div class="col-lg-4 p-0">
               <div class="pulsante-wrapper p-0" style="background-color: #0083ff;">
-                  <h1 class="fixed-header">{{layout.title}}</h1>
+                  <h1 class="fixed-header">{{layout?.title}}</h1>
                   <div class="col-12 p-4 scrollable-buttons">
                       <div class="row justify-content-end">
                           <!-- Aggiunto 'row justify-content-end' per posizionare i pulsanti a destra -->
-                          <div *ngFor="let group of layout.groups" class="pulsante-container">
+                          <div *ngFor="let group of layout?.groups" class="pulsante-container">
                               <div class="aa">
                                   <app-pulsante [gruppo]="group" [risorsee]="risorse"></app-pulsante><br>
                               </div>
@@ -37,7 +38,7 @@
                   </div>
                   <div class="col-12">
                     <div class="text-center" style="position: relative;">
-                        <img [src]="logo.file" alt="Logo azienda" class="company-logo">
+                        <img [src]="logo?.file" alt="Logo azienda" class="company-logo">
 
                     </div>
                     <div class="tcopy">
@@ -51,12 +52,12 @@
       </div>
   </div>
 
-  <div *ngIf="!layout.spots || layout.spots.length === 0" class="pulsante-container">
+  <div *ngIf="!layout?.spots || layout.spots?.length === 0" class="pulsante-container">
       <!-- Contenuto quando layout.spots non contiene elementi -->
       <div class="col-lg-4 p-0">
           <div class="pulsante-wrapper p-0">
-              <h1>{{layout.title}}</h1>
-              <div *ngFor="let group of layout.groups" class="pulsante-container">
+              <h1>{{layout?.title}}</h1>
+              <div *ngFor="let group of layout?.groups" class="pulsante-container">
                   <app-pulsante [gruppo]="group" [risorsee]="risorse"></app-pulsante><br>
               </div>
           </div>
