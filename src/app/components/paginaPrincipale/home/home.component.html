@@ -1,4 +1,5 @@
 <div class="all">
+<<<<<<< HEAD
   <div *ngIf="layout || risorse">
     <div class="row align-items-start "   *ngIf="layout?.spots && layout.spots?.length > 0" style="height: 100vh;">
       <div class="col-lg-8 p-0">
@@ -77,3 +78,65 @@
   </div>
 </div>
 
+=======
+    <div *ngIf=" device || risorse ">
+        <div class=" row align-items-start ">
+            <div class="col-lg-8 p-0 ">
+                <div *ngIf="device.spots && device.spots.length> 0" class="pulsante-container">
+                    <!-- Contenuto quando device.spots contiene elementi -->
+                    <div *ngIf="pubblicitaCorrente">
+                        <div *ngIf="pubblicitaCorrente.type === 'carousel'" class="carousel-wrapper p-0">
+                            <ngb-carousel #carousel [interval]="3000" [showNavigationArrows]="false" [showNavigationIndicators]="false" class="h-100">
+                                <ng-template ngbSlide *ngFor="let media of pubblicitaCorrente.medias; let i = index">
+                                    <div class="carousel-img-wrapper h-100 d-flex align-items-center justify-content-center">
+                                        <img [src]="media" alt="Slide {{ i + 1 }}" class="img-fluid carousel-img" />
+                                    </div>
+                                </ng-template>
+                            </ngb-carousel>
+                        </div>
+                        <div *ngIf="pubblicitaCorrente.type === 'player'">
+                            <div class="video-background videoPlayerWrapper">
+                                <video [src]="pubblicitaCorrente.medias[0]" class="video-background videoPlayer" controls="false" autoplay loop></video>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 p-0">
+                <div>
+                    <div class="col-lg-4 d-flex align-items-center justify-content-center">
+                        <div class="text-center">
+                            <h1 class="text-white font-weight-bold" style="font-size: 3rem">{{device.title |uppercase}}</h1>
+                        </div>
+                    </div>
+                    <div class="col-12 p-4 pulsante-wrapper">
+                        <div *ngFor="let group of device.groups" class="pulsante-container">
+                            <div class="aa">
+                                <app-pulsante [gruppo]="group" [risorsee]="risorse"></app-pulsante><br>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="company-logo-container">
+                        <img [src]="logo.file" alt="Logo azienda" class="company-logo">
+                    </div>
+
+                </div>
+            </div>
+
+            <div *ngIf="!device.spots || device.spots.length === 0" class="pulsante-container">
+                <!-- Contenuto quando device.spots non contiene elementi -->
+                <div class="col-lg-4 p-0">
+                    <div class="pulsante-wrapper p-0">
+                        <h1>{{device.title}| uppercase}</h1>
+                        <div *ngFor="let group of device.groups" class="pulsante-container">
+                            <app-pulsante [gruppo]="group" [risorsee]="risorse"></app-pulsante><br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+>>>>>>> 619d094280989d8b72cad9a01f2cf8b401d475b7

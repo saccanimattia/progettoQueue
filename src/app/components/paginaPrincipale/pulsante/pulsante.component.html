@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div class="card queue">
   <div class="card-body" (click)="add()">
       <div class="row">
@@ -22,3 +23,21 @@
       </div>
   </div>
 </div>
+=======
+<div class="image-square" (click)="add()">
+    <div class="content">
+        <div class="group-name">
+            <span>{{ group.name | uppercase }}</span>
+        </div>
+        <div class="group-info">
+            <h4 class="group-number" *ngIf="group?.number < 10">00{{ group?.number }}</h4>
+            <h4 class="group-number" *ngIf="group?.number< 100 && group?.number >=10">0{{ group?.number }}</h4>
+            <h4 class="group-number" *ngIf="group?.number >= 100">{{ group?.number }}</h4>
+            <div class="group-queued">
+                Clienti in attesa: {{ group?.queued }}
+            </div>
+        </div>
+    </div>
+    <img [src]="img" class="image-background">
+</div>
+>>>>>>> 619d094280989d8b72cad9a01f2cf8b401d475b7
