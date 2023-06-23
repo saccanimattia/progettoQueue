@@ -30,6 +30,7 @@ export class HomeComponent {
   }
 
   async ngOnInit() : Promise<void>{
+
     this.pocketBase.setIp()
 
     this.risorse = await this.pocketBase.prendiRisorse();

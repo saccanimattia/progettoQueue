@@ -1,24 +1,24 @@
 <div class="card queue">
-  <div class="card-body" (click)="add()">
-      <div class="row">
-          <div class="col-8 d-flex flex-column my-auto">
-              <h2 class="display-4 fw-normal text-truncate text-center mb-0">{{group.name}}</h2>
-          </div>
-          <div class="col-4">
-              <div class="rounded responsive">
-                  <div class="overlay"></div>
-                  <div class="position-absolute d-flex flex-column justify-content-center" style="z-index: 1; width: 100%; height: 100%;">
-                      <h3 class="display-2 customer-number text-center text-white fw-bold text-truncate mb-0" *ngIf="group?.number < 10">00{{ group?.number }}</h3>
-                      <h3 class="display-2 customer-number text-center text-white fw-bold text-truncate mb-0" *ngIf="group?.number < 100 && group?.number >= 10">0{{ group?.number }}</h3>
-                      <h3 class="display-2 customer-number text-center text-white fw-bold text-truncate mb-0" *ngIf="group?.number >= 100">{{ group?.number }}</h3>
+    <div class="card-body" (click)="add()">
+        <div class="row">
+            <div class="col-8 d-flex flex-column my-auto">
+                <h2 class="display-4 fw-normal text-truncate text-center mb-0">{{group.name}}</h2>
+            </div>
+            <div class="col-4">
+                <div class="rounded responsive">
+                    <div class="overlay"></div>
+                    <div class="position-absolute d-flex flex-column justify-content-center" style="z-index: 1; width: 100%; height: 100%;">
+                        <h3 class="group-number" *ngIf="group?.number < 10">00{{ group?.number }}</h3>
+                        <h3 class="group-number" *ngIf="group?.number < 100 && group?.number >= 10">0{{ group?.number }}</h3>
+                        <h3 class="group-number" *ngIf="group?.number >= 100">{{ group?.number }}</h3>
 
 
-                      <p class="customers text-center fw-bold text-white text-truncate mb-0 "> Clienti in attesa: {{ group?.queued }}</p>
-                  </div>
-                  <div class="responsive-sizer "></div>
-                  <img [src]="img " class="image-cover shadow-sm ">
-              </div>
-          </div>
-      </div>
-  </div>
+                        <p class="group-queued"> Clienti in attesa: {{ group?.queued }}</p>
+                    </div>
+                    <div class="responsive-sizer "></div>
+                    <img [src]="img " class="image-cover shadow-sm ">
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
