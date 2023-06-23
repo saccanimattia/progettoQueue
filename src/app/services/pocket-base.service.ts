@@ -23,7 +23,7 @@ export class PocketBaseService {
 
   async checkIp(): Promise<boolean> {
     try {
-      const result = await this.pb.collection('layouts').getList(1, 50);
+      const result = await this.pb.collection('layouts').getList(1, 50, { '$autoCancel': false });
       return true;
     } catch (err : any) {
       if (err.response.status === 404) {
@@ -40,7 +40,7 @@ export class PocketBaseService {
   async prendiCategorie(): Promise<any[]> {
     try {
 
-      const result = await this.pb.collection('groups').getList(1, 50);
+      const result = await this.pb.collection('groups').getList(1, 50, { '$autoCancel': false });
       let categorie = result.items;
       return categorie
     } catch (err) {
@@ -52,7 +52,7 @@ export class PocketBaseService {
     async prendiSpot(): Promise<any[]> {
 
 
-        const result = await this.pb.collection('spots').getList(1, 50);
+        const result = await this.pb.collection('spots').getList(1, 50, { '$autoCancel': false });
         let spot = result.items;
 
         return spot
@@ -61,7 +61,7 @@ export class PocketBaseService {
     async prendiRisorse(): Promise<any[]> {
       try {
 
-        const result = await this.pb.collection('medias').getList(1, 50);
+        const result = await this.pb.collection('medias').getList(1, 50, { '$autoCancel': false });
         let risorse = result.items;
         return risorse
       } catch (err) {
@@ -110,7 +110,7 @@ export class PocketBaseService {
 
         try {
 
-          const result = await this.pb.collection('layouts').getList(1, 50);
+          const result = await this.pb.collection('layouts').getList(1, 50, { '$autoCancel': false });
           let layouts = result.items;
 
         return layouts
@@ -124,7 +124,7 @@ export class PocketBaseService {
 
         try {
 
-          const result = await this.pb.collection('devices').getList(1, 50);
+          const result = await this.pb.collection('devices').getList(1, 50, { '$autoCancel': false });
           let layouts = result.items;
 
         return layouts
