@@ -4,6 +4,7 @@ import { DatiDispositivoService } from 'src/app/services/dati-dispositivo.servic
 import { PocketBaseService } from 'src/app/services/pocket-base.service';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { NgbCarousel, NgbSlideEvent, NgbSlideEventSource } from '@ng-bootstrap/ng-bootstrap';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -22,7 +23,9 @@ export class HomeComponent {
   @ViewChild('carousel', { static: true }) carousel!: NgbCarousel;
   @ViewChild('videoPlayer') videoElement!: ElementRef;
 
-  constructor(private pocketBase : PocketBaseService){
+  constructor(private pocketBase : PocketBaseService,
+    private router : Router)
+    {
     this.currentYear = new Date().getFullYear();
   }
 
@@ -47,7 +50,8 @@ export class HomeComponent {
     console.log('layout')
     console.log(this.device)
     this.prendiLogo();
-
+    console.log("problemi")
+    console.log(this.device)
   }
 
   async prendiPubb(){
@@ -140,6 +144,15 @@ export class HomeComponent {
 
     this.current++;
   };
+
+
+  clickCounter = 0
+  config(){
+    this.clickCounter++
+    if(this.clickCounter === 10){
+      this.router.navigate(['/primaConfigurazione']);
+    }
+  }
 
 
 
