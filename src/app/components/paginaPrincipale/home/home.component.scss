@@ -3,7 +3,7 @@ h1 {
   color: white;
 }
 
-.video-background {
+.videoPlayer {
   height: 100%;
   width: 100%;
   pointer-events: none;
@@ -112,10 +112,10 @@ h1 {
 }
 
 .cont {
-  width: 60vw;
+
   height: 100vh;
   min-width: 1920px;
-  min-height:720px ;
+  min-height:730px ;
   margin-right: auto; /* Imposta il margine destro a "auto" */
 }
 
