@@ -20,7 +20,6 @@ export class HomeComponent {
   logo: any
   currentYear : number;
   @ViewChild('carousel', { static: true }) carousel!: NgbCarousel;
-  @ViewChild('videoPlayer') videoPlayer!: ElementRef;
 
   constructor(private pocketBase : PocketBaseService){
     this.currentYear = new Date().getFullYear();
@@ -29,7 +28,7 @@ export class HomeComponent {
   async ngOnInit() : Promise<void>{
     this.pocketBase.setIp()
 
-    this.risorse= await this.pocketBase.prendiRisorse();
+    this.risorse = await this.pocketBase.prendiRisorse();
 
 
     this.pocketBase.setIp()
@@ -40,19 +39,23 @@ export class HomeComponent {
     console.log('device')
     console.log(this.device)
     localStorage.setItem('printer', this.device.printer)
-    this.layout = await this.pocketBase.prendiLayoutId(this.device.layout)
+    this.pocketBase.prendiLayoutId(this.device.layout).then((response) => {
+      this.layout = response;
+      this.prendiPubb();
+    });
     console.log('layout')
     console.log(this.device)
-    this.prendiPubb()
-    this.prendiLogo()
+    this.prendiLogo();
+
   }
 
   async prendiPubb(){
     let pubb : any[] = []
     let i = 0
+
     if(this.layout.spots.length > 0){
         for(let spot of this.layout.spots){
-          pubb[i]=await this.pocketBase.prendiSpotDaId(spot)
+          pubb[i] = await this.pocketBase.prendiSpotDaId(spot)
         }
         this.layout.spots = pubb
         this.randomPubblicita()
@@ -63,7 +66,12 @@ export class HomeComponent {
   randomPubblicita(): void {
     const randomIndex = Math.floor(Math.random() * this.layout.spots.length);
     this.pubblicitaCorrente = this.layout.spots[randomIndex];
-    this.convertiMedia()
+    this.convertiMedia().then(() => {
+      setTimeout(() => {
+        this.initVideo(this.pubblicitaCorrente.medias);
+      }, 1)
+
+    });
   }
 
   async convertiMedia(){
@@ -77,7 +85,6 @@ export class HomeComponent {
       }
       this.pubblicitaCorrente.medias = newMedias;
       this.video = this.pubblicitaCorrente.medias[0]
-
   }
 
   video : any
@@ -92,17 +99,30 @@ export class HomeComponent {
 
   public currentVideoIndex: number = 0;
 
+  videos: string[] = [];
+  current: number = 0;
 
-  playNextVideo() {
-    this.currentVideoIndex++;
-    if (this.currentVideoIndex >= this.pubblicitaCorrente.medias.length) {
-      this.currentVideoIndex = 0;
-    }
-    this.video = this.pubblicitaCorrente.medias[this.currentVideoIndex]
-    console.log(this.video)
+  initVideo(data: string[]) {
+    this.videos = data;
 
+    const player = document.getElementById("videoPlayer");
+    console.log("PLAYER: ", player);
+    player?.addEventListener("ended", this.handleVideo, false);
+    this.handleVideo();
   }
 
+  handleVideo = () => {
+    if (this.current === this.videos.length) {
+      this.current = 0;
+    }
+
+    const player = document.getElementById("videoPlayer") as HTMLVideoElement;
+    player.setAttribute("src", this.videos[this.current]);
+    player.load();
+    player.play();
+
+    this.current++;
+  };
 
 
 
