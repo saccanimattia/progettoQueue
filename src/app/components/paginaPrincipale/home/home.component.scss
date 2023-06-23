@@ -1,213 +1,195 @@
 h1 {
-  font-size: 50px;
-  color: white;
+    font-size: 50px;
+    color: white;
 }
 
 .videoPlayer {
-  height: 100%;
-  width: 100%;
-  pointer-events: none;
-  object-fit: cover;
+    height: 100%;
+    width: 100%;
+    pointer-events: none;
+    object-fit: cover;
 }
 
-
 .video-background {
-  width: 100%;
-  height: 100%;/* Rapporto di aspect ratio 16:9 (9/16 * 100) */
-  overflow: hidden;
+    width: 100%;
+    height: 100%;
+    /* Rapporto di aspect ratio 16:9 (9/16 * 100) */
+    overflow: hidden;
 }
 
 @media (max-width: 700px) {
-  .video-background {
-      display: none;
-  }
-  .pulsante-wrapper {
-      display: flex;
-      justify-content: center;
-  }
-  #aa {
-      float: left;
-      width: 420px;
-  }
+    .video-background {
+        display: none;
+    }
+    .pulsante-wrapper {
+        display: flex;
+        justify-content: center;
+    }
+    #aa {
+        float: left;
+        width: 420px;
+    }
 }
 
 .pulsante-wrapper {
-  display: flex;
-  flex-wrap: wrap;
-  max-height: calc(100vh);
-  height: calc(100vh);
-  overflow-y: auto;
-  margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    max-height: calc(100vh);
+    height: calc(100vh);
+    overflow-y: auto;
+    overflow-x: hidden;
+    margin: auto;
 }
 
-
-
 .align-items-start {
-  align-items: flex-start;
+    align-items: flex-start;
 }
 
 .col-lg-4 {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.all {
-  overflow-x: hidden;
-  overflow-y: hidden;
-}
-
-.fixed-header {
-  position: sticky;
-  top: 0%;
-  background-color: #0083ff;
-  padding-top: 30px;
-  padding-left: 30px;
-  color: white;
-  z-index: 1000;
-}
-
-.scrollable-buttons {
-  max-height: 70%;
-  overflow-y: auto;
-  align-items: center;
-  position: relative;
-  left: 70px;
-}
-
-.aa {
-  width: 450px;
-}
-
-.scrollable-buttons::-webkit-scrollbar {
-  width: 0;
-  background-color: transparent;
-}
-
-.scrollable-buttons::-webkit-scrollbar-thumb {
-  background-color: transparent;
-}
-
-.company-logo {
-  position: fixed;
-  bottom: 0;
-  left: 67%;
-  width: 150px;
-  height: auto;
-}
-
-.tcopy {
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
-  color: white;
-}
-
-
-
-.videoPlayer {
-  object-fit: cover;
-  width: 100%;
-  height: 100%;
-}
-
-.cont {
-
-  height: 100vh;
-  min-width: 1920px;
-  min-height:730px ;
-  margin-right: auto; /* Imposta il margine destro a "auto" */
-}
-
-
-.pulsante-container{
-  width: 100%;
-  height: 100%;
-}
-
-.carousel-img{
-  height:100vh;
-  width:100vw;
-  object-fit: cover;
-}
-
-.all {
-  overflow: hidden;
-}
-
-.p-wrapper {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  background-color: #0083ff;
-
-  .h-container {
-    text-align: center;
-    padding: 20px;
-
-    .f-header {
-      font-size: 50px;
-      color: white;
-    }
-  }
-
-  .b-container {
-    flex: 1;
-    overflow-y: auto;
     display: flex;
     align-items: center;
     justify-content: center;
+}
 
-    .s-buttons {
-      max-height: calc(100vh - 200px); /* Considera l'altezza del titolo e del footer */
-      padding: 20px;
+.all {
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
 
-      .row {
-        margin-right: -15px;
-        margin-left: -15px;
-
-        .col-4 {
-
-          width: 33.33%;
-          float: left;
-
-          .p-container {
-            width: 100%;
-            height: 100%;
-            padding-bottom: 10%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            .aa {
-              width: 100%;
-            }
-          }
-        }
-      }
-    }
-  }
-
-  .footer-container {
-    width: 100%;
-    background-color: #0083ff;
+.fixed-header {
+    position: sticky;
+    top: 5%;
+    left: 10%;
+    padding-top: 30px;
+    padding-left: 30px;
     color: white;
+    z-index: 1000;
+}
 
-    padding: 10px 0;
+.scrollable-buttons {
+    max-height: 70%;
+    overflow-y: auto;
+    align-items: center;
+    position: relative;
+    left: 70px;
+}
 
-    .company-logo {
+.aa {
+    width: 450px;
+}
 
-      bottom: -10px;
-      left: 10px;
-      width: 150px;
-      height: auto;
+.scrollable-buttons::-webkit-scrollbar {
+    width: 0;
+    background-color: transparent;
+}
+
+.scrollable-buttons::-webkit-scrollbar-thumb {
+    background-color: transparent;
+}
+
+.company-logo {
+    position: fixed;
+    bottom: 0;
+    left: 67%;
+    width: 150px;
+    height: auto;
+}
+
+.tcopy {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    color: white;
+}
+
+.videoPlayer {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.cont {
+    height: 100vh;
+    min-width: 1920px;
+    min-height: 730px;
+    margin-right: auto;
+    /* Imposta il margine destro a "auto" */
+}
+
+.pulsante-container {
+    width: 100%;
+    height: 100%;
+}
+
+.carousel-img {
+    height: 100vh;
+    width: 100vw;
+    object-fit: cover;
+}
+
+.all {
+    overflow: hidden;
+}
+
+.p-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #0083ff;
+    .h-container {
+        text-align: center;
+        padding: 20px;
+        .f-header {
+            font-size: 50px;
+            color: white;
+        }
     }
-
-    .tcopy {
-
-      bottom: 10px;
-      right: 10px;
-      color: white;
+    .b-container {
+        flex: 1;
+        overflow-y: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .s-buttons {
+            max-height: calc(100vh - 200px);
+            /* Considera l'altezza del titolo e del footer */
+            padding: 20px;
+            .row {
+                margin-right: -15px;
+                margin-left: -15px;
+                .col-4 {
+                    width: 33.33%;
+                    float: left;
+                    .p-container {
+                        width: 100%;
+                        height: 100%;
+                        padding-bottom: 10%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        .aa {
+                            width: 100%;
+                        }
+                    }
+                }
+            }
+        }
     }
-  }
+    .footer-container {
+        width: 100%;
+        background-color: #0083ff;
+        color: white;
+        padding: 10px 0;
+        .company-logo {
+            bottom: -10px;
+            left: 10px;
+            width: 150px;
+            height: auto;
+        }
+        .tcopy {
+            bottom: 10px;
+            right: 10px;
+            color: white;
+        }
+    }
 }
