@@ -18,7 +18,9 @@ export class LayoutComponent {
   }
 
   async ngOnInit(){
-    this.selectedDevices= await this.pocketBase.prendiDevices();
+    this.selectedDevices= await this.pocketBase.prendiDevices().then(
+      this.deviuce = this.selectedDevices[0]
+    )
     this.layouts= await this.pocketBase.prendiLayouts();
     this.filtraDevice()
     this.openModal()
@@ -28,7 +30,7 @@ export class LayoutComponent {
     const modal = document.querySelector('#LayoutModal');
     modal?.classList.add('show');
     modal?.setAttribute('style', 'display: block');
-    this.deviuce = this.selectedDevices[0]
+
   }
 
  closeModal() {
@@ -39,7 +41,10 @@ export class LayoutComponent {
   }
 
   async submitForm() {
-    console.log(this.deviuce)
+    console.log(this.selectedDevices[0].id)
+    if(this.deviuce == undefined)
+    localStorage.setItem('device', this.selectedDevices[0].id)
+    else
     localStorage.setItem('device', this.deviuce)
     console.log(this.deviuce)
     this.closeModal()
