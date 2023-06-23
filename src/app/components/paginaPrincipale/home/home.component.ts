@@ -20,6 +20,7 @@ export class HomeComponent {
   logo: any
   currentYear : number;
   @ViewChild('carousel', { static: true }) carousel!: NgbCarousel;
+  @ViewChild('videoPlayer') videoElement!: ElementRef;
 
   constructor(private pocketBase : PocketBaseService){
     this.currentYear = new Date().getFullYear();
@@ -108,6 +109,22 @@ export class HomeComponent {
     const player = document.getElementById("videoPlayer");
     console.log("PLAYER: ", player);
     player?.addEventListener("ended", this.handleVideo, false);
+    const video = this.videoElement.nativeElement;
+    const container = video.parentElement;
+
+    const containerWidth = container.offsetWidth;
+    const containerHeight = container.offsetHeight;
+
+    const videoRatio = video.videoWidth / video.videoHeight;
+    const containerRatio = containerWidth / containerHeight;
+
+   if (containerRatio > videoRatio) {
+      video.style.width = '100%';
+      video.style.height = 'auto';
+    } else {
+      video.style.width = 'auto';
+      video.style.height = '100%';
+    }
     this.handleVideo();
   }
 
