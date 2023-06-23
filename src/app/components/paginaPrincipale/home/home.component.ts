@@ -151,7 +151,8 @@ export class HomeComponent {
   config(){
     this.clickCounter++
     if(this.clickCounter === 10){
-      this.router.navigate(['/primaConfigurazione']);
+      localStorage.clear()
+      window.location.reload()
     }
   }
 
