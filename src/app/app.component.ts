@@ -14,7 +14,7 @@ export class AppComponent {
 
   ngOnInit():void{
 
-    this.id = localStorage.getItem('device')
+   // this.id = localStorage.getItem('device')
     this.ip = localStorage.getItem('indirizzoIp')
 
 
