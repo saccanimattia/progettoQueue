@@ -142,12 +142,15 @@ body {
     flex-direction: column;
     height: 100vh;
     background-color: #0083ff;
+    touch-action: none;
     .h-container {
         text-align: center;
         padding: 20px;
+        touch-action: none;
         .f-header {
             font-size: 50px;
             color: white;
+            touch-action: none;
         }
     }
     .b-container {
@@ -156,6 +159,7 @@ body {
         display: flex;
         align-items: center;
         justify-content: center;
+        touch-action: none;
         .s-buttons {
             max-height: calc(100vh - 200px);
             /* Considera l'altezza del titolo e del footer */
@@ -186,6 +190,7 @@ body {
         background-color: #0083ff;
         color: white;
         padding: 10px 0;
+        touch-action: none;
         .company-logo {
             bottom: -10px;
             left: 10px;
