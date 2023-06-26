@@ -70,6 +70,7 @@ export class PulsanteComponent implements OnInit {
   isClickable = true;
 
   async add(): Promise<void> {
+    this.soundService.playSound();
     if (!this.isClickable) {
       return; // Esce dalla funzione se il div non è cliccabile
     }
@@ -109,7 +110,7 @@ export class PulsanteComponent implements OnInit {
       this.isClickable = true; // Rendi nuovamente cliccabile il div
     }
 
-    this.soundService.playSound();
+
 
   }
 
