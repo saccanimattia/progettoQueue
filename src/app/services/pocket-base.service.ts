@@ -218,6 +218,23 @@ export class PocketBaseService {
       }
 
 
+      async contaCoda(id: any): Promise<any>  {
+        const response = await this.pb.collection('queue').getList(1, 100, { '$autoCancel': false });
+        const filteredItems = response.items.filter((r: any) => r.group === id);
+        return filteredItems
+      }
+
+      async creaQueue(data: any): Promise<any>  {
+        let queue = {
+          "status": "waiting",
+          "group": data.id,
+          "number": data.number
+        }
+        await this.pb.collection('queue').create(queue);
+      }
+
+
+
 
 
 

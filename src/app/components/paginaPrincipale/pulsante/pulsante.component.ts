@@ -17,6 +17,7 @@ export class PulsanteComponent implements OnInit {
   timeoutLimit = 5000;
   max : any
   pb : any
+  coda = 0
 
   constructor(private pocketBase: PocketBaseService, private dati : DatiDispositivoService) {}
 
@@ -28,10 +29,14 @@ export class PulsanteComponent implements OnInit {
       setTimeout(() => reject('Tempo limite superato'), this.timeoutLimit);
     });
     Promise.race([this.pocketBase.prendiCategoriaId(this.gruppo), timeoutPromise])
-      .then((groupData: any) => {
+      .then(async (groupData: any) => {
         this.group = groupData;
         this.max = this.group.maxNumber
+        this.xx = await this.pocketBase.contaCoda(this.group.id)
+        console.log(this.xx)
+        this.coda = this.xx.length
         return this.pocketBase.prendiRisorsaa(this.group.image, this.risorsee);
+
       })
       .then((xData: any) => {
         this.x = xData;
@@ -48,11 +53,18 @@ export class PulsanteComponent implements OnInit {
         this.group.queued = e.record.queued;
     });
 
+    this.pb.collection('queue').subscribe('*' , async (e:any) => {
+     this.xx = await this.pocketBase.contaCoda(this.group.id)
+    this.coda = this.xx.length
+  });
+
       })
       .catch((error) => {
         console.error('Errore durante il recupero delle informazioni:', error);
       });
   }
+
+  xx : any
 
   async add(): Promise<void> {
     let print = localStorage.getItem('printer')
@@ -66,6 +78,7 @@ export class PulsanteComponent implements OnInit {
       body: _body
       })
       console.log(this.group.id)
+      this.pocketBase.creaQueue(this.group);
     if(this.group.number + 1 > this.max){
       this.group.number = 0
     }
@@ -74,5 +87,6 @@ export class PulsanteComponent implements OnInit {
     }
     this.group.queued = this.group.queued + 1;
     this.pocketBase.updateGroup(this.group.id, this.group);
+
   }
 }
