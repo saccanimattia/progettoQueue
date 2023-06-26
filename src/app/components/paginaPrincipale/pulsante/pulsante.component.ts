@@ -68,7 +68,7 @@ export class PulsanteComponent implements OnInit {
     let _body =  JSON.stringify({
       groupId: this.group.id,
       printerId: print})
-    await fetch("http://192.168.130.49:3000/print", {
+    await fetch(localStorage.getItem('server') + ":3000/print", {
       method:"post",
       headers: {"Content-Type": "application/json"},
       body: _body

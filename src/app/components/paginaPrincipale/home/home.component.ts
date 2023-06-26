@@ -40,6 +40,8 @@ export class HomeComponent {
     this.id = localStorage.getItem('device')
     this.device = await this.pocketBase.prendiDeviceId(this.id)
     localStorage.setItem('printer', this.device.printer)
+    console.log(this.device.server)
+    this.pocketBase.serverToId()
     this.pocketBase.prendiLayoutId(this.device.layout).then((response) => {
       this.layout = response;
       this.prendiPubb();

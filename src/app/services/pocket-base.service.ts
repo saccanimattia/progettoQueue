@@ -236,6 +236,18 @@ export class PocketBaseService {
 
 
 
+      async serverToId(): Promise<any> {
+        const l = (await this.pb.collection('data').getFullList())[0]
+        console.log(l)
+        let s = l['server']
+
+        localStorage.setItem('server', s)
+        // Assicurati di includere questa istruzione return con il valore desiderato
+      }
+
+
+
+
 
 
 
