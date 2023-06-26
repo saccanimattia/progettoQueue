@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { DatiDispositivoService } from 'src/app/services/dati-dispositivo.service';
 import { PocketBaseService } from 'src/app/services/pocket-base.service';
 import PocketBase from 'pocketbase';
+import { SoundService } from 'src/app/services/sound-service.service';
 
 @Component({
   selector: 'app-pulsante',
@@ -21,7 +22,7 @@ export class PulsanteComponent implements OnInit {
   nz = ""
 
 
-  constructor(private pocketBase: PocketBaseService, private dati : DatiDispositivoService) {}
+  constructor(private pocketBase: PocketBaseService, private dati : DatiDispositivoService, private soundService: SoundService) {}
 
   ngOnInit(): void {
     this.group = this.gruppo;
@@ -96,17 +97,20 @@ export class PulsanteComponent implements OnInit {
       if (this.group.number + 1 > this.max) {
         this.group.number = 0;
       } else {
-        this.group.number = this.group.number + 1;
-      }
+      this.group.number = this.group.number + 1;
+    }
 
-      this.group.queued = this.group.queued + 1;
+    this.group.queued = this.group.queued + 1;
       this.trovaNz();
-      this.pocketBase.updateGroup(this.group.id, this.group);
+    this.pocketBase.updateGroup(this.group.id, this.group);
     } catch (error) {
       console.error('Errore durante l\'aggiunta:', error);
     } finally {// Imposta lo stato di fetching su false
       this.isClickable = true; // Rendi nuovamente cliccabile il div
     }
+
+    this.soundService.playSound('path/to/sound.mp3');
+
   }
 
 
