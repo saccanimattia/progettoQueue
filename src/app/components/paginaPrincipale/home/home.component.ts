@@ -38,21 +38,15 @@ export class HomeComponent {
 
     this.pocketBase.setIp()
     this.id = localStorage.getItem('device')
-    console.log('device')
-    console.log(this.device)
     this.device = await this.pocketBase.prendiDeviceId(this.id)
-    console.log('device')
-    console.log(this.device)
     localStorage.setItem('printer', this.device.printer)
+    console.log(this.device.server)
+    this.pocketBase.serverToId()
     this.pocketBase.prendiLayoutId(this.device.layout).then((response) => {
       this.layout = response;
       this.prendiPubb();
     });
-    console.log('layout')
-    console.log(this.device)
     this.prendiLogo();
-    console.log("problemi")
-    console.log(this.device)
   }
 
   async prendiPubb(){
@@ -112,7 +106,6 @@ export class HomeComponent {
     this.videos = data;
 
     const player = document.getElementById("videoPlayer");
-    console.log("PLAYER: ", player);
     player?.addEventListener("ended", this.handleVideo, false);
     const video = this.videoElement.nativeElement;
     const container = video.parentElement;
