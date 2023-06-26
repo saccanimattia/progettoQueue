@@ -145,3 +145,12 @@
 h2 {
     font-size: 45px;
 }
+
+html,
+body {
+    touch-action: none;
+}
+
+.card-queue {
+    touch-action: none;
+}
