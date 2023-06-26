@@ -18,6 +18,8 @@ export class PulsanteComponent implements OnInit {
   max : any
   pb : any
   coda = 0
+  nz = ""
+
 
   constructor(private pocketBase: PocketBaseService, private dati : DatiDispositivoService) {}
 
@@ -30,9 +32,10 @@ export class PulsanteComponent implements OnInit {
     Promise.race([this.pocketBase.prendiCategoriaId(this.gruppo), timeoutPromise])
       .then(async (groupData: any) => {
         this.group = groupData;
-        this.max = this.group.maxNumber
+        this.max = this.group.max_number
         this.xx = await this.pocketBase.contaCoda(this.group.id)
         this.coda = this.xx.length
+        this.trovaNz()
         return this.pocketBase.prendiRisorsaa(this.group.image, this.risorsee);
 
       })
@@ -48,6 +51,7 @@ export class PulsanteComponent implements OnInit {
       this.pb.collection('groups').subscribe(this.group.id, (e:any) => {
         this.group.number = e.record.number;
         this.group.queued = e.record.queued;
+        this.trovaNz()
     });
 
     this.pb.collection('queue').subscribe('*' , async (e:any) => {
@@ -68,12 +72,12 @@ export class PulsanteComponent implements OnInit {
     let _body =  JSON.stringify({
       groupId: this.group.id,
       printerId: print})
-    await fetch(localStorage.getItem('server') + ":3000/print", {
-      method:"post",
-      headers: {"Content-Type": "application/json"},
-      body: _body
-      })
 
+      await fetch(localStorage.getItem('server') + ":3000/print", {
+        method:"post",
+        headers: {"Content-Type": "application/json"},
+        body: _body
+        })
       this.pocketBase.creaQueue(this.group);
     if(this.group.number + 1 > this.max){
       this.group.number = 0
@@ -82,7 +86,17 @@ export class PulsanteComponent implements OnInit {
       this.group.number = this.group.number + 1;
     }
     this.group.queued = this.group.queued + 1;
+    this.trovaNz()
     this.pocketBase.updateGroup(this.group.id, this.group);
 
+  }
+
+
+  trovaNz(){
+    this.nz = ""
+    for (let i = 0; i < this.group.max_number.toString().length-this.group.number.toString().length; i++) {
+
+      this.nz = this.nz.concat('0');
+    }
   }
 }
