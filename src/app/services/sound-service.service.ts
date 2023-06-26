@@ -5,14 +5,20 @@ import { Injectable } from '@angular/core';
 })
 export class SoundService {
   private audioContext: AudioContext;
+  filePath : any
 
   constructor() {
     this.audioContext = new AudioContext();
   }
 
-  playSound(filePath: string): void {
+  setPath(p:any){
+    this.filePath = p
+    console.log(this.filePath)
+  }
+
+  playSound(): void {
     const audio = new Audio();
-    audio.src = filePath;
+    audio.src = this.filePath;
 
     const source = this.audioContext.createMediaElementSource(audio);
     source.connect(this.audioContext.destination);
