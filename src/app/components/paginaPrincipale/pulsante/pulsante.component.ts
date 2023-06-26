@@ -66,30 +66,49 @@ export class PulsanteComponent implements OnInit {
   }
 
   xx : any
+  isClickable = true;
 
   async add(): Promise<void> {
-    let print = localStorage.getItem('printer')
+    if (!this.isClickable) {
+      return; // Esce dalla funzione se il div non è cliccabile
+    }
+
+    this.isClickable = false; // Disabilita il clic sul div
+
+    let print = localStorage.getItem('printer');
     let _body =  JSON.stringify({
       groupId: this.group.id,
-      printerId: print})
+      printerId: print
+    });
+
+
+
+    try { // Imposta lo stato di fetching su true
 
       await fetch(localStorage.getItem('server') + ":3000/print", {
-        method:"post",
-        headers: {"Content-Type": "application/json"},
+        method: "post",
+        headers: { "Content-Type": "application/json" },
         body: _body
-        })
-      this.pocketBase.creaQueue(this.group);
-    if(this.group.number + 1 > this.max){
-      this.group.number = 0
-    }
-    else{
-      this.group.number = this.group.number + 1;
-    }
-    this.group.queued = this.group.queued + 1;
-    this.trovaNz()
-    this.pocketBase.updateGroup(this.group.id, this.group);
+      });
 
+      this.pocketBase.creaQueue(this.group);
+
+      if (this.group.number + 1 > this.max) {
+        this.group.number = 0;
+      } else {
+        this.group.number = this.group.number + 1;
+      }
+
+      this.group.queued = this.group.queued + 1;
+      this.trovaNz();
+      this.pocketBase.updateGroup(this.group.id, this.group);
+    } catch (error) {
+      console.error('Errore durante l\'aggiunta:', error);
+    } finally {// Imposta lo stato di fetching su false
+      this.isClickable = true; // Rendi nuovamente cliccabile il div
+    }
   }
+
 
 
   trovaNz(){
