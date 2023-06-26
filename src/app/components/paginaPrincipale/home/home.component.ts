@@ -5,6 +5,7 @@ import { PocketBaseService } from 'src/app/services/pocket-base.service';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { NgbCarousel, NgbSlideEvent, NgbSlideEventSource } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
+import { SoundService } from 'src/app/services/sound-service.service';
 
 @Component({
   selector: 'app-home',
@@ -23,7 +24,7 @@ export class HomeComponent {
   @ViewChild('carousel', { static: true }) carousel!: NgbCarousel;
   @ViewChild('videoPlayer') videoElement!: ElementRef;
 
-  constructor(private pocketBase : PocketBaseService,
+  constructor(private pocketBase : PocketBaseService, private s : SoundService,
     private router : Router)
     {
     this.currentYear = new Date().getFullYear();
@@ -33,8 +34,14 @@ export class HomeComponent {
 
     this.pocketBase.setIp()
 
-    this.risorse = await this.pocketBase.prendiRisorse();
 
+    this.pocketBase.prendiRisorse().then((response) => {
+      this.risorse = response;
+      let e = this.pocketBase.prendiRisorsaaName('suono', this.risorse)
+      console.log(e)
+      e = localStorage.getItem('indirizzoIp') + "/api/files/" + e.collectionId + '/' + e.id + '/' + e.file + '?thumb=100x100&token=';
+      this.s.setPath(e)
+    });
 
     this.pocketBase.setIp()
     this.id = localStorage.getItem('device')
@@ -42,6 +49,7 @@ export class HomeComponent {
     localStorage.setItem('printer', this.device.printer)
     console.log(this.device.server)
     this.pocketBase.serverToId()
+
     this.pocketBase.prendiLayoutId(this.device.layout).then((response) => {
       this.layout = response;
       this.prendiPubb();
@@ -145,7 +153,7 @@ export class HomeComponent {
     this.clickCounter++
     if(this.clickCounter === 10){
       localStorage.clear()
-      window.open("http://127.0.0.1:8080/", '_blank')
+      window.location.reload()
     }
   }
 

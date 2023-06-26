@@ -86,6 +86,15 @@ export class PocketBaseService {
          return risorsa
       }
 
+     prendiRisorsaaName(name : any, risorse : any){
+        console.log(risorse)
+        const risorsa = risorse.find((r:any) =>
+          r.name === name
+         );
+
+         return risorsa
+      }
+
       async createDevice(device : any): Promise<any> {
 
         try {

@@ -4,22 +4,25 @@ import { ConfigurazioneComponent } from './components/configurazione/configurazi
 import { HomeComponent } from './components/paginaPrincipale/home/home.component';
 import { emptyLocalStorageGuard } from './guard/empty-local-storage.guard';
 
-
 const routes: Routes = [
   {
     path: 'paginaProteggi',
     component: HomeComponent,
-    canActivate: [emptyLocalStorageGuard]
+    canActivate: [emptyLocalStorageGuard],
   },
   {
     path: 'primaConfigurazione',
-    component: ConfigurazioneComponent
+    component: ConfigurazioneComponent,
   },
-  {path:'paginaPrincipale', component:HomeComponent},
+  {
+    path: 'paginaPrincipale',
+    component: HomeComponent,
+    canActivate: [emptyLocalStorageGuard],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

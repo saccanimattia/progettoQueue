@@ -109,7 +109,7 @@ export class PulsanteComponent implements OnInit {
       this.isClickable = true; // Rendi nuovamente cliccabile il div
     }
 
-    this.soundService.playSound('path/to/sound.mp3');
+    this.soundService.playSound();
 
   }
 
