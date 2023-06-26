@@ -117,6 +117,10 @@ h1 {
     object-fit: cover;
 }
 
+.row {
+  --bs-gutter-x: 0;
+}
+
 .all {
     overflow: hidden;
 }
