@@ -145,7 +145,7 @@ export class HomeComponent {
     this.clickCounter++
     if(this.clickCounter === 10){
       localStorage.clear()
-      window.location.reload()
+      window.open("http://127.0.0.1:8080/", '_blank')
     }
   }
 
