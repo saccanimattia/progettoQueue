@@ -23,7 +23,6 @@ export class PulsanteComponent implements OnInit {
 
   ngOnInit(): void {
     this.group = this.gruppo;
-    console.log(this.group)
 
     const timeoutPromise = new Promise((resolve, reject) => {
       setTimeout(() => reject('Tempo limite superato'), this.timeoutLimit);
@@ -33,7 +32,6 @@ export class PulsanteComponent implements OnInit {
         this.group = groupData;
         this.max = this.group.maxNumber
         this.xx = await this.pocketBase.contaCoda(this.group.id)
-        console.log(this.xx)
         this.coda = this.xx.length
         return this.pocketBase.prendiRisorsaa(this.group.image, this.risorsee);
 
@@ -47,7 +45,6 @@ export class PulsanteComponent implements OnInit {
 
 
 
-      console.log(this.group.id)
       this.pb.collection('groups').subscribe(this.group.id, (e:any) => {
         this.group.number = e.record.number;
         this.group.queued = e.record.queued;
@@ -68,7 +65,6 @@ export class PulsanteComponent implements OnInit {
 
   async add(): Promise<void> {
     let print = localStorage.getItem('printer')
-    console.log(this.group.id)
     let _body =  JSON.stringify({
       groupId: this.group.id,
       printerId: print})
@@ -77,7 +73,7 @@ export class PulsanteComponent implements OnInit {
       headers: {"Content-Type": "application/json"},
       body: _body
       })
-      console.log(this.group.id)
+
       this.pocketBase.creaQueue(this.group);
     if(this.group.number + 1 > this.max){
       this.group.number = 0
