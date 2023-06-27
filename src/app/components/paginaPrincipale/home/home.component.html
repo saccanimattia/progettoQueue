@@ -15,7 +15,7 @@
                         </div>
                         <div class="cont">
                             <div class="video-background videoPlayerWrapper">
-                                <video id="videoPlayer" preload="auto" playsinline autoplay muted #videoPlayer></video>
+                                <video id="videoPlayer" preload="auto" playsinline autoplay muted #videoPlayer disablepictureinpicture></video>
                             </div>
                         </div>
                     </div>
@@ -25,14 +25,14 @@
                 <div class="pulsante-wrapper p-0" style="background-color: #0083ff;">
                     <h1 class="fixed-header">{{ layout?.title }}</h1>
                     <div class="col-12 p-4 scrollable-buttons">
-                      <div class="row d-flex align-items-center justify-content-center">
-                          <div *ngFor="let group of layout?.groups" class="col-12">
-                              <div class="aa">
-                                  <app-pulsante [gruppo]="group" [risorsee]="risorse"></app-pulsante><br>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
+                        <div class="row d-flex align-items-center justify-content-center">
+                            <div *ngFor="let group of layout?.groups" class="col-12">
+                                <div class="aa">
+                                    <app-pulsante [gruppo]="group" [risorsee]="risorse"></app-pulsante><br>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="col-12" (click)="config()">
                         <div class="text-center" style="position: relative;">
                             <img [src]="logo?.file" alt="Logo azienda" class="company-logo">
