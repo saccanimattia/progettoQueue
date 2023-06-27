@@ -1,5 +1,5 @@
 
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
 import { DatiDispositivoService } from 'src/app/services/dati-dispositivo.service';
 import { PocketBaseService } from 'src/app/services/pocket-base.service';
 import { trigger, transition, style, animate } from '@angular/animations';
@@ -156,6 +156,8 @@ export class HomeComponent {
       window.location.reload()
     }
   }
+
+
 
 
 
