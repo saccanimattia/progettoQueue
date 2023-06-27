@@ -17,6 +17,7 @@ export class HomeComponent {
   id : any
   layout : any
   device : any
+  volume : any
   pubblicitaCorrente : any
   risorse : any[] = []
   logo: any
@@ -83,16 +84,24 @@ export class HomeComponent {
   }
 
   async convertiMedia(){
-    let newMedias = [];
+    let newMedias  = [];
+    let volumi = []
       for (let j = 0; j < this.pubblicitaCorrente.medias.length; j++) {
         const m = this.pubblicitaCorrente.medias[j];
         const x = this.pocketBase.prendiRisorsaa(m, this.risorse);
         const id = m;
         const imageUrl = localStorage.getItem('indirizzoIp') + "/api/files/" + x.collectionId + '/' + x.id + '/' + x.file + '?thumb=100x100&token=';
         newMedias.push(imageUrl);
+        console.log(x.volume)
+        volumi.push(x.volume/100)
+        console.log(newMedias)
       }
-      this.pubblicitaCorrente.medias = newMedias;
-      this.video = this.pubblicitaCorrente.medias[0]
+      console.log(newMedias)
+      this.pubblicitaCorrente.medias.file = newMedias;
+      this.pubblicitaCorrente.medias.volume = volumi;
+      console.log(this.pubblicitaCorrente.medias)
+      this.video = this.pubblicitaCorrente.medias.file[0]
+      this.volume = this.pubblicitaCorrente.medias.volume[0]
   }
 
   video : any
@@ -107,10 +116,11 @@ export class HomeComponent {
 
   public currentVideoIndex: number = 0;
 
-  videos: string[] = [];
+  videos: any;
   current: number = 0;
 
-  initVideo(data: string[]) {
+  initVideo(data: any) {
+    console.log(data)
     this.videos = data;
 
     const player = document.getElementById("videoPlayer");
@@ -140,7 +150,8 @@ export class HomeComponent {
     }
 
     const player = document.getElementById("videoPlayer") as HTMLVideoElement;
-    player.setAttribute("src", this.videos[this.current]);
+    player.setAttribute("src", this.videos.file[this.current]);
+    player.volume =  this.videos.volume[this.current];
     player.load();
     player.play();
 
