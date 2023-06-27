@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -24,4 +24,5 @@ export class AppComponent {
       this.router.navigate(['/paginaPrincipale']);
     }
   }
+
 }
