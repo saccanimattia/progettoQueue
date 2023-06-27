@@ -81,6 +81,7 @@ body {
     overflow-y: auto;
     align-items: center;
     position: relative;
+    overscroll-behavior: none;
 }
 
 .scrollable-buttons::-webkit-scrollbar {
