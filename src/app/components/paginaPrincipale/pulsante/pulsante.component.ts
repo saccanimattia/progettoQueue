@@ -3,6 +3,7 @@ import { DatiDispositivoService } from 'src/app/services/dati-dispositivo.servic
 import { PocketBaseService } from 'src/app/services/pocket-base.service';
 import PocketBase from 'pocketbase';
 import { SoundService } from 'src/app/services/sound-service.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-pulsante',
@@ -87,11 +88,33 @@ export class PulsanteComponent implements OnInit {
 
     try { // Imposta lo stato di fetching su true
 
-      await fetch(localStorage.getItem('server') + ":3000/print", {
+      let timerInterval: any
+      Swal.fire({
+      title: 'stampa in corso',
+      timer: 2000,
+      timerProgressBar: true,
+      didOpen: () => {
+        Swal.showLoading()
+        const b : any = Swal.getHtmlContainer()!.querySelector('b')
+        timerInterval = setInterval(() => {
+        b.textContent = Swal.getTimerLeft()
+      }, 100)
+      },
+      willClose: () => {
+        clearInterval(timerInterval)
+      }
+      }).then((result : any) => {
+        /* Read more about handling dismissals below */
+        if (result.dismiss === Swal.DismissReason.timer) {
+          console.log('I was closed by the timer')
+        }
+      })
+      fetch(localStorage.getItem('server') + ":3000/print", {
         method: "post",
         headers: { "Content-Type": "application/json" },
         body: _body
-      });
+      })
+
 
       this.pocketBase.creaQueue(this.group);
 
@@ -123,4 +146,6 @@ export class PulsanteComponent implements OnInit {
       this.nz = this.nz.concat('0');
     }
   }
+
+
 }
