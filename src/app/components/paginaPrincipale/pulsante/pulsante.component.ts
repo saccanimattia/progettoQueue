@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, } from '@angular/core';
 import { DatiDispositivoService } from 'src/app/services/dati-dispositivo.service';
 import { PocketBaseService } from 'src/app/services/pocket-base.service';
 import PocketBase from 'pocketbase';
@@ -71,27 +71,29 @@ export class PulsanteComponent implements OnInit {
   isClickable = true;
 
   async add(): Promise<void> {
-    let timerInterval: any
-      Swal.fire({
+    let timerInterval: any;
+
+    Swal.fire({
       title: 'STAMPA IN CORSO',
       timer: 2000,
       timerProgressBar: true,
       didOpen: () => {
-        Swal.showLoading()
-        const b : any = Swal.getHtmlContainer()!.querySelector('b')
+        Swal.showLoading();
+        const b: any = Swal.getHtmlContainer()!.querySelector('b');
         timerInterval = setInterval(() => {
-        b.textContent = Swal.getTimerLeft()
-      }, 100)
+          b.textContent = Swal.getTimerLeft();
+        }, 100);
       },
       willClose: () => {
-        clearInterval(timerInterval)
+        clearInterval(timerInterval);
+      },
+      allowOutsideClick: false, // Impedisci la chiusura del modal facendo clic al di fuori
+    }).then((result: any) => {
+      /* Leggi ulteriori informazioni sulla gestione delle chiusure qui sotto */
+      if (result.dismiss === Swal.DismissReason.timer) {
+        console.log('È stato chiuso dal timer');
       }
-      }).then((result : any) => {
-        /* Read more about handling dismissals below */
-        if (result.dismiss === Swal.DismissReason.timer) {
-          console.log('I was closed by the timer')
-        }
-      })
+    });
     this.soundService.playSound();
     if (!this.isClickable) {
       return; // Esce dalla funzione se il div non è cliccabile
@@ -132,6 +134,7 @@ export class PulsanteComponent implements OnInit {
       console.error('Errore durante l\'aggiunta:', error);
     } finally {// Imposta lo stato di fetching su false
       this.isClickable = true; // Rendi nuovamente cliccabile il div
+
     }
 
 
