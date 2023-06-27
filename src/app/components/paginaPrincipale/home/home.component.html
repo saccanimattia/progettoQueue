@@ -33,11 +33,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-12" (click)="config()">
+                    <div class="col-12">
                         <div class="text-center" style="position: relative;">
                             <img [src]="logo?.file" alt="Logo azienda" class="company-logo">
                         </div>
-                        <div class="tcopy">
+                        <div class="tcopy" (click)="config()">
                             <span>&copy; {{ currentYear }}</span>
                         </div>
                     </div>
