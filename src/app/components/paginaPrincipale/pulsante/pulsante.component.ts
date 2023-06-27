@@ -71,26 +71,9 @@ export class PulsanteComponent implements OnInit {
   isClickable = true;
 
   async add(): Promise<void> {
-    this.soundService.playSound();
-    if (!this.isClickable) {
-      return; // Esce dalla funzione se il div non è cliccabile
-    }
-
-    this.isClickable = false; // Disabilita il clic sul div
-
-    let print = localStorage.getItem('printer');
-    let _body =  JSON.stringify({
-      groupId: this.group.id,
-      printerId: print
-    });
-
-
-
-    try { // Imposta lo stato di fetching su true
-
-      let timerInterval: any
+    let timerInterval: any
       Swal.fire({
-      title: 'stampa in corso',
+      title: 'STAMPA IN CORSO',
       timer: 2000,
       timerProgressBar: true,
       didOpen: () => {
@@ -109,6 +92,24 @@ export class PulsanteComponent implements OnInit {
           console.log('I was closed by the timer')
         }
       })
+    this.soundService.playSound();
+    if (!this.isClickable) {
+      return; // Esce dalla funzione se il div non è cliccabile
+    }
+
+    this.isClickable = false; // Disabilita il clic sul div
+
+    let print = localStorage.getItem('printer');
+    let _body =  JSON.stringify({
+      groupId: this.group.id,
+      printerId: print
+    });
+
+
+
+    try { // Imposta lo stato di fetching su true
+
+
       fetch(localStorage.getItem('server') + ":3000/print", {
         method: "post",
         headers: { "Content-Type": "application/json" },
