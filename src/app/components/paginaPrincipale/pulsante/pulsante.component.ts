@@ -75,7 +75,7 @@ export class PulsanteComponent implements OnInit {
 
     Swal.fire({
       title: 'STAMPA IN CORSO',
-      timer: 2000,
+      timer: 2500,
       timerProgressBar: true,
       didOpen: () => {
         Swal.showLoading();
@@ -87,7 +87,9 @@ export class PulsanteComponent implements OnInit {
       willClose: () => {
         clearInterval(timerInterval);
       },
-      allowOutsideClick: false, // Impedisci la chiusura del modal facendo clic al di fuori
+      allowOutsideClick: false,
+
+
     }).then((result: any) => {
       /* Leggi ulteriori informazioni sulla gestione delle chiusure qui sotto */
       if (result.dismiss === Swal.DismissReason.timer) {
@@ -124,7 +126,7 @@ export class PulsanteComponent implements OnInit {
       if (this.group.number + 1 > this.max) {
         this.group.number = 0;
       } else {
-      this.group.number = this.group.number + 1;
+
     }
 
     this.group.queued = this.group.queued + 1;
