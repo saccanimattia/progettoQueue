@@ -5,17 +5,19 @@
                 <div class="pulsante-container">
                     <div *ngIf="pubblicitaCorrente">
                         <div *ngIf="pubblicitaCorrente.type === 'carousel'" class="">
-                            <ngb-carousel #carousel [interval]="3000" [showNavigationArrows]="false" [showNavigationIndicators]="false">
-                                <ng-template ngbSlide *ngFor="let media of pubblicitaCorrente.medias.file ; let i = index">
+
+                            <ngb-carousel #carousel [interval]="3000" [showNavigationArrows]="false" [showNavigationIndicators]="false" (slide)="onCarouselSlide($event)">
+                                <ng-template ngbSlide *ngFor="let media of pubblicitaCorrente.medias.file; let i = index">
+
                                     <div class="carousel-img-wrapper h-100 d-flex align-items-center justify-content-center">
                                         <img [src]="media" alt="Slide {{ i + 1 }}" class="img-fluid carousel-img" />
                                     </div>
                                 </ng-template>
                             </ngb-carousel>
                         </div>
-                        <div class="cont">
+                        <div class="cont" *ngIf="pubblicitaCorrente.type === 'player'">
                             <div class="video-background videoPlayerWrapper">
-                                <video id="videoPlayer" preload="auto" playsinline autoplay muted #videoPlayer disablepictureinpicture></video>
+                                <video id="videoPlayer" preload="none" playsinline autoplay muted #videoPlayer disablepictureinpicture></video>
                             </div>
                         </div>
 

@@ -21,9 +21,15 @@ export class HomeComponent {
   pubblicitaCorrente : any
   risorse : any[] = []
   logo: any
+  durataIntervallo = 3000
   currentYear : number;
+  img_path : any
+  isImage  = false
+  isPlayer = false
   @ViewChild('carousel', { static: true }) carousel!: NgbCarousel;
-  @ViewChild('videoPlayer') videoElement!: ElementRef;
+  @ViewChild('videoPlayer') e!: ElementRef;
+  @ViewChild('pl',{ static: false })  ee!: ElementRef;
+  isMisto = false
 
   constructor(private pocketBase : PocketBaseService, private s : SoundService,
     private router : Router)
@@ -39,7 +45,7 @@ export class HomeComponent {
     this.pocketBase.prendiRisorse().then((response) => {
       this.risorse = response;
       let e = this.pocketBase.prendiRisorsaaName('suono', this.risorse)
-      console.log(e)
+
       e = localStorage.getItem('indirizzoIp') + "/api/files/" + e.collectionId + '/' + e.id + '/' + e.file + '?thumb=100x100&token=';
       this.s.setPath(e)
     });
@@ -48,7 +54,7 @@ export class HomeComponent {
     this.id = localStorage.getItem('device')
     this.device = await this.pocketBase.prendiDeviceId(this.id)
     localStorage.setItem('printer', this.device.printer)
-    console.log(this.device.server)
+
     this.pocketBase.serverToId()
 
     this.pocketBase.prendiLayoutId(this.device.layout).then((response) => {
@@ -70,38 +76,186 @@ export class HomeComponent {
         this.randomPubblicita()
     }
 
+
   }
 
+  spotIndex = 0
   randomPubblicita(): void {
-    const randomIndex = Math.floor(Math.random() * this.layout.spots.length);
-    this.pubblicitaCorrente = this.layout.spots[randomIndex];
-    this.convertiMedia().then(() => {
-      setTimeout(() => {
-        this.initVideo(this.pubblicitaCorrente.medias);
-      }, 1)
+    this.counter = 0
+    this.current = 0
 
-    });
+    if(this.player){
+      if (this.aaaa !== undefined) {
+        this.aaaa.then((a : any) => {
+          console.log("pausa")
+        this.player.pause()
+        })
+
+    }
   }
+
+    if(this.spotIndex == this.layout.spots.length)
+      this.spotIndex = 0
+    console.log(this.spotIndex)
+    this.pubblicitaCorrente = this.layout.spots[this.spotIndex];
+    console.log(this.pubblicitaCorrente)
+
+    if(this.isMisto ==false){
+      this.convertiMedia().then(() => {
+        setTimeout(() => {
+
+          this.initVideo(this.pubblicitaCorrente.medias)
+
+        }, 1)
+    });}
+    else if(this.isPlayer){
+      console.log(this.pubblicitaCorrente)
+      this.spotIndex ++;
+      this.current = 0
+      this.initVideo(this.pubblicitaCorrente)
+      console.log("this.pubblicitaCorrente")
+
+    }
+    else if(!this.isPlayer){
+      console.log("ciao")
+      console.log(this.pubblicitaCorrente)
+      this.spotIndex ++;
+      this.current = 0
+      this.videos  = this.pubblicitaCorrente.medias
+      this.handleVideo()
+      console.log("this.pubblicitaCorrente")
+
+    }
+    if(this.pubblicitaCorrente.type == 'misto'){
+        console.log(this.pubblicitaCorrente.type)
+        this.isMisto = true
+        this.spotIndex ++;
+        this.gestisciSpot()
+
+        this.randomPubblicita()
+      }
+
+  }
+
+  aaaa : any
+
+  indiceCorrente = 0
+  gestisciSpot() {
+    const vettore = [];
+    let  medias = [];
+    let  setinterval = [];
+    let  volume = [];
+    let imm = true
+    let vid = true
+
+    for (let i = 0; i < this.pubblicitaCorrente.medias.length; i++) {
+      let file : string = this.pubblicitaCorrente.medias.file[i];
+      const estensione = file.substring(file.length-24, file.length-21);
+
+
+      if ((estensione === 'jpg' || estensione === 'png' || estensione === 'vif') && imm === false)  {
+
+        this.creaSpotVideo(medias, setinterval, volume)
+        medias = []
+        setinterval = []
+        volume = []
+      } else if ((estensione === 'mp4' || estensione === 'avi' || estensione === 'mov') && vid === false) {
+
+        this.creaSpotImmagini(medias, setinterval, volume)
+        medias = []
+        setinterval = []
+        volume = []
+      }
+
+      if (estensione === 'jpg' || estensione === 'png' || estensione === 'vif') {
+
+        medias.push(this.pubblicitaCorrente.medias.file[i]);
+        setinterval.push(this.pubblicitaCorrente.medias.durata[i]);
+        volume.push(this.pubblicitaCorrente.medias.volume[i]);
+        imm = true
+        vid = false
+
+      } else if (estensione === 'mp4' || estensione === 'avi' || estensione === 'mov') {
+
+        medias.push(this.pubblicitaCorrente.medias.file[i]);
+        setinterval.push(this.pubblicitaCorrente.medias.durata[i]);
+        volume.push(this.pubblicitaCorrente.medias.volume[i]);
+        imm = false
+        vid = true
+
+      }
+
+      vettore.push(this.pubblicitaCorrente.medias.file[i])
+
+    }
+
+    if (medias.length > 0) {
+      if (!imm) {
+        this.creaSpotVideo(medias, setinterval, volume);
+      } else if (!vid) {
+        this.creaSpotImmagini(medias, setinterval, volume);
+      }
+    }
+    medias = []
+    setinterval = []
+    volume = []
+
+  }
+
+
+  creaSpotVideo(file:any, durata : any, volume : any){
+     let spotVideo : any = {
+      type: "player",
+      medias : {
+        file: file,
+        durata: durata,
+        volume: volume
+      }
+    };
+
+    console.log(this.layout.spots)
+    this.layout.spots.push(spotVideo)
+
+  }
+
+  creaSpotImmagini(file:any, durata : any, volume : any){
+    let spotImmagini : any = {
+      type: "carousel",
+      medias : {
+        file: file,
+        durata: durata,
+        volume: volume
+      }
+    };
+
+    console.log(this.layout.spots)
+    this.layout.spots.push(spotImmagini)
+  }
+
 
   async convertiMedia(){
     let newMedias  = [];
     let volumi = []
+    let durata = []
       for (let j = 0; j < this.pubblicitaCorrente.medias.length; j++) {
         const m = this.pubblicitaCorrente.medias[j];
         const x = this.pocketBase.prendiRisorsaa(m, this.risorse);
         const id = m;
         const imageUrl = localStorage.getItem('indirizzoIp') + "/api/files/" + x.collectionId + '/' + x.id + '/' + x.file + '?thumb=100x100&token=';
         newMedias.push(imageUrl);
-        console.log(x.volume)
+
         volumi.push(x.volume/100)
-        console.log(newMedias)
+        durata.push(x.set_interval)
+
       }
-      console.log(newMedias)
+
       this.pubblicitaCorrente.medias.file = newMedias;
       this.pubblicitaCorrente.medias.volume = volumi;
-      console.log(this.pubblicitaCorrente.medias)
+      this.pubblicitaCorrente.medias.durata = durata;
+
       this.video = this.pubblicitaCorrente.medias.file[0]
       this.volume = this.pubblicitaCorrente.medias.volume[0]
+
   }
 
   video : any
@@ -125,7 +279,7 @@ export class HomeComponent {
 
     const player = document.getElementById("videoPlayer");
     player?.addEventListener("ended", this.handleVideo, false);
-    const video = this.videoElement.nativeElement;
+    const video = this.e.nativeElement;
     const container = video.parentElement;
 
     const containerWidth = container.offsetWidth;
@@ -141,22 +295,44 @@ export class HomeComponent {
       video.style.width = 'auto';
       video.style.height = '100%';
     }
+    this.player = document.getElementById("videoPlayer") as HTMLVideoElement;
     this.handleVideo();
   }
 
+  player : any
+
   handleVideo = () => {
-    if (this.current === this.videos.length) {
-      this.current = 0;
-    }
 
-    const player = document.getElementById("videoPlayer") as HTMLVideoElement;
-    player.setAttribute("src", this.videos.file[this.current]);
-    player.volume =  this.videos.volume[this.current];
-    player.load();
-    player.play();
+    console.log("handle")
+    console.log(this.videos.file.length)
+    console.log(this.current)
+    console.log(this.videos.file.length)
+    console.log(this.player)
+    if (this.current >= this.videos.file.length) {
+    this.randomPubblicita();
+    return;
+  }
 
-    this.current++;
+
+    this.player.setAttribute("src", this.videos.file[this.current]);
+
+    this.player.volume =  this.videos.volume[this.current];
+
+    console.log(this.player)
+    this.player.load();
+
+    this.aaaa = this.player.play();
+
+  if (this.aaaa !== undefined) {
+    this.aaaa.then((a : any) => {
+      this.current++;
+      return null
+    })
+
+
+
   };
+}
 
 
   clickCounter = 0
@@ -167,23 +343,11 @@ export class HomeComponent {
       window.location.reload()
     }
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  counter = 0
+  onCarouselSlide(event: NgbSlideEvent) {
+    this.counter++
+    if (this.counter === this.pubblicitaCorrente.medias.file.length) {
+      this.randomPubblicita();
+    }
+  }
 }
