@@ -73,7 +73,7 @@ export class PulsanteComponent implements OnInit {
   async add(): Promise<void> {
     let timerInterval: any;
 
-    this.soundService.playSound();
+
     if (!this.isClickable) {
       return;
     }
@@ -87,6 +87,7 @@ export class PulsanteComponent implements OnInit {
     });
 
     try {
+      this.soundService.playSound();
       Swal.fire({
         title: 'Stampa in corso...',
         timer: 2000,
@@ -142,8 +143,8 @@ export class PulsanteComponent implements OnInit {
 
         }
       });
-    } finally {// Imposta lo stato di fetching su false
-      this.isClickable = true; // Rendi nuovamente cliccabile il di
+    } finally {
+      this.isClickable = true;
     }
 
   }
