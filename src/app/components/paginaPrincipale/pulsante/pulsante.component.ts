@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, } from '@angular/core';
 import { DatiDispositivoService } from 'src/app/services/dati-dispositivo.service';
 import { PocketBaseService } from 'src/app/services/pocket-base.service';
 import PocketBase from 'pocketbase';
@@ -71,27 +71,33 @@ export class PulsanteComponent implements OnInit {
   isClickable = true;
 
   async add(): Promise<void> {
-    let timerInterval: any
-      Swal.fire({
+    let timerInterval: any;
+
+    Swal.fire({
       title: 'STAMPA IN CORSO',
-      timer: 2000,
+      timer: 2500,
       timerProgressBar: true,
       didOpen: () => {
-        Swal.showLoading()
-        const b : any = Swal.getHtmlContainer()!.querySelector('b')
+        Swal.showLoading();
+        const b: any = Swal.getHtmlContainer()!.querySelector('b');
         timerInterval = setInterval(() => {
-        b.textContent = Swal.getTimerLeft()
-      }, 100)
+          b.textContent = Swal.getTimerLeft();
+        }, 100);
       },
       willClose: () => {
-        clearInterval(timerInterval)
+        clearInterval(timerInterval);
+      },
+      allowOutsideClick: false,
+      customClass: {
+        title: 'aaaaa' // Assegna la classe CSS personalizzata
       }
-      }).then((result : any) => {
+    }).then((result: any) => {
+      /* Leggi ulteriori informazioni sulla gestione delle chiusure qui sotto */
+      if (result.dismiss === Swal.DismissReason.timer) {
+        console.log('È stato chiuso dal timer');
+      }
+    });
 
-        if (result.dismiss === Swal.DismissReason.timer) {
-          console.log('I was closed by the timer')
-        }
-      })
     this.soundService.playSound();
     if (!this.isClickable) {
       return;
@@ -122,7 +128,7 @@ export class PulsanteComponent implements OnInit {
       if (this.group.number + 1 > this.max) {
         this.group.number = 0;
       } else {
-      this.group.number = this.group.number + 1;
+
     }
 
     this.group.queued = this.group.queued + 1;
@@ -130,8 +136,8 @@ export class PulsanteComponent implements OnInit {
     this.pocketBase.updateGroup(this.group.id, this.group);
     } catch (error) {
       console.error('Errore durante l\'aggiunta:', error);
-    } finally {
-      this.isClickable = true;
+    } finally {// Imposta lo stato di fetching su false
+      this.isClickable = true; // Rendi nuovamente cliccabile il di
     }
 
 
