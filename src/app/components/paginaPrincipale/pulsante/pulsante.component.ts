@@ -75,7 +75,7 @@ export class PulsanteComponent implements OnInit {
 
     Swal.fire({
       title: 'STAMPA IN CORSO',
-      timer: 25000,
+      timer: 2500,
       timerProgressBar: true,
       didOpen: () => {
         Swal.showLoading();
