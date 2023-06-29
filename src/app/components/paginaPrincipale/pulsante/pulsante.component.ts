@@ -73,31 +73,6 @@ export class PulsanteComponent implements OnInit {
   async add(): Promise<void> {
     let timerInterval: any;
 
-    Swal.fire({
-      title: 'STAMPA IN CORSO',
-      timer: 2500,
-      timerProgressBar: true,
-      didOpen: () => {
-        Swal.showLoading();
-        const b: any = Swal.getHtmlContainer()!.querySelector('b');
-        timerInterval = setInterval(() => {
-          b.textContent = Swal.getTimerLeft();
-        }, 100);
-      },
-      willClose: () => {
-        clearInterval(timerInterval);
-      },
-      allowOutsideClick: false,
-      customClass: {
-        title: 'aaaaa' // Assegna la classe CSS personalizzata
-      }
-    }).then((result: any) => {
-      /* Leggi ulteriori informazioni sulla gestione delle chiusure qui sotto */
-      if (result.dismiss === Swal.DismissReason.timer) {
-        console.log('È stato chiuso dal timer');
-      }
-    });
-
     this.soundService.playSound();
     if (!this.isClickable) {
       return;
@@ -111,12 +86,34 @@ export class PulsanteComponent implements OnInit {
       printerId: print
     });
 
-
-
     try {
+      Swal.fire({
+        title: 'Stampa in corso...',
+        timer: 2000,
+        timerProgressBar: true,
+        didOpen: () => {
+          Swal.showLoading();
+          const b: any = Swal.getHtmlContainer()!.querySelector('b');
+          timerInterval = setInterval(() => {
+            b.textContent = Swal.getTimerLeft();
+          }, 100);
+        },
+        willClose: () => {
+          clearInterval(timerInterval);
+        },
+        allowOutsideClick: false,
+        customClass: {
+          title: 'aaaaa', // Assegna la classe CSS personalizzata
 
+        }
+      }).then((result: any) => {
 
-      fetch(localStorage.getItem('server') + ":3000/print", {
+        if (result.dismiss === Swal.DismissReason.timer) {
+          console.log('È stato chiuso dal timer');
+        }
+      });
+
+      await fetch(localStorage.getItem('server') + ":3000/print", {
         method: "post",
         headers: { "Content-Type": "application/json" },
         body: _body
@@ -127,20 +124,27 @@ export class PulsanteComponent implements OnInit {
 
       if (this.group.number + 1 > this.max) {
         this.group.number = 0;
-      } else {
-
-    }
+      } else {}
 
     this.group.queued = this.group.queued + 1;
       this.trovaNz();
     this.pocketBase.updateGroup(this.group.id, this.group);
+
+
     } catch (error) {
       console.error('Errore durante l\'aggiunta:', error);
+      Swal.fire({
+        icon: 'error',
+        title: 'Errore',
+        text: 'Stampante non collegata',
+        customClass: {
+          title: 'aaaaa', // Assegna la classe CSS personalizzata
+
+        }
+      });
     } finally {// Imposta lo stato di fetching su false
       this.isClickable = true; // Rendi nuovamente cliccabile il di
     }
-
-
 
   }
 
