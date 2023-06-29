@@ -16,7 +16,7 @@
                             </ngb-carousel>
                         </div>
                         <div class="cont" *ngIf="pubblicitaCorrente.type === 'player'">
-                            <div class="video-background videoPlayerWrapper">
+                            <div class="video-background videoPlayerWrapper" #parent>
                                 <video id="videoPlayer" preload="none" playsinline autoplay muted #videoPlayer disablepictureinpicture></video>
                             </div>
                         </div>
