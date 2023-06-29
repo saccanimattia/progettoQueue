@@ -1,5 +1,5 @@
 
-import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, Renderer2, ViewChild } from '@angular/core';
 import { DatiDispositivoService } from 'src/app/services/dati-dispositivo.service';
 import { PocketBaseService } from 'src/app/services/pocket-base.service';
 import { trigger, transition, style, animate } from '@angular/animations';
@@ -32,7 +32,7 @@ export class HomeComponent {
   isMisto = false
 
   constructor(private pocketBase : PocketBaseService, private s : SoundService,
-    private router : Router)
+    private router : Router , private renderer: Renderer2)
     {
     this.currentYear = new Date().getFullYear();
   }
@@ -84,15 +84,6 @@ export class HomeComponent {
     this.counter = 0
     this.current = 0
 
-    if(this.player){
-      if (this.aaaa !== undefined) {
-        this.aaaa.then((a : any) => {
-          console.log("pausa")
-        this.player.pause()
-        })
-
-    }
-  }
 
     if(this.spotIndex == this.layout.spots.length)
       this.spotIndex = 0
@@ -122,6 +113,8 @@ export class HomeComponent {
       this.spotIndex ++;
       this.current = 0
       this.videos  = this.pubblicitaCorrente.medias
+      console.log(this.player)
+      this.renderer.setStyle(this.player, 'display', 'block');
       this.handleVideo()
       console.log("this.pubblicitaCorrente")
 
@@ -277,8 +270,12 @@ export class HomeComponent {
     console.log(data)
     this.videos = data;
 
-    const player = document.getElementById("videoPlayer");
-    player?.addEventListener("ended", this.handleVideo, false);
+    this.player = document.getElementById("videoPlayer");
+    this.player?.addEventListener("ended", () => {
+      setTimeout(() => {
+        this.handleVideo();
+      }, 1000);
+    }, false);
     const video = this.e.nativeElement;
     const container = video.parentElement;
 
@@ -309,6 +306,7 @@ export class HomeComponent {
     console.log(this.videos.file.length)
     console.log(this.player)
     if (this.current >= this.videos.file.length) {
+      this.player.setAttribute("src", null);
     this.randomPubblicita();
     return;
   }
