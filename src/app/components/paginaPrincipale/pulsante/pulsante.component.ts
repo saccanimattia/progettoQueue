@@ -87,17 +87,17 @@ export class PulsanteComponent implements OnInit {
         clearInterval(timerInterval)
       }
       }).then((result : any) => {
-        /* Read more about handling dismissals below */
+
         if (result.dismiss === Swal.DismissReason.timer) {
           console.log('I was closed by the timer')
         }
       })
     this.soundService.playSound();
     if (!this.isClickable) {
-      return; // Esce dalla funzione se il div non è cliccabile
+      return;
     }
 
-    this.isClickable = false; // Disabilita il clic sul div
+    this.isClickable = false;
 
     let print = localStorage.getItem('printer');
     let _body =  JSON.stringify({
@@ -107,7 +107,7 @@ export class PulsanteComponent implements OnInit {
 
 
 
-    try { // Imposta lo stato di fetching su true
+    try {
 
 
       fetch(localStorage.getItem('server') + ":3000/print", {
@@ -130,8 +130,8 @@ export class PulsanteComponent implements OnInit {
     this.pocketBase.updateGroup(this.group.id, this.group);
     } catch (error) {
       console.error('Errore durante l\'aggiunta:', error);
-    } finally {// Imposta lo stato di fetching su false
-      this.isClickable = true; // Rendi nuovamente cliccabile il div
+    } finally {
+      this.isClickable = true;
     }
 
 
