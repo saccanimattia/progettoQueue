@@ -99,7 +99,7 @@ export class HomeComponent {
 
     console.log("pubblicita corr")
     console.log(this.pubblicitaCorrente)
-
+    this.convertiMedia()
 
 
     if(this.pubblicitaCorrente.type == 'player'){
