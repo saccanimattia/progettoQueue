@@ -87,9 +87,9 @@ export class HomeComponent {
 
     if(this.spotIndex == this.layout.spots.length)
       this.spotIndex = 0
-    console.log(this.spotIndex)
+
     this.pubblicitaCorrente = this.layout.spots[this.spotIndex];
-    console.log(this.pubblicitaCorrente)
+
 
     if(this.isMisto ==false){
       this.convertiMedia().then(() => {
@@ -124,12 +124,9 @@ export class HomeComponent {
         this.isMisto = true
         this.spotIndex ++;
         this.gestisciSpot()
-
         this.randomPubblicita()
       }
-
   }
-
   aaaa : any
 
   indiceCorrente = 0
@@ -267,9 +264,9 @@ export class HomeComponent {
   current: number = 0;
 
   initVideo(data: any) {
+
     console.log(data)
     this.videos = data;
-
     this.player = document.getElementById("videoPlayer");
     this.player?.addEventListener("ended", () => {
       setTimeout(() => {
@@ -278,12 +275,11 @@ export class HomeComponent {
     }, false);
     const video = this.e.nativeElement;
     const container = video.parentElement;
-
     const containerWidth = container.offsetWidth;
     const containerHeight = container.offsetHeight;
-
     const videoRatio = video.videoWidth / video.videoHeight;
     const containerRatio = containerWidth / containerHeight;
+
 
    if (containerRatio > videoRatio) {
       video.style.width = '100%';
@@ -295,44 +291,27 @@ export class HomeComponent {
     this.player = document.getElementById("videoPlayer") as HTMLVideoElement;
     this.handleVideo();
   }
-
   player : any
 
   handleVideo = () => {
 
-    console.log("handle")
-    console.log(this.videos.file.length)
-    console.log(this.current)
-    console.log(this.videos.file.length)
-    console.log(this.player)
     if (this.current >= this.videos.file.length) {
       this.player.setAttribute("src", null);
     this.randomPubblicita();
     return;
   }
-
-
     this.player.setAttribute("src", this.videos.file[this.current]);
-
     this.player.volume =  this.videos.volume[this.current];
 
-    console.log(this.player)
     this.player.load();
-
     this.aaaa = this.player.play();
-
   if (this.aaaa !== undefined) {
     this.aaaa.then((a : any) => {
       this.current++;
       return null
     })
-
-
-
   };
-}
-
-
+  }
   clickCounter = 0
   config(){
     this.clickCounter++

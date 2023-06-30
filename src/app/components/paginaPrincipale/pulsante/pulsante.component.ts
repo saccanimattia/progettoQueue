@@ -123,9 +123,6 @@ export class PulsanteComponent implements OnInit {
 
       this.pocketBase.creaQueue(this.group);
 
-      if (this.group.number + 1 > this.max) {
-        this.group.number = 0;
-      } else {}
 
     this.group.queued = this.group.queued + 1;
       this.trovaNz();
