@@ -287,6 +287,7 @@ export class HomeComponent {
     clearTimeout(this.timeoutId);
     console.log(this.p, this.currentMedia);
     if (this.isVideo(this.currentMedia) && this.p) {
+      this.p.volume =  this.currentVolume;
       console.log("video")
       this.p?.addEventListener("ended", () => {
 
