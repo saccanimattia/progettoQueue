@@ -92,12 +92,14 @@ export class HomeComponent {
 
 
     if(this.spotIndex == this.layout.spots.length)
+
       this.spotIndex = 0;
 
     this.pubblicitaCorrente = this.layout.spots[this.spotIndex];
 
     console.log("pubblicita corr")
     console.log(this.pubblicitaCorrente)
+
 
 
     if(this.pubblicitaCorrente.type == 'player'){
@@ -112,6 +114,7 @@ export class HomeComponent {
           this.spotIndex ++;
           this.current = 0
           this.initVideo(this.pubblicitaCorrente)
+
 
 
         }
@@ -135,6 +138,7 @@ export class HomeComponent {
       console.log("AAAAAAAAAAAAA")
         this.convertiMedia().then(() => {
           setTimeout(() => {
+
 
             console.log(this.pubblicitaCorrente)
           this.playMedia()
@@ -181,8 +185,11 @@ export class HomeComponent {
     this.logo = this.risorse.find((r:any) =>
           r.name === 'logo'
          );
+         console.log("ddddd2")
     this.logo.file = localStorage.getItem('indirizzoIp') + "/api/files/" + this.logo.collectionId + '/' + this.logo.id + '/' + this.logo.file + '?thumb=100x100&token=';
   }
+
+
 
 
 
@@ -192,9 +199,9 @@ export class HomeComponent {
   current: number = 0;
 
   initVideo(data: any) {
+
     console.log(data)
     this.videos = data;
-
     this.player = document.getElementById("videoPlayer");
     this.player?.addEventListener("ended", () => {
 
@@ -203,12 +210,11 @@ export class HomeComponent {
     }, false);
     const video = this.e.nativeElement;
     const container = video.parentElement;
-
     const containerWidth = container.offsetWidth;
     const containerHeight = container.offsetHeight;
-
     const videoRatio = video.videoWidth / video.videoHeight;
     const containerRatio = containerWidth / containerHeight;
+
 
    if (containerRatio > videoRatio) {
       video.style.width = '100%';
@@ -220,30 +226,25 @@ export class HomeComponent {
     this.player = document.getElementById("videoPlayer") as HTMLVideoElement;
     this.handleVideo();
   }
-
   player : any
 
   handleVideo = () => {
 
-    console.log("handle")
-    console.log(this.videos.file.length)
-    console.log(this.current)
-    console.log(this.videos.file.length)
-    console.log(this.player)
     if (this.current >= this.videos.file.length) {
       this.player.setAttribute("src", null);
     this.randomPubblicita();
     return;
   }
 
+
     console.log("VIDEO")
     console.log(this.videos)
-    this.player.setAttribute("src", this.videos.file[this.current]);
 
+    this.player.setAttribute("src", this.videos.file[this.current]);
     this.player.volume =  this.videos.volume[this.current];
 
-    console.log(this.player)
     this.player.load();
+
 
     if (this.player) {
       this.aaaa = this.player.play();
@@ -256,13 +257,8 @@ export class HomeComponent {
       this.current++;
       return null
     })
-
-
-
   };
-}
-
-
+  }
   clickCounter = 0
   config(){
     this.clickCounter++
