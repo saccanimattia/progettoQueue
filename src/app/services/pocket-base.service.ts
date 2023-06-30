@@ -79,7 +79,6 @@ export class PocketBaseService {
       }
 
       prendiRisorsaa(id : any, risorse : any[]){
-
         const risorsa = risorse.find((r:any) =>
           r.id === id
          );

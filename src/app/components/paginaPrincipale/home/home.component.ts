@@ -253,8 +253,11 @@ export class HomeComponent {
     this.logo = this.risorse.find((r:any) =>
           r.name === 'logo'
          );
+         console.log("ddddd2")
     this.logo.file = localStorage.getItem('indirizzoIp') + "/api/files/" + this.logo.collectionId + '/' + this.logo.id + '/' + this.logo.file + '?thumb=100x100&token=';
   }
+
+
 
 
 
