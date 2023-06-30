@@ -189,10 +189,6 @@ export class HomeComponent {
     this.logo.file = localStorage.getItem('indirizzoIp') + "/api/files/" + this.logo.collectionId + '/' + this.logo.id + '/' + this.logo.file + '?thumb=100x100&token=';
   }
 
-
-
-
-
   public currentVideoIndex: number = 0;
 
   videos: any;

@@ -23,7 +23,9 @@ export class PocketBaseService {
 
   async checkIp(): Promise<boolean> {
     try {
+
       const result = await this.pb.collection('layouts').getList(1, 50, { '$autoCancel': false });
+
       return true;
     } catch (err : any) {
       if (err.response.status === 404) {
